@@ -73,14 +73,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+# # Database
+# # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+import dj_database_url
+from dotenv import (
+    find_dotenv,
+    load_dotenv,
+)
+load_dotenv(find_dotenv())
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(conn_max_age=600),
 }
 
 
