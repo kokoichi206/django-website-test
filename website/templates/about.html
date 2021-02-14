@@ -2,10 +2,15 @@
 {% load humanize %}
 
 {% block main %}
-<h1>自己紹介</h1>
-<h2>実績</h2>
-<p>{% now "Y年m月d日 H時i分" %}までに{{ num_services|intcomma }}個のサービスを作りました！</p>
-<h2>スキル</h2>
+<h1>About me</h1>
+<h2>Projects</h2>
+<li>
+    <img src="https://github.com/kokoichi206/reversi" alt="" />
+</li>
+
+
+<p> By {% now "m/d/Y" %} ！</p>
+<h2>Skills</h2>
 <ul>
     {% for skill in skills %}
     <li>{{ skill }}</li>
