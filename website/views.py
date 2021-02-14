@@ -22,3 +22,13 @@ class AboutView(TemplateView):
             "JavaSript"
             ]
         return ctxt
+
+
+class QuizView(TemplateView):
+    template_name = "quiz.html"
+    
+    # def get_context_data(self):
+    #     ctxt = super().get_context_data()
+    #     # ctxt["username"] = "太郎"
+    #     return ctxt
+        

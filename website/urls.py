@@ -5,5 +5,6 @@ from .views import IndexView, AboutView
 urlpatterns = [
     path('', IndexView.as_view()),
     path('about/', AboutView.as_view()),
+    path('quiz/', QuizView.as_view()),
     # path('contact/', IndexView.as_view()),
 ]
