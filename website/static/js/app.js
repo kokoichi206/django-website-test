@@ -46,8 +46,11 @@ const memberNames = [
      ["yumikinao", "弓木 奈於"]      
 ];
 
-let src = document.getElementById('picture');
-console.log(src);
+// let src = document.getElementById('picture');
+
+let a = 'hage';
+console.log(a)
+// console.log(src);
 
 // let ansNumOfMembers = Math.floor(Math.random()*memberNames.length);
 // let AnserName = memberNames[ansNumOfMembers];
