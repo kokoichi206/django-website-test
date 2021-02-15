@@ -66,7 +66,7 @@ const createAnswers = () => {
      let AnserName = memberNames[ansNumOfMembers];
      let nameEn = AnserName[0];
      let NameJa = AnserName[1];
-     let picSrc = 'Picture/' + nameEn +'.jpeg';
+     let picSrc = 'https://koko-django-website.herokuapp.com/static/Picture/' + nameEn +'.jpeg';
      console.log(document.getElementById('picture').src);
      console.log(picSrc);
      document.getElementById('picture').src = picSrc;
