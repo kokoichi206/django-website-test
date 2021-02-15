@@ -82,15 +82,22 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-import dj_database_url
-from dotenv import (
-    find_dotenv,
-    load_dotenv,
-)
-load_dotenv(find_dotenv())
 
+# import dj_database_url
+# from dotenv import (
+#     find_dotenv,
+#     load_dotenv,
+# )
+# load_dotenv(find_dotenv())
+
+# DATABASES = {
+#     'default': dj_database_url.config(conn_max_age=600),
+# }
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
