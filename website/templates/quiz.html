@@ -24,7 +24,11 @@
     </head>
     
     <body>
-        {% include "_navbar.html"%}
+        <div class='navbar' href="{% static 'main.css' %}">
+            <a href="/">HOME</a>
+            <a href="/about">About Me</a>
+            <a href="/quiz">Quiz</a>
+        </div>
         <div class="container">
     
             
@@ -36,7 +40,7 @@
                 <button type="button" class="ms-1 btn btn-primary">Primary</button>
             </div>
         </div>
-        {% include "_footer.html"%}
+        <p>Copyright 2021</p>
     </body>
 
 </html>
