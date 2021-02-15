@@ -67,9 +67,10 @@ const createAnswers = () => {
      let nameEn = AnserName[0];
      let NameJa = AnserName[1];
      let picSrc = '{% static \'Picture/' + nameEn +'.jpeg\' %}';
+     console.log(document.getElementById('picture').src)
      console.log(picSrc);
      document.getElementById('picture').src = picSrc;
-
+    console.log(document.getElementById('picture').src)
      // 残りの3つの答えを生成
      while(answers.length < 4){
           let candNumOfMembers = Math.floor(Math.random()*memberNames.length);
