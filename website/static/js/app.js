@@ -67,6 +67,7 @@ const createAnswers = () => {
      let nameEn = AnserName[0];
      let NameJa = AnserName[1];
      let picSrc = '"{% static \'pic/' + nameEn +'.jpeg\' %}';
+     console.log(picSrc);
      document.getElementById('picture').src = picSrc;
 
      // 残りの3つの答えを生成
