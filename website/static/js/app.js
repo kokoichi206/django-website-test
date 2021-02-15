@@ -56,6 +56,8 @@ const quizLength = 5;
 const $button = document.getElementsByTagName('button');
 const buttonLength = $button.length;
 
+// 後で他の関数でも使いたくて、globalにしておく
+let NameJa = 'brabra';
 let ansNumOfMembers = -1
 // クイズの問題文、選択肢を定義
 const createAnswers = () => {
@@ -65,7 +67,7 @@ const createAnswers = () => {
 
      let AnserName = memberNames[ansNumOfMembers];
      let nameEn = AnserName[0];
-     let NameJa = AnserName[1];
+     NameJa = AnserName[1];
      let picSrc = 'https://koko-django-website.herokuapp.com/static/Picture/' + nameEn +'.jpeg';
      console.log(document.getElementById('picture').src);
      console.log(picSrc);
@@ -105,7 +107,7 @@ const clickHandler = (e) => {
           window.alert('正解');
           score++;
      } else {
-          window.alert('不正解: 正解は' + NameJa + 'です。');
+          window.alert('不正解: 正解は' +  + 'です。');
      }
 
      quizIndex++;
