@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% load humanize %}
-{% load app %}
+{% load static %}
 
 
 {% block main %}
 <h1>About me</h1>
 <h2>Projects</h2>
-
-{{ post.text | linebreaks | urlize2 }}
-
+<img src="https://source.unsplash.com/random/700x400" alt="" />
+<ul>
+    <li>
+        <a href="https://github.com/kokoichi206/reversi">Reversi game</a>
+    </li>
+</ul>
 <p> By {% now "m/d/Y" %}</p>
 <h2>Skillsss</h2>
 <ul>
