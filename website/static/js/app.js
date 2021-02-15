@@ -107,7 +107,7 @@ const clickHandler = (e) => {
           window.alert('正解');
           score++;
      } else {
-          window.alert('不正解: 正解は' +  + 'です。');
+          window.alert('不正解: 正解は' + memberNames[ansNumOfMembers][1] + 'です。');
      }
 
      quizIndex++;
