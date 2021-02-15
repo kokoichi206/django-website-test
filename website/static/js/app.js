@@ -1,3 +1,4 @@
+
 const memberNames = [
      ["akimotomanatsu", "秋元 真夏"],
      ["ikutaerika", "生田 絵梨花"],
@@ -65,7 +66,7 @@ const createAnswers = () => {
      let AnserName = memberNames[ansNumOfMembers];
      let nameEn = AnserName[0];
      let NameJa = AnserName[1];
-     let picSrc = 'pic/' + nameEn +'.jpeg';
+     let picSrc = '"{% static \'pic/' + nameEn +'.jpeg\' %}';
      document.getElementById('picture').src = picSrc;
 
      // 残りの3つの答えを生成
