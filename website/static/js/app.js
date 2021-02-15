@@ -66,7 +66,7 @@ const createAnswers = () => {
      let AnserName = memberNames[ansNumOfMembers];
      let nameEn = AnserName[0];
      let NameJa = AnserName[1];
-     let picSrc = '"{% static \'pic/' + nameEn +'.jpeg\' %}"';
+     let picSrc = '"{% static \'Picture/' + nameEn +'.jpeg\' %}"';
      console.log(picSrc);
      document.getElementById('picture').src = picSrc;
 
