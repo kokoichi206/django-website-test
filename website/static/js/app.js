@@ -46,9 +46,82 @@ const memberNames = [
      ["yumikinao", "弓木 奈於"]      
 ];
 
+let score = 0;
+let quizIndex = 0;
+
+// 何回このゲームするか
+const quizLength = 5;
+
+// HTMLのオブジェクトを取ってくる場合には$を入れる
+const $button = document.getElementsByTagName('button');
+const buttonLength = $button.length;
+
+let ansNumOfMembers = -1
+// クイズの問題文、選択肢を定義
+const createAnswers = () => {
+     let answers = [];
+     ansNumOfMembers = Math.floor(Math.random()*memberNames.length);
+     answers.push(ansNumOfMembers)
+
+     let AnserName = memberNames[ansNumOfMembers];
+     let nameEn = AnserName[0];
+     let NameJa = AnserName[1];
+     let picSrc = '{% static \'Picture/' + nameEn +'.jpeg\' %}';
+     console.log(picSrc);
+     document.getElementById('picture').src = picSrc;
+
+     // 残りの3つの答えを生成
+     while(answers.length < 4){
+          let candNumOfMembers = Math.floor(Math.random()*memberNames.length);
+          if(answers.includes(candNumOfMembers)){
+               
+          } else {
+          let candNumOfMembers = Math.floor(Math.random()*memberNames.length);
+               answers.push(candNumOfMembers);
+          }
+     }
+
+     // 今、答えが0番目で固定なので、ランダムに並び変える
+     // 0から3までの乱数を生成
+     let ansewerIndex = Math.floor( Math.random() * 4 );
+     let tmp = answers[ansewerIndex];
+     answers[0] = tmp
+     answers[ansewerIndex] = ansNumOfMembers
+
+     let tmpIndex = 0;
+     while(tmpIndex < buttonLength){
+          $button[tmpIndex].textContent = memberNames[answers[tmpIndex]][1];
+          tmpIndex++;
+     }
+     $button[0].textContent = picSrc;
+};
+
+createAnswers();
 
 
-let a = 'hage';
-console.log(a)
+const clickHandler = (e) => {
 
+     if(memberNames[ansNumOfMembers][1] === e.target.textContent){
+          window.alert('正解');
+          score++;
+     } else {
+          window.alert('不正解');
+     }
 
+     quizIndex++;
+
+     if(quizIndex < quizLength){
+          createAnswers();
+     } else {
+          window.alert('終了！あなたの正解数は' + score + '/' + quizLength + 'です！');
+     }
+};
+
+// ボタンをクリックしたら正誤判定
+let handleIndex = 0;
+while (handleIndex < buttonLength) {
+     $button[handleIndex].addEventListener('click', (e) => {
+          clickHandler(e);
+     });
+     handleIndex++;
+}
