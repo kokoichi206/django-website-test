@@ -104,7 +104,8 @@ const clickHandler = (e) => {
           window.alert('正解');
           score++;
      } else {
-          window.alert('不正解: 正解は' + NameJa + 'です。');
+         let alertMessage = '不正解: 正解は' + NameJa + 'です。'
+          window.alert(alertMessage);
      }
 
      quizIndex++;
