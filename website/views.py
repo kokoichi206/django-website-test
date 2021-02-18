@@ -31,3 +31,10 @@ class QuizView(TemplateView):
     #     ctxt = super().get_context_data()
     #     # ctxt["username"] = "太郎"
     #     return ctxt
+
+class QuizEasyView(TemplateView):
+    template_name = "quiz/quiz_easy.html"
+    
+class QuizHardView(TemplateView):
+    template_name = "quiz/quiz_hard.html"
+    
