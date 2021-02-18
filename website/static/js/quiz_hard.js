@@ -49,7 +49,7 @@ const createAnswers = () => {
      let AnserName = memberNames[ansNumOfMembers];
      let nameEn = AnserName[0];
      let NameJa = AnserName[1];
-     let picSrc = './EyePicture/' + nameEn +'.png';
+     let picSrc = 'https://koko-django-website.herokuapp.com/static/EyePicture/' + nameEn +'.png';
      document.getElementById('picture').src = picSrc;
 
      // 残りの3つの答えを生成
