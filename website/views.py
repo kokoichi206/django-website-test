@@ -31,4 +31,3 @@ class QuizView(TemplateView):
     #     ctxt = super().get_context_data()
     #     # ctxt["username"] = "太郎"
     #     return ctxt
-        
