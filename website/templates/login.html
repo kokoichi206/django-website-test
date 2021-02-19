@@ -113,7 +113,7 @@
         //ブラウザ入力値
         inputPass=document.PA.pass.value;
         //認証
-        if(inputPass==CorrectPass)
+        if(inputPass === CorrectPass)
           {
             alert("Welcome!");          
             //画面遷移
@@ -129,10 +129,11 @@
         }
 
         function CheckPassPress(code){
+
         if(13 === code){
-            let CorrectPass = 'admin';
+            const CorrectPass = 'admin';
             inputPass=document.PA.pass.value;
-            if(inputPass==CorrectPass)
+            if(inputPass === CorrectPass)
           {
             //画面遷移
             location.href="info";
