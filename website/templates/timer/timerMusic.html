@@ -8,6 +8,11 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
+    <!-- jQuery とか popper.js とか。bootstrapだけだとやれること限られている -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <script>
         let repeatTimer;
         // let audio = document.getElementById("music");
@@ -84,8 +89,8 @@
         //フォームを初期状態に戻す（リセット）関数
         function reSet()
         {
-            document.timer.elements[0].value="0";
-            document.timer.elements[1].value="2";
+            document.timer.elements[0].value="30";
+            document.timer.elements[1].value="0";
             // document.timer.elements[2].disabled=false;
             document.timer.playbutton.disabled = false;
             document.timer.stopbutton.disabled = true;
@@ -93,23 +98,66 @@
             audio.pause();
             audio.currentTime = 0;   
         }  
-            
+
+        // ドロップダウンを押したときに曲を変更する
+        function ChangeMusic() {
+            let elementRef = document.getElementById("musiclist");
+            let musicName = elementRef.value;
+            // console.log(musicName);
+            audio.src = musicName + '.mp3';
+        }
+
+        // ドロップダウンを押したときに写真を変更する
+        function ChangePic() {
+            let elementRef = document.getElementById("picList");
+            let Name = elementRef.value;
+            let pictureRef = document.getElementById("picture");
+            console.log(pictureRef)
+            pictureRef.src = Name + '.jpg';
+            console.log(pictureRef.width);
+            if (Name === 'hazuki'){
+                pictureRef.width = 330;
+                pictureRef.height = 250;
+            } else {
+                pictureRef.width = 330;
+                pictureRef.height = 300;
+            }
+        }
     </script>
 </head>
 <body>
-    <!-- <audio src="Kyun_short.mp3">audioがサポートされていない場合のメッセージ</audio> -->
+
+    <h1 style="font-family:monospace" class="mt-3 ms-4">Timer</h1>
 
     <AUDIO id="music">
     <SOURCE src="Kyun_short.mp3" type="audio/mp3">
     </AUDIO>
 
-    <FORM name="timer">
-        <input size=10 class="mt-2 ms-3" type="text" value="30" style="text-align:right"> min
-        <input size=10 type="text" value="0" style="text-align:right"> second<br>
+    <select class="mt-2 ms-3" name='picList' id="picList"  onclick="ChangePic()">
+        <option value='minami' selected>みなみ</option>
+        <option value='hazuki'>葉月</option>
+        <option value='yoda'>与田</option>
+        <option value='momoko'>桃子</option>
+    </select><br>
+    <img class="mt-2 ms-3" id="picture" width="330" height="300" src="minami.jpg" alt="">
+
+    <FORM class="mt-3 ms-3" name="timer">
+        <input size=5 class="mt-2 ms-3" type="text" value="30" style="text-align:right;font-size:150%"> min
+        <input size=5 type="text" value="0" style="text-align:right;font-size:150%"> second<br>
         <input class="mt-2 ms-3" id="afa" name="playbutton" type="button" value="start" onClick="cntStart()">
         <input class="mt-2" id="stopbutton" name="stopbutton" type="button" value="stop" onClick="cntStop()" disabled>
         <input class="mt-2" type="button" value="reset" onclick="reSet()">
     </FORM>
+
+
+    <select class="mt-2 ms-4" name='musicList' id="musiclist"  onclick="ChangeMusic()">
+        <option value='Kyun_short' selected>キュン</option>
+        <option value='kitune'>キツネ</option>
+        <option value='outOfTheBlue'>Out of the blue</option>
+        <option value='hontonozikan'>ホントの時間</option>
+    </select>
+    <br>
+
 </body>
 </html>
 
