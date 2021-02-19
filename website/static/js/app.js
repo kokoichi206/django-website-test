@@ -79,7 +79,6 @@ const createAnswers = () => {
           if(answers.includes(candNumOfMembers)){
                
           } else {
-          let candNumOfMembers = Math.floor(Math.random()*memberNames.length);
                answers.push(candNumOfMembers);
           }
      }
