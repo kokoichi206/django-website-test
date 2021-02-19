@@ -44,4 +44,6 @@ class LoginFirstView(TemplateView):
 
 class AccessFirstView(TemplateView):
     template_name = "info.html"
-    
+
+class TimerView(TemplateView):
+    template_name = "timer/timerMusic.html
