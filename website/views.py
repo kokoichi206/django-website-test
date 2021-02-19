@@ -25,7 +25,7 @@ class AboutView(TemplateView):
 
 
 class QuizView(TemplateView):
-    template_name = "info.html"
+    template_name = "quiz.html"
     
     # def get_context_data(self):
     #     ctxt = super().get_context_data()
@@ -39,9 +39,9 @@ class QuizHardView(TemplateView):
     template_name = "quiz/quiz_hard.html"
 
     
-class LoginView(TemplateView):
+class LoginFirstView(TemplateView):
     template_name = "login.html"
 
     
-class AccessView(TemplateView):
+class AccessFirstView(TemplateView):
     template_name = "info.html"   
