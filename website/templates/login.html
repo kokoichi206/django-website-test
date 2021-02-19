@@ -115,9 +115,10 @@
         //認証
         if(inputPass === CorrectPass)
           {
+            location.href="info";
             alert("Welcome!");          
             //画面遷移
-            location.href="info";
+            
             flg=True;
           }
         //認証失敗メッセージ
@@ -132,7 +133,6 @@
 
         if(13 === code){
             CheckPass();
-            alert('hh');
         }}
     </script>
 
