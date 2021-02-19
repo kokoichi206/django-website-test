@@ -130,7 +130,16 @@
 
         function CheckPassPress(code){
         if(13 === code){
-            CheckPass();
+            // CheckPass();
+            inputPass=document.PA.pass.value;
+        //認証
+            if(inputPass==CorrectPass)
+            {
+                alert("Welcome!");          
+                //画面遷移
+                location.href="info";
+                flg=True;
+            }
         }}
     </script>
 
