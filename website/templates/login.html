@@ -107,25 +107,20 @@
 
 
         function CheckPass(){
-
         // CorrectPass = 'Matsuda_Lab';
         CorrectPass = 'admin';
-
         let flg=false;
         //ブラウザ入力値
         inputPass=document.PA.pass.value;
         //認証
         if(inputPass==CorrectPass)
           {
-            alert("Welcome!");
-
-            
+            alert("Welcome!");          
             //画面遷移
             location.href="info";
             flg=True;
           }
         
-
         //認証失敗メッセージ
         if(!flg)
         {
@@ -133,7 +128,10 @@
         }
         }
 
-
+        function CheckPass(){
+        if(13 === code){
+            CheckPass();
+        }}
     </script>
 
 </head>
@@ -141,7 +139,7 @@
   <FORM NAME="PA">
     <div class="main">
         <h1>Password</h1>
-        <label><input type="password" placeholder="password" name="pass" id="password" value="hello_world!" onkeypress="CheckPass()">
+        <label><input type="password" placeholder="password" name="pass" id="password" value="hello_world!" onkeypress="CheckPassPress()">
           <input type="checkbox" id="passwordCheck">
           <span class="iconEye"></span></label>
         <INPUT style="margin-left:250px" type="button" value="login" onClick="CheckPass()">
