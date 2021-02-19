@@ -108,7 +108,7 @@
 
         function CheckPass(){
         // CorrectPass = 'Matsuda_Lab';
-        CorrectPass = 'admin';
+        let CorrectPass = 'admin';
         let flg=false;
         //ブラウザ入力値
         inputPass=document.PA.pass.value;
@@ -130,6 +130,7 @@
 
         function CheckPassPress(code){
         if(13 === code){
+            let CorrectPass = 'admin';
             if(inputPass==CorrectPass)
           {
             //画面遷移
