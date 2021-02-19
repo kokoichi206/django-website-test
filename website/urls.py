@@ -3,6 +3,7 @@ from django.urls import path
 from .views import IndexView, AboutView, QuizView
 from .views import QuizEasyView, QuizHardView
 from .views import AccessFirstView, LoginFirstView
+from .views import TimerView
 
 urlpatterns = [
     path('', IndexView.as_view()),
