@@ -38,10 +38,10 @@ class QuizEasyView(TemplateView):
 class QuizHardView(TemplateView):
     template_name = "quiz/quiz_hard.html"
 
-    
+
 class LoginFirstView(TemplateView):
     template_name = "login.html"
 
-    
 class AccessFirstView(TemplateView):
-    template_name = "info.html"   
+    template_name = "info.html"
+    
