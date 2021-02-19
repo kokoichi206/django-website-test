@@ -120,18 +120,21 @@
             location.href="info";
             flg=True;
           }
-        }
-        
         //認証失敗メッセージ
         // if(!flg)
         // {
         //   alert("Failed login");
         // }
-        // }
+        //
+        }
 
         function CheckPassPress(code){
         if(13 === code){
-            CheckPass();
+            if(inputPass==CorrectPass)
+          {
+            //画面遷移
+            location.href="info";
+          }
         }}
     </script>
 
