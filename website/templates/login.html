@@ -117,7 +117,10 @@
           {
             alert("Welcome!");          
             //画面遷移
-            location.href="info";
+            // location.href="info";
+            let a = document.createElement('a');
+            a.href = "info";
+            a.click();
             flg=True;
           }
         //認証失敗メッセージ
@@ -131,7 +134,6 @@
         function CheckPassPress(code){
 
         if(13 === code){
-            location.href="info";
             CheckPass();
         }}
     </script>
