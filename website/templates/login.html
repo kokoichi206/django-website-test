@@ -131,13 +131,7 @@
         function CheckPassPress(code){
 
         if(13 === code){
-            const CorrectPass = 'admin';
-            inputPass=document.PA.pass.value;
-            if(inputPass === CorrectPass)
-          {
-            //画面遷移
-            location.href="info";
-          }
+            CheckPass();
         }}
     </script>
 
