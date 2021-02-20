@@ -92,8 +92,8 @@
         //フォームを初期状態に戻す（リセット）関数
         function reSet()
         {
-            document.timer.elements[0].value="0";
-            document.timer.elements[1].value="1";
+            document.timer.elements[0].value="30";
+            document.timer.elements[1].value="0";
             // document.timer.elements[2].disabled=false;
             document.timer.playbutton.disabled = false;
             document.timer.stopbutton.disabled = true;
@@ -115,10 +115,10 @@
             let elementRef = document.getElementById("picList");
             let Name = elementRef.value;
             let pictureRef = document.getElementById("picture");
-            console.log(pictureRef)
+            // console.log(pictureRef)
             pictureRef.src = 'https://koko-django-website.herokuapp.com/static/timer/' + Name + '.jpg';
-            console.log(pictureRef.width);
-            console.log(pictureRef.src);
+            // console.log(pictureRef.width);
+            // console.log(pictureRef.src);
             if (Name === 'hazuki'){
                 pictureRef.width = 330;
                 pictureRef.height = 250;
@@ -146,8 +146,8 @@
     <img class="mt-2 ms-3" id="picture" width="330" height="300" src="{% static 'timer/minami.jpg' %}" alt="">
 
     <FORM class="mt-3 ms-3" name="timer">
-        <input size=5 class="mt-2 ms-3" type="text" value="0" style="text-align:right;font-size:150%"> min
-        <input size=5 type="text" value="1" style="text-align:right;font-size:150%"> second<br>
+        <input size=5 class="mt-2 ms-3" type="text" value="30" style="text-align:right;font-size:150%"> min
+        <input size=5 type="text" value="0" style="text-align:right;font-size:150%"> second<br>
         <input class="mt-2 ms-3" id="afa" name="playbutton" type="button" value="start" onClick="cntStart()">
         <input class="mt-2" id="stopbutton" name="stopbutton" type="button" value="stop" onClick="cntStop()" disabled>
         <input class="mt-2" type="button" value="reset" onclick="reSet()">
