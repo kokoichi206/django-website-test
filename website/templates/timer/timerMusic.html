@@ -21,7 +21,7 @@
         var audio = document.createElement('audio');
         console.log(audio);
         audio.id = 'sound';
-        audio.src = 'Kyun_short.mp3';
+        audio.src = "{% static 'Kyun_short.mp3' %}";
 
         var timer1; //タイマーを格納する変数（タイマーID）の宣言
         
