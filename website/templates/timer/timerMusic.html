@@ -107,7 +107,7 @@
             let elementRef = document.getElementById("musiclist");
             let musicName = elementRef.value;
             // console.log(musicName);
-            audio.src = 'timer/' + musicName + ".mp3.jpg";
+            audio.src = 'timer/' + musicName + ".mp3";
         }
 
         // ドロップダウンを押したときに写真を変更する
@@ -133,7 +133,7 @@
     <h1 style="font-family:monospace" class="mt-3 ms-4">Timer</h1>
 
     <AUDIO id="music">
-    <SOURCE src="{% static Kyun_short.mp3 %}" type="audio/mp3">
+    <SOURCE src="{% static 'Kyun_short.mp3' %}" type="audio/mp3">
     </AUDIO>
 
     <select class="mt-2 ms-3" name='picList' id="picList"  onclick="ChangePic()">
