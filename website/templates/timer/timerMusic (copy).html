@@ -21,7 +21,7 @@
         var audio = document.createElement('audio');
         console.log(audio);
         audio.id = 'sound';
-        audio.src = 'https://koko-django-website.herokuapp.com/static/timer/KyunKyun_short.mp3';
+        audio.src = "{% static 'timer/Kyun_short.mp3' %}";
         // audio.src = 'timer/Kyun_short.mp3';
 
         var timer1; //タイマーを格納する変数（タイマーID）の宣言
@@ -107,7 +107,7 @@
             let elementRef = document.getElementById("musiclist");
             let musicName = elementRef.value;
             // console.log(musicName);
-            audio.src = 'https://koko-django-website.herokuapp.com/static/timer/' + musicName + ".mp3";
+            audio.src = 'timer/' + musicName + ".mp3";
         }
 
         // ドロップダウンを押したときに写真を変更する
@@ -116,7 +116,7 @@
             let Name = elementRef.value;
             let pictureRef = document.getElementById("picture");
             console.log(pictureRef)
-            pictureRef.src = 'https://koko-django-website.herokuapp.com/static/timer/' + Name + ".jpg";
+            pictureRef.src = "timer/" + Name + ".jpg";
             console.log(pictureRef.width);
             if (Name === 'hazuki'){
                 pictureRef.width = 330;
