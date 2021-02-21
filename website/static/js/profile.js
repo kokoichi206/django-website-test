@@ -145,14 +145,34 @@ while (handleIndex < buttonLength) {
 };
 
 
+function countSilver() {
+     let cnt = 0;
+     let i = 0;
+     while(i < 4){
+          if ($profileButtons[i].style.backgroundColor === 'silver'){
+               cnt++;
+          }
+          i++;
+     };
+     return cnt;
+}
 
 const changeQuestions = (e) => {
      // 今回はazureとsilverでONとOFFを切り替えるかー
      if(e.target.style.backgroundColor === 'silver'){
-          e.target.style.backgroundColor = 'azure'
+          if (countSilver() > 1){
+               e.target.style.backgroundColor = 'azure';
+               createAnswers();
+          } else{
+               alert('Choose at least one box');
+          }
      } else {
           e.target.style.backgroundColor = 'silver';
+          createAnswers();
      }
+     
+          
+
 };
 
 let questionIndex = 0;
