@@ -47,3 +47,7 @@ class AccessFirstView(TemplateView):
 
 class TimerView(TemplateView):
     template_name = "timer/timerMusic.html"
+
+class QuizProfileView(TemplateView):
+    template_name = "quiz/profile.html"
+
