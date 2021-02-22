@@ -24,11 +24,7 @@
     </head>
     
     <body>
-        <div style="background:pink;margin-right: 20px">
-            <a href="/">HOME</a>
-            <a href="/about">About Me</a>
-            <a href="/quiz">Quiz</a>
-        </div>
+        {% include "_navbar.html"%}
         <div class="container">
     
         <h1>Nogizaka Quiz</h1>
@@ -40,10 +36,9 @@
                 </ol>
             </div>
         </div>
-        <p class="pull-left">Copyright 2021</p>
+        {% include "_footer.html"%}
         <script type="text/javascript" src="{% static 'js/app.js' %}">
         </script>
     </body>
 
 </html>
-
