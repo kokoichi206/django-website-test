@@ -24,11 +24,7 @@
 </head>
 
 <body>
-    <div style="background:pink;margin-right: 20px">
-        <a href="/">HOME</a>
-        <a href="/about">About Me</a>
-        <a href="/quiz">Quiz</a>
-    </div>
+    {% load static %}
     <div class="container">
     
         <h1>Nogizaka Profile quiz</h1>
@@ -49,8 +45,8 @@
             <button type="button" class="ms-1 btn btn-primary">Primary</button>
         </div>
     </div>
-    <p>Copyright 2021</p>
-
+    {% include "_footer.html"%}
+    
     <script type="text/javascript" src="{% static 'js/profile.js' %}">
     </script>
 
