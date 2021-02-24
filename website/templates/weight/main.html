@@ -74,7 +74,6 @@
 ]
   var data = google.visualization.arrayToDataTable(rawData);
   
-  console.log(data);
 
   var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
 
@@ -124,13 +123,18 @@
   dashboard.draw(data);
 
   }
+
+  function showDetails() {
+    a
+  }
   </script>
-    <link rel="stylesheet" href="{% static 'main.css' %}">
+
+  <!-- <link rel="stylesheet" href="{% static 'main.css' %}"> -->
   </head>
 
 <body>
   {% include "_navbar.html"%}
-  <button>For More Detail</button>
+  <button onclick="showDetails">For More Detail</button>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <div id="dashboard_div">
     <div id="chart1_div"></div>
