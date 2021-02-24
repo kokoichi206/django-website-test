@@ -51,3 +51,6 @@ class TimerView(TemplateView):
 class QuizProfileView(TemplateView):
     template_name = "quiz/profile.html"
 
+class WeightView(TemplateView):
+    template_name = "weight/main.html"
+
