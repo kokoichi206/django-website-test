@@ -12,11 +12,11 @@
     google.charts.load('current', {packages: ['corechart', 'controls', 'table']});
     google.charts.setOnLoadCallback(controlsAndDashboards);
     </script>
-      <script type="text/javascript" src="{% static 'js/weight.js' %}">
+      <script type="text/javascript">
       
   function controlsAndDashboards() {
 
-    import {rawData} from './weightData.js';
+    import {rawData} from "{% static 'js/weightData.js' %}";
     var data = google.visualization.arrayToDataTable(rawData);
     
     console.log(data);
