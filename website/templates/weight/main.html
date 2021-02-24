@@ -99,7 +99,7 @@
     containerId: 'chart1_div',
     options: {
       title:'Body weight Since 2020/12/25',
-      height: 200,
+      height: 300,
       hAxis: {
         textPosition: 'none'
       },
@@ -111,8 +111,8 @@
     chartType: 'Table',
     containerId: 'chart6_div',
     options: {
-      height: 120,
-      width: '70%'
+      height: 150,
+      width: '80%'
     }
   });
 
@@ -134,9 +134,9 @@
   {% include "_navbar.html"%}
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <div id="dashboard_div">
-    <div id="chart1_div"></div>
-    <div id="filter_div"></div>
-    <div id="chart6_div"></div>
+    <div style="margin-top: 10pt" id="chart1_div"></div>
+    <div style="margin-top: 10pt" id="filter_div"></div>
+    <div style="margin: 40pt 60pt;" id="chart6_div"></div>
   </div>
 </body>
 </html>
