@@ -4,6 +4,7 @@ from .views import IndexView, AboutView, QuizView
 from .views import QuizEasyView, QuizHardView, QuizProfileView
 from .views import AccessFirstView, LoginFirstView
 from .views import TimerView, WeightView
+from .views import GreetView
 
 urlpatterns = [
     path('', IndexView.as_view()),
@@ -17,4 +18,6 @@ urlpatterns = [
     path('timer/timerMusic', TimerView.as_view()),
     path('weight/main', WeightView.as_view()),
     # path('contact/', IndexView.as_view()),
+    path('greet/', GreetView.as_view(), name='greet'),
 ]
+
