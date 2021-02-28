@@ -57,6 +57,9 @@ class QuizProfileView(TemplateView):
 class WeightView(TemplateView):
     template_name = "weight/main.html"
 
+class MemoView(TemplateView):
+    template_name = "memo.html"
+
 
 # FormViewを継承したViewを定義する
 class GreetView(FormView):
@@ -79,4 +82,4 @@ class GreetView(FormView):
     def ajax_response(self, form):
         """jQuery に対してレスポンスを返すメソッド"""
         name = form.cleaned_data.get('name')
-        return HttpResponse(f'こんにちは、{name}さん！')
+        return HttpResponse(f'Hello {name}！')
