@@ -141,11 +141,15 @@ class GreetView(FormView):
         # print(c)
         ans = ''
         # con = ''.join(contents)
-        for con in contens:
-            ans += ''.join(con)
-        if ans:
-            return HttpResponse(f'{ans}')
-        else:
-            return HttpResponse(f'Nothing')
+
+        # for con in contens:
+        #     ans += ''.join(con)
+        # if ans:
+        #     return HttpResponse(f'{ans}')
+        # else:
+        #     return HttpResponse(f'Nothing')
+
+
+        return HttpResponse(f'Nothing')
 
 
