@@ -96,6 +96,13 @@ class PythonView(FormView):
         exec(str_new, {}, exec_local)
         hoge = exec_local['hoge']
         print(hoge)
+
+        # print('a+b=', a+b) などに対応したい
+        if len(hoge) > 1:
+            tmp = ''
+            for a in hoge:
+                tmp += str(a)
+                hoge = tmp
         return HttpResponse(f'{hoge}')
 
 
