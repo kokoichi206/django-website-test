@@ -89,10 +89,10 @@ class PythonView(FormView):
         import re
         prog = re.search('print\((.*)\)', str_program)
         printValue = prog.group(1)
-        hoge = 0
+        global hoge = 0
         str_new = str_program.replace(f'print({printValue})', f'hoge={printValue}')
         print(str_new)
-        exec(str_new, {}, locals())
+        exec(str_new, globals(), locals())
         print(hoge)
         return HttpResponse(f'{hoge}')
 
