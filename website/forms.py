@@ -34,7 +34,7 @@ class GreetForm(forms.Form):
 
         ans = ''
         for con in contents:
-            ans += '<br>'.join(con)
+            ans += ''.join(con)
             # ans = ans + '-' * 100 + '\n'
             ans = ans + '<br>' + '-' * 100 + '<br>'
         
