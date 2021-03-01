@@ -94,7 +94,7 @@ class PythonView(FormView):
         print(str_new)
         exec(str_new, {}, {hoge:0})
         print(hoge)
-        return HttpResponse(f'{hoge}')
+        return HttpResponse(f'{globals()}')
 
 
 
