@@ -126,6 +126,8 @@ class GreetView(FormView):
                     c += 1
                 # print('-' * 100)
         # print(c)
-        return HttpResponse(f'{contents}')
+        con = ''.join(contents)
+        # return HttpResponse(f'{contents}')
+        return HttpResponse(f'{con}')
 
 
