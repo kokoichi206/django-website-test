@@ -70,7 +70,7 @@ class PythonView(FormView):
     success_url = '/'
 
     def post(self, request, *args, **kwargs):
-        form = self.get_form(self.form_class)
+        form = self.get_form(self.code_class)
         if form.is_valid():
             if request.is_ajax():
                 """Ajax 処理を別メソッドに切り離す"""
@@ -84,7 +84,7 @@ class PythonView(FormView):
     def ajax_execute(self, form):
         code = form.cleaned_data.get('name')
         return HttpResponse(f'{code}')
-        
+
 
 
 
