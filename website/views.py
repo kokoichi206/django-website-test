@@ -94,7 +94,7 @@ class PythonView(FormView):
         print(str_new)
         exec(str_new, {}, locals())
         print(hoge)
-        return HttpResponse(f'{locals()}')
+        return HttpResponse(f'{hoge}')
 
 
 
