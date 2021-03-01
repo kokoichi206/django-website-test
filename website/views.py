@@ -92,7 +92,7 @@ class PythonView(FormView):
         hoge = 0
         str_new = str_program.replace(f'print({printValue})', f'hoge={printValue}')
         print(str_new)
-        exec(str_new, {}, {hoge:0})
+        exec(str_new, {}, locals())
         print(hoge)
         return HttpResponse(f'{locals()}')
 
