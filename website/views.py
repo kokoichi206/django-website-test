@@ -147,6 +147,7 @@ class GreetView(FormView):
 
         for con in contents:
             ans += ''.join(con)
+            ans = ans + '-' * 100 + '\n'
         if ans:
             return HttpResponse(f'{ans}')
         else:
