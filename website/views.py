@@ -114,28 +114,28 @@ class GreetView(FormView):
         articles = soup.find_all('div')
 
 
-        return HttpResponse(f"{''.join(str(articles[0]))[:20]}")
+        # return HttpResponse(f"{''.join(str(articles[0]))}")
 
 
 
 
-        # main_blocks = soup.find_all('div', class_='ZINbbc')
-        # # print(h2[2])
-        # c = 0
-        # contens = []
-        # for block in main_blocks:
-        #     title = block.find('h3')
-        #     if title is not None:
-        #         content = block.find('div', class_='BNeawe s3v9rd AP7Wnd')
-        #         if content is not None:
-        #             # print(title.text)
-        #             # print(content.text)
-        #             contents.append([title.text, content.text])
-        #             c += 1
-        #         # print('-' * 100)
-        # # print(c)
-        # con = ''.join(contents)
-        # # return HttpResponse(f'{contents}')
-        # return HttpResponse(f'{URL}')
+        main_blocks = soup.find_all('div', class_='ZINbbc')
+        # print(h2[2])
+        c = 0
+        contens = []
+        for block in main_blocks:
+            title = block.find('h3')
+            if title is not None:
+                content = block.find('div', class_='BNeawe s3v9rd AP7Wnd')
+                if content is not None:
+                    # print(title.text)
+                    # print(content.text)
+                    contents.append([title.text, content.text])
+                    c += 1
+                # print('-' * 100)
+        # print(c)
+        con = ''.join(contents)
+        # return HttpResponse(f'{contents}')
+        return HttpResponse(f'{URL}')
 
 
