@@ -62,7 +62,7 @@ class MemoView(TemplateView):
 
 
 
-# FormViewを継承したViewを定義する
+# FormViewを継承したViewを定義するa
 class PythonView(FormView):
     template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
     code_class = CodeForm.GreetForm
