@@ -91,7 +91,6 @@ class GreetView(FormView):
         name = form.cleaned_data.get('name')
 
         from bs4 import BeautifulSoup
-        import urllib.request as req
         import requests
 
 
@@ -128,6 +127,6 @@ class GreetView(FormView):
         # print(c)
         con = ''.join(contents)
         # return HttpResponse(f'{contents}')
-        return HttpResponse(f'{con}')
+        return HttpResponse(f'{URL}')
 
 
