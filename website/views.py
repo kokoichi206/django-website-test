@@ -128,7 +128,7 @@ class GreetView(FormView):
 
         URL_top = 'https://www.google.com/search?q='
         # word = '筒井あやめ'
-        URL = URL_top + word
+        URL = URL_top + name
 
         try:
             response = requests.get(URL, timeout=5)
