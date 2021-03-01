@@ -82,7 +82,7 @@ class PythonView(FormView):
         return super().form_invalid(form)
     
     def ajax_execute(self, form):
-        code = form.cleaned_data.get('name')
+        code = form.cleaned_data.get('code')
         return HttpResponse(f'{code}')
 
 
