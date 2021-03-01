@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views.generic import FormView
 
 from . import forms
+from . import codes
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -66,7 +67,7 @@ class MemoView(TemplateView):
 class PythonView(FormView):
     template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
     code_class = forms.GreetForm
-    success_url = '/greet'
+    success_url = '/'
 
     def post(self, request, *args, **kwargs):
         form = self.get_form(self.form_class)
@@ -118,42 +119,9 @@ class GreetView(FormView):
 
     def ajax_response(self, form):
         name = form.cleaned_data.get('name')
+        ans = form_class.search(name)
+        return HttpResponse(f'{ans}')
 
-        from bs4 import BeautifulSoup
-        import requests
-
-        URL_top = 'https://www.google.com/search?q='
-        # name = '筒井あやめ'
-        URL = URL_top + name
-
-        try:
-            response = requests.get(URL, timeout=5)
-        except requests.exceptions.ConnectionError as err:
-            return HttpResponse(f'error: cannot open the URL')
-        
-        soup = BeautifulSoup(response.text, 'html.parser')
-        articles = soup.find_all('div')
-
-
-        main_blocks = soup.find_all('div', class_='ZINbbc')
-        contents = []
-        for block in main_blocks:
-            title = block.find('h3')
-            if title is not None:
-                content = block.find('div', class_='BNeawe s3v9rd AP7Wnd')
-                if content is not None:
-                    contents.append([title.text, content.text])
-
-        ans = ''
-        for con in contents:
-            ans += ':'.join(con)
-            # ans = ans + '-' * 100 + '\n'
-            ans = ans + '<br>' + '-' * 100 + '<br>'
-
-        if ans:
-            return HttpResponse(f'{ans}')
-        else:
-            return HttpResponse(f'Nothing')
 
 
 
