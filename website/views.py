@@ -65,7 +65,7 @@ class MemoView(TemplateView):
 # FormViewを継承したViewを定義する
 class PythonView(FormView):
     template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
-    form_class = forms.GreetForm
+    code_class = CodeForm.GreetForm
     success_url = '/greet'
 
     def post(self, request, *args, **kwargs):
