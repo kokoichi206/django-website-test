@@ -82,10 +82,19 @@ class PythonView(FormView):
         return super().form_invalid(form)
     
     def ajax_response(self, form):
-        code = form.cleaned_data.get('code')
-        if '\n' in code:
-            return HttpResponse(f'there is new line')
-        return HttpResponse(f'{code}')
+        str_program = form.cleaned_data.get('code')
+        # if '\n' in code:
+        #     return HttpResponse(f'there is new line')
+
+        import re
+        prog = re.search('print\((.*)\)', str_program)
+        printValue = prog.group(1)
+        hoge = 0
+        str_new = str_program.replace(f'print({printValue})', f'hoge={printValue}')
+        print(str_new)
+        exec(str_new, globals())
+        print(hoge)
+        return HttpResponse(f'{hoge}')
 
 
 
