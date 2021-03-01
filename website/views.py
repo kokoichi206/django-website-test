@@ -108,10 +108,16 @@ class GreetView(FormView):
             return HttpResponse(f'error')
             # pass
 
-        return HttpResponse(f'OKKK')
+        # return HttpResponse(f'OKKK')
         
-        # soup = BeautifulSoup(response.text, 'html.parser')
-        # articles = soup.find_all('div')
+        soup = BeautifulSoup(response.text, 'html.parser')
+        articles = soup.find_all('div')
+
+
+        return HttpResponse(f"{''.join(str(articles[0]))}")
+
+
+
 
         # main_blocks = soup.find_all('div', class_='ZINbbc')
         # # print(h2[2])
