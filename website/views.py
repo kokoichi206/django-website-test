@@ -108,7 +108,7 @@ class GreetView(FormView):
             return HttpResponse(f'error')
             # pass
 
-        return HttpResponse(f'{OKKEE}')
+        return HttpResponse(f'OKKK')
         
         # soup = BeautifulSoup(response.text, 'html.parser')
         # articles = soup.find_all('div')
