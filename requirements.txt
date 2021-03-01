@@ -5,3 +5,5 @@ dj-database-url
 python-dotenv
 psycopg2-binary
 mysqlclient
+bs4
+requests
