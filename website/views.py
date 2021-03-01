@@ -105,10 +105,10 @@ class GreetView(FormView):
             response = requests.get(URL, timeout=5)
             # print(response.text)
         except requests.exceptions.ConnectionError as err:
-            return HttpResponse(f'{err}')
+            return HttpResponse(f'error')
             # pass
 
-        return HttpResponse(f'{response}')
+        return HttpResponse(f'{OKKEE}')
         
         # soup = BeautifulSoup(response.text, 'html.parser')
         # articles = soup.find_all('div')
