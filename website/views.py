@@ -128,7 +128,7 @@ class GreetView(FormView):
         main_blocks = soup.find_all('div', class_='ZINbbc')
         # print(h2[2])
         c = 0
-        contens = []
+        contents = []
         for block in main_blocks:
             title = block.find('h3')
             if title is not None:
@@ -143,7 +143,7 @@ class GreetView(FormView):
         ans = ''
         # con = ''.join(contents)
 
-        return HttpResponse(f'Nothing')
+        # return HttpResponse(f'Nothing')
 
         for con in contens:
             ans += ''.join(con)
