@@ -1,4 +1,4 @@
-<h1>Let's search something!</h1>
+<h1>Enter your code!</h1>
 <form action="" method="post">{% csrf_token %}
     {{ form }}
     <button type="submit">send</button>
@@ -13,7 +13,7 @@
 // 送信ボタンにイベントリスナーを設定。内部に Ajax 処理を記述
 $("form").submit(function(event) {
     event.preventDefault();
-    var form = $(this);
+    let form = $(this);
     $.ajax({
       url: form.prop("action"),
       method: form.prop("method"),
