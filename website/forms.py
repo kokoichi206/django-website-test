@@ -3,16 +3,16 @@ from django import forms
 
 class GreetForm(forms.Form):
     # name = forms.CharField(label='May I have your name?')
-    name = forms.CharField(label='What do you wanna research? ')
+    name = forms.CharField(label='What do you wanna search? ')
 
-    def search(self, name):
+    def search(self, word):
 
         from bs4 import BeautifulSoup
         import requests
 
         URL_top = 'https://www.google.com/search?q='
-        # name = '筒井あやめ'
-        URL = URL_top + name
+        # word = '筒井あやめ'
+        URL = URL_top + word
 
         try:
             response = requests.get(URL, timeout=5)
@@ -34,7 +34,7 @@ class GreetForm(forms.Form):
 
         ans = ''
         for con in contents:
-            ans += ':'.join(con)
+            ans += '<br>'.join(con)
             # ans = ans + '-' * 100 + '\n'
             ans = ans + '<br>' + '-' * 100 + '<br>'
         
