@@ -79,9 +79,52 @@ class GreetView(FormView):
         # フォームデータが正しくない場合の処理
         return super().form_invalid(form)
 
+    # def ajax_response(self, form):
+    #     """jQuery に対してレスポンスを返すメソッド"""
+    #     name = form.cleaned_data.get('name')
+    #     # return HttpResponse(f'Hello {name}！')
+    #     return HttpResponse(f'https://www.google.com/search?q={name}')
+
+
+
     def ajax_response(self, form):
-        """jQuery に対してレスポンスを返すメソッド"""
         name = form.cleaned_data.get('name')
-        # return HttpResponse(f'Hello {name}！')
-        return HttpResponse(f'https://www.google.com/search?q={name}')
+
+        from bs4 import BeautifulSoup
+        import urllib.request as req
+        import requests
+
+
+        URL_top = 'https://www.google.com/search?q='
+        # name = '筒井あやめ'
+        URL = URL_top + name
+        # URL = 'https://koko-django-website.herokuapp.com/greet/index'
+
+        # response = req.get(URL, timeout=(3.0, 7.5))
+        try:
+            response = requests.get(URL, timeout=5)
+            # print(response.text)
+        except requests.exceptions.ConnectionError as err:
+            print(err)
+            # pass
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        articles = soup.find_all('div')
+
+        main_blocks = soup.find_all('div', class_='ZINbbc')
+        # print(h2[2])
+        c = 0
+        contens = []
+        for block in main_blocks:
+            title = block.find('h3')
+            if title is not None:
+                content = block.find('div', class_='BNeawe s3v9rd AP7Wnd')
+                if content is not None:
+                    # print(title.text)
+                    # print(content.text)
+                    contents.append([title.text, content.text])
+                    c += 1
+                # print('-' * 100)
+        # print(c)
+        return contents
 
