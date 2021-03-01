@@ -83,5 +83,5 @@ class GreetView(FormView):
         """jQuery に対してレスポンスを返すメソッド"""
         name = form.cleaned_data.get('name')
         # return HttpResponse(f'Hello {name}！')
-        return HttpResponse(f'https://www.google.com/search?q={}')
+        return HttpResponse(f'https://www.google.com/search?q={name}')
 
