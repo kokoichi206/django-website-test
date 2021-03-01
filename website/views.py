@@ -61,6 +61,36 @@ class MemoView(TemplateView):
     template_name = "memo.html"
 
 
+
+# FormViewを継承したViewを定義する
+class PythonView(FormView):
+    template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
+    form_class = forms.GreetForm
+    success_url = '/greet'
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form(self.form_class)
+        if form.is_valid():
+            if request.is_ajax():
+                """Ajax 処理を別メソッドに切り離す"""
+                print('### Ajax request')
+                return self.ajax_execute(form)
+            # Ajax 以外のPOSTメソッドの処理
+            return super().form_valid(form)
+        # フォームデータが正しくない場合の処理
+        return super().form_invalid(form)
+    
+    def ajax_execute(self, form):
+        
+
+
+
+
+
+
+
+
+
 # FormViewを継承したViewを定義する
 class GreetView(FormView):
     template_name = 'greet/index.html'  # テンプレート名(htmlファイル名)
