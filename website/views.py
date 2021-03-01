@@ -85,19 +85,15 @@ class GreetView(FormView):
     #     # return HttpResponse(f'Hello {name}！')
     #     return HttpResponse(f'https://www.google.com/search?q={name}')
 
-
-
     def ajax_response(self, form):
         name = form.cleaned_data.get('name')
 
         from bs4 import BeautifulSoup
         import requests
 
-
         URL_top = 'https://www.google.com/search?q='
         # name = '筒井あやめ'
         URL = URL_top + name
-
 
         try:
             response = requests.get(URL, timeout=5)
@@ -120,7 +116,8 @@ class GreetView(FormView):
         ans = ''
         for con in contents:
             ans += ':'.join(con)
-            ans = ans + '-' * 100 + '\n'
+            # ans = ans + '-' * 100 + '\n'
+            ans = ans + '-' * 100 + '<br>'
 
         if ans:
             return HttpResponse(f'{ans}')
