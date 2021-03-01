@@ -97,63 +97,36 @@ class GreetView(FormView):
         URL_top = 'https://www.google.com/search?q='
         # name = '筒井あやめ'
         URL = URL_top + name
-        # URL = 'https://koko-django-website.herokuapp.com/greet/index'
 
 
-        # response = req.get(URL, timeout=(3.0, 7.5))
         try:
             response = requests.get(URL, timeout=5)
-            # print(response.text)
         except requests.exceptions.ConnectionError as err:
-            return HttpResponse(f'error')
-            # pass
-
-        # return HttpResponse(f'OKKK')
+            return HttpResponse(f'error: cannot open the URL')
         
         soup = BeautifulSoup(response.text, 'html.parser')
         articles = soup.find_all('div')
 
-        # return HttpResponse(f'{URL}')
-        # aho = str(soup)[:50]
-        # return HttpResponse(f'{aho}')
-        # return HttoResponse(f"{}")
-
-
-        # return HttpResponse(f"{''.join(str(articles[0]))}")
-
-
-
-        
 
         main_blocks = soup.find_all('div', class_='ZINbbc')
-        # print(h2[2])
-        c = 0
         contents = []
         for block in main_blocks:
             title = block.find('h3')
             if title is not None:
                 content = block.find('div', class_='BNeawe s3v9rd AP7Wnd')
                 if content is not None:
-                    # print(title.text)
-                    # print(content.text)
                     contents.append([title.text, content.text])
-                    c += 1
-                # print('-' * 100)
-        # print(c)
+
         ans = ''
-        # con = ''.join(contents)
-
-        # return HttpResponse(f'Nothing')
-
         for con in contents:
-            ans += ''.join(con)
+            ans += ':'.join(con)
             ans = ans + '-' * 100 + '\n'
+
         if ans:
             return HttpResponse(f'{ans}')
         else:
             return HttpResponse(f'Nothing')
 
 
-        return HttpResponse(f'Nothing')
 
 
