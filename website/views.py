@@ -123,7 +123,8 @@ class GreetView(FormView):
 
 
 
-
+        return HttpResponse(f'Nothing')
+        
         main_blocks = soup.find_all('div', class_='ZINbbc')
         # print(h2[2])
         c = 0
