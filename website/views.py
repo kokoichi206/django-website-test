@@ -104,7 +104,7 @@ class GreetView(FormView):
             response = requests.get(URL, timeout=5)
             # print(response.text)
         except requests.exceptions.ConnectionError as err:
-            print(err)
+            return HttpResponse(f'{err}')
             # pass
 
         soup = BeautifulSoup(response.text, 'html.parser')
