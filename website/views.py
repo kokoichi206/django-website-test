@@ -83,6 +83,8 @@ class PythonView(FormView):
     
     def ajax_response(self, form):
         code = form.cleaned_data.get('code')
+        if '\n' in code:
+            return HttpResponse(f'there is new line')
         return HttpResponse(f'{code}')
 
 
