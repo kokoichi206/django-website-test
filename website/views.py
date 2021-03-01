@@ -62,27 +62,27 @@ class MemoView(TemplateView):
 
 
 
-# FormViewを継承したViewを定義するa
-class PythonView(FormView):
-    template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
-    code_class = CodeForm.GreetForm
-    success_url = '/greet'
+# # FormViewを継承したViewを定義するa
+# class PythonView(FormView):
+#     template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
+#     code_class = CodeForm.GreetForm
+#     success_url = '/greet'
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form(self.form_class)
-        if form.is_valid():
-            if request.is_ajax():
-                """Ajax 処理を別メソッドに切り離す"""
-                print('### Ajax request')
-                return self.ajax_execute(form)
-            # Ajax 以外のPOSTメソッドの処理
-            return super().form_valid(form)
-        # フォームデータが正しくない場合の処理
-        return super().form_invalid(form)
+#     def post(self, request, *args, **kwargs):
+#         form = self.get_form(self.form_class)
+#         if form.is_valid():
+#             if request.is_ajax():
+#                 """Ajax 処理を別メソッドに切り離す"""
+#                 print('### Ajax request')
+#                 return self.ajax_execute(form)
+#             # Ajax 以外のPOSTメソッドの処理
+#             return super().form_valid(form)
+#         # フォームデータが正しくない場合の処理
+#         return super().form_invalid(form)
     
-    def ajax_execute(self, form):
-        code = form.cleaned_data.get('name')
-        return HttpResponse(f'{code}')
+#     def ajax_execute(self, form):
+#         code = form.cleaned_data.get('name')
+#         return HttpResponse(f'{code}')
         
 
 
