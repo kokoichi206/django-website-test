@@ -100,16 +100,16 @@ class GreetView(FormView):
         # URL = 'https://koko-django-website.herokuapp.com/greet/index'
 
 
-        return HttpResponse(f'{URL}')
+        # response = req.get(URL, timeout=(3.0, 7.5))
+        try:
+            response = requests.get(URL, timeout=5)
+            # print(response.text)
+        except requests.exceptions.ConnectionError as err:
+            return HttpResponse(f'{err}')
+            # pass
 
-        # # response = req.get(URL, timeout=(3.0, 7.5))
-        # try:
-        #     response = requests.get(URL, timeout=5)
-        #     # print(response.text)
-        # except requests.exceptions.ConnectionError as err:
-        #     return HttpResponse(f'{err}')
-        #     # pass
-
+        return HttpResponse(f'{response}')
+        
         # soup = BeautifulSoup(response.text, 'html.parser')
         # articles = soup.find_all('div')
 
