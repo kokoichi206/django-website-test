@@ -19,6 +19,7 @@ urlpatterns = [
     path('weight/main', WeightView.as_view()),
     # path('contact/', IndexView.as_view()),
     path('greet/index', GreetView.as_view(), name='greet'),
+    path('greet/execute', PythonView.as_view(), name='greet'),
     path('memo/', MemoView.as_view()),
 ]
 
