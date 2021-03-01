@@ -113,8 +113,9 @@ class GreetView(FormView):
         soup = BeautifulSoup(response.text, 'html.parser')
         articles = soup.find_all('div')
 
-        return HttpResponse(f'{URL}')
-        # return HttpResponse(f"{str(soup)[:50]}")
+        # return HttpResponse(f'{URL}')
+        aho = {str(soup)[:50]}
+        return HttpResponse(aho)
         # return HttoResponse(f"{}")
 
 
