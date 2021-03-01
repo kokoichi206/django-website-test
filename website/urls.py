@@ -4,7 +4,7 @@ from .views import IndexView, AboutView, QuizView
 from .views import QuizEasyView, QuizHardView, QuizProfileView
 from .views import AccessFirstView, LoginFirstView
 from .views import TimerView, WeightView, MemoView
-from .views import GreetView
+from .views import GreetView, PythonView
 
 urlpatterns = [
     path('', IndexView.as_view()),
@@ -19,7 +19,7 @@ urlpatterns = [
     path('weight/main', WeightView.as_view()),
     # path('contact/', IndexView.as_view()),
     path('greet/index', GreetView.as_view(), name='greet'),
-    # path('greet/execute', PythonView.as_view(), name='greet'),
+    path('greet/execute', PythonView.as_view(), name='greet'),
     path('memo/', MemoView.as_view()),
 ]
 
