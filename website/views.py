@@ -90,7 +90,7 @@ class PythonView(FormView):
         prog = re.search('print\((.*)\)', str_program)
         printValue = prog.group(1)
         hoge = 0
-        exec_local = {'hoge': x}
+        exec_local = {'hoge': hoge}
         str_new = str_program.replace(f'print({printValue})', f'hoge={printValue}')
         print(str_new)
         exec(str_new, {}, exec_local)
