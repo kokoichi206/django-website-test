@@ -98,11 +98,12 @@ class PythonView(FormView):
         print(hoge)
 
         # print('a+b=', a+b) などに対応したい
-        # if len(hoge) > 1:
-        #     tmp = ''
-        #     for a in hoge:
-        #         tmp += str(a)
-        #         hoge = tmp
+        if len(hoge) > 1:
+            tmp = ''
+            for a in hoge:
+                tmp += str(a)
+                hoge = tmp
+
         return HttpResponse(f'{hoge}')
 
 

@@ -21,6 +21,14 @@
       <!-- CSS only -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
       <meta name="theme-color" content="#fafafa">
+      <style>
+        @media all and (max-width: 800px){
+            #buttons {
+                flex-flow: column;
+                background: #fff;
+            }
+        }
+        </style>
     </head>
     
     <body>
@@ -33,11 +41,11 @@
     
         <h1>Nogizaka Quiz Hard</h1>
             <img id="picture" src="{% static 'EyePicture/akimotomanatsu.png' %}" class="mb-3 rounded mx-auto d-block" alt="...">
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary">Primary</button>
-                <button type="button" class="ms-1 btn btn-primary">Primary</button>
-                <button type="button" class="ms-1 btn btn-primary">Primary</button>
-                <button type="button" class="ms-1 btn btn-primary">Primary</button>
+            <div id="buttons" class="d-flex justify-content-center">
+                <button type="button" class="m-1 btn btn-primary">Primary</button>
+                <button type="button" class="m-1 btn btn-primary">Primary</button>
+                <button type="button" class="m-1 btn btn-primary">Primary</button>
+                <button type="button" class="m-1 btn btn-primary">Primary</button>
             </div>
         </div>
         <p>Copyright 2021</p>
