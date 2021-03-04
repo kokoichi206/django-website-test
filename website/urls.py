@@ -23,6 +23,6 @@ urlpatterns = [
     path('greet/index', GreetView.as_view(), name='greet'),
     path('greet/execute', PythonView.as_view(), name='greety'),
     path('memo/', MemoView.as_view()),
-    path('suDoku/table', SudokuView.as_view()),
+    path('sudoku/table', SudokuView.as_view()),
 ]
 
