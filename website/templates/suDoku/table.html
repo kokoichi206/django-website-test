@@ -22,7 +22,7 @@
             text-align: center;
         }
         th{
-            background-color: #ff525f;
+            background-color: rgb(145, 155, 228);
         }
         td{
             background-color: #f5f5e8;
@@ -91,7 +91,13 @@
                     function changeNum(ele) {
                         let thisId = ele.id;
                         elem = document.getElementById(thisId);
-                        elem.textContent
+                        console.log(thisId);
+                        // deleteにはnullを当ててある
+                        if (selectedNum) {
+                            elem.textContent = selectedNum;
+                        } else {
+                            elem.textContent = '';
+                        }
                     }
 
                     function changeColor(ele) {
@@ -107,9 +113,44 @@
                 </script>
             </table>
         </div>
+        <div>
+            <h3>The number you selected</h3>
+            <table>
+                <script>
+                    let selectedNum = null;
+                    if (selectedNum) {
+                        console.log('hoge');
+                    }
+                    for(let j=0; j <= 8; j++) {
+                        document.write('<td id='+j+' onclick="selectNum(this)">'+ (j+1) +'</td>');
+                    }
+                    document.write('<td id="9" onclick="selectNum(this)">del</td>');
+
+                    // このidは数字より1小さい
+                    function selectNum(ele) {
+                        let thisId = ele.id;
+                        // console.log(typeof thisId);
+
+                        for(let k=0; k<=9; k++){
+                            let elem = document.getElementById(k);
+                            
+                            if (k === Number(thisId)){
+                                elem.style.backgroundColor = "rgb(145, 155, 228)";
+                                selectedNum = String(Number(thisId) + 1);
+                            } else {
+                                elem.style.backgroundColor = "rgb(245, 245, 232)";
+                            }
+                        }
+                        if (thisId === '9') {
+                            selectedNum = null;
+                        }
+                    }
+                </script>
+            </table>
+        </div>
 </body>
 </html>
 
-ref
+
 <td bgcolor="#ffffff" width="33" height="33" align="center" valign="bottom" id="bxx0" onclick="subClick(0)" 
-onmouseover="changeBGbx(0,1)" onmouseout="changeBGbx(0,2)"><font color="#0000dd">2</font></td>
+onmouseover="changeBGbx(0,1)" onmouseout="changeBGbx(0,2)"><font color="#0000dd"></font></td>
