@@ -27,9 +27,7 @@
         td{
             background-color: #f5f5e8;
         }
-
     </style>
-
 </head>
 <body>
     <div class="container">
@@ -43,7 +41,7 @@
                         // document.write('<th>'+ j +'y</th>');
                         for(let k=0; k<=8; k++){
                             if (talbe[j][k] !== '0'){
-                                document.write('<td>'+ talbe[j][k] +'</td>');
+                                document.write('<td><font color="blue">'+ talbe[j][k] +'</fonr></td>');
                             } else {
                                 document.write('<td id='+j+k+' onclick="changeNum(this)" onmouseover="changeColor(this)" onMouseOut="revertColor(this)"> </td>');
                             }
@@ -55,7 +53,6 @@
                     function changeNum(ele) {
                         let thisId = ele.id;
                         elem = document.getElementById(thisId);
-                        console.log(thisId);
                         // deleteにはnullを当ててある
                         if (selectedNum) {
                             elem.textContent = selectedNum;
@@ -82,9 +79,6 @@
             <table>
                 <script>
                     let selectedNum = null;
-                    if (selectedNum) {
-                        console.log('hoge');
-                    }
                     for(let j=0; j <= 8; j++) {
                         document.write('<td id='+j+' onclick="selectNum(this)">'+ (j+1) +'</td>');
                     }
@@ -112,5 +106,9 @@
                 </script>
             </table>
         </div>
+        <br><br>
+        TODO
+        <li>Clear all button</li>
+        <li>Create random problem?</li>
 </body>
 </html>
