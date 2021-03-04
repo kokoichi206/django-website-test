@@ -33,42 +33,6 @@
 </head>
 <body>
     <div class="container">
-        <h1>Multiplication talbe</h1>
-        <table class="border" border="1">
-            <script>
-                // xの行を作る
-                document.write('<tr>');
-                
-                // 空白のth
-                document.write('<th></th>');
-
-                // これは九九の表
-                for(let i=1; i <= 9; i++){
-                    document.write('<th>'+ i +' x</th>');
-                }
-
-                // ここでxの行を閉じる
-                document.write('</tr>');
-
-                // ここまでxの行
-
-                // jyの行を作る
-                document.write('<tr>');
-
-                for(let j=1; j <= 9; j++){
-                    document.write('<th>'+ j +'y</th>');
-                    for(let k=1; k<=9; k++){
-                        document.write('<td>'+ j*k +'</td>');
-                    }
-                    // ここでjの行を閉じる
-                    document.write('</tr>')
-                }
-            </script>
-        </table>
-    </div>
-
-
-    <div class="container">
             <h1>su-doku talbe</h1>
             <table style="margin:1em" class="border" border="1">
                 <script>
