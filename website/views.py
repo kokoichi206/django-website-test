@@ -61,6 +61,8 @@ class WeightView(TemplateView):
 class MemoView(TemplateView):
     template_name = "memo.html"
 
+class SudokuView(TemplateView):
+    template_name = "suDoku/table.html"
 
 
 # FormViewを継承したViewを定義するa

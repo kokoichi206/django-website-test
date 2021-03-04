@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TABLE PRACTICE</title>
+    <style>
+        .container{
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .border{
+            border-collapse: collapse;
+            border: 1px solid #333;
+        }
+        th, td{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+        }
+        th{
+            background-color: #ff525f;
+        }
+        td{
+            background-color: #f5f5e8;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Multiplication talbe</h1>
+        <table class="border" border="1">
+            <script>
+                // xの行を作る
+                document.write('<tr>');
+                
+                // 空白のth
+                document.write('<th></th>');
+
+                // これは九九の表
+                for(let i=1; i <= 9; i++){
+                    document.write('<th>'+ i +' x</th>');
+                }
+
+                // ここでxの行を閉じる
+                document.write('</tr>');
+
+                // ここまでxの行
+
+                // jyの行を作る
+                document.write('<tr>');
+
+                for(let j=1; j <= 9; j++){
+                    document.write('<th>'+ j +'y</th>');
+                    for(let k=1; k<=9; k++){
+                        document.write('<td>'+ j*k +'</td>');
+                    }
+                    // ここでjの行を閉じる
+                    document.write('</tr>')
+                }
+            </script>
+        </table>
+    </div>
+
+
+    <div class="container">
+            <h1>su-doku talbe</h1>
+            <table style="margin:1em" class="border" border="1">
+                <script>
+                    const talbe = [['2', '0', '1', '3', '7', '6', '9', '4', '8'], ['0', '8', '7', '0', '0', '9', '3', '2', '5'], ['3', '9', '4', '0', '0', '2', '1', '7', '6'], ['8', '2', '3', '9', '1', '0', '5', '0', '7'], ['7', '4', '6', '0', '3', '0', '0', '1', '9'], ['0', '1', '9', '6', '2', '7', '4', '8', '3'], ['0', '7', '5', '4', '6', '3', '8', '9', '2'], ['0', '6', '8', '0', '5', '1', '7', '3', '4'], ['0', '0', '2', '7', '9', '8', '6', '5', '1']];
+                    document.write('<tr>');
+    
+                    for(let j=0; j <= 8; j++){
+                        // document.write('<th>'+ j +'y</th>');
+                        for(let k=0; k<=8; k++){
+                            if (talbe[j][k] !== '0'){
+                                document.write('<td>'+ talbe[j][k] +'</td>');
+                            } else {
+                                document.write('<td id='+j+k+' onclick="changeNum(this)" onmouseover="changeColor(this)" onMouseOut="revertColor(this)"> </td>');
+                            }
+                        }
+                        // ここでjの行を閉じる
+                        document.write('</tr>')
+                    };
+
+                    function changeNum(ele) {
+                        let thisId = ele.id;
+                        elem = document.getElementById(thisId);
+                        elem.textContent
+                    }
+
+                    function changeColor(ele) {
+                        let thisId = ele.id;
+                        elem = document.getElementById(thisId);
+                        elem.style.backgroundColor = 'rgba(43, 117, 213, 0.626)';
+                    };
+                    function revertColor(ele) {
+                        let thisId = ele.id;
+                        elem = document.getElementById(thisId);
+                        elem.style.backgroundColor = "rgb(245, 245, 232)";
+                    };
+                </script>
+            </table>
+        </div>
+</body>
+</html>
+
+ref
+<td bgcolor="#ffffff" width="33" height="33" align="center" valign="bottom" id="bxx0" onclick="subClick(0)" 
+onmouseover="changeBGbx(0,1)" onmouseout="changeBGbx(0,2)"><font color="#0000dd">2</font></td>
