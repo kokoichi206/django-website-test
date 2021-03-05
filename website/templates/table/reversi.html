@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TABLE PRACTICE</title>
+    <style>
+        .container{
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .border{
+            border-collapse: collapse;
+            border: 1px solid #333;
+        }
+        td{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 22px;
+            background-color: rgb(19, 133, 23);
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+            <h1>reversi talbe</h1>
+            <table style="margin:1em" class="border" border="1">
+                <script>
+                    const talbe = [['0', '0', '0', '0', '0', '0', '0', '0'],　['0', '0', '0', '0', '0', '0', '0', '0'], ['0', '0', '0', '0', '0', '0', '0', '0'], ['0', '0', '0', '◯', '●', '0', '0', '0'], ['0', '0', '0', '●', '◯', '0', '0', '0'], ['0', '0', '0', '0', '0', '0', '0', '0'],  ['0', '0', '0', '0', '0', '0', '0', '0'], ['0', '0', '0', '0', '0', '0', '0', '0']];
+                    document.write('<tr>');
+    
+                    for(let j=0; j <= 7; j++){
+                        // document.write('<th>'+ j +'y</th>');
+                        for(let k=0; k<=7; k++){
+                            if (talbe[j][k] !== '0'){
+                                document.write('<td>'+ talbe[j][k] +'</td>');
+                            } else {
+                                document.write('<td id='+j+k+' onclick="putHere(this)" onmouseover="changeColor(this)" onMouseOut="revertColor(this)"> </td>');
+                            }
+                        }
+                        // ここでjの行を閉じる
+                        document.write('</tr>')
+                    };
+
+                    function putHere(ele) {
+                        let thisId = ele.id;
+                        elem = document.getElementById(thisId);
+                        elem.textContent = '◯';
+                    }
+
+                    function changeColor(ele) {
+                        let thisId = ele.id;
+                        elem = document.getElementById(thisId);
+                        elem.style.backgroundColor = 'rgb(245, 245, 232)';
+                    };
+                    function revertColor(ele) {
+                        let thisId = ele.id;
+                        elem = document.getElementById(thisId);
+                        elem.style.backgroundColor = "rgb(19, 133, 23)";
+                    };
+                </script>
+            </table>
+        </div>
+</body>
+</html>
+
+<!-- 
+<td bgcolor="#ffffff" width="33" height="33" align="center" valign="bottom" id="bxx0" onclick="subClick(0)" 
+onmouseover="changeBGbx(0,1)" onmouseout="changeBGbx(0,2)"><font color="#0000dd">2</font></td> -->

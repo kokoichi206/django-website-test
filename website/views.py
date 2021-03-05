@@ -64,6 +64,9 @@ class MemoView(TemplateView):
 class SudokuView(TemplateView):
     template_name = "table/sudoku.html"
 
+class ReversiView(TemplateView):
+    template_name = "sudoku/reversi.html"
+
 
 # FormViewを継承したViewを定義するa
 class PythonView(FormView):
