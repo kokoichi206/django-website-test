@@ -62,7 +62,7 @@ class MemoView(TemplateView):
     template_name = "memo.html"
 
 class SudokuView(TemplateView):
-    template_name = "sudoku/table.html"
+    template_name = "table/sudoku.html"
 
 
 # FormViewを継承したViewを定義するa
