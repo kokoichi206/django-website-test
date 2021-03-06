@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,7 +104,7 @@ https://www.youtube.com/watch?v=LJlKaTwtSdI -->
         let backgroundImage;
         backgroundImage = new Image();
         // backgroundImage.src = "example.jpeg";
-        backgroundImage.src = "example.jpg";
+        backgroundImage.src = "{% static 'picForTetris.jpg' %}";
 
         const START_X = FIELD_COL/2 - TETRO_SIZE/2
         const START_Y = 0
