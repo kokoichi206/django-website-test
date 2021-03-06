@@ -315,7 +315,7 @@ https://www.youtube.com/watch?v=LJlKaTwtSdI -->
             if ( lineCount ){
                 lines += lineCount;
                 scores += 100 * (2 ** (lineCount - 1));
-                if ( dropSpeed > 120 ) dropSpeed *= 0.95;
+                if ( dropSpeed > 120 ) dropSpeed *= 0.99;
                 console.log(dropSpeed);
                 clearInterval( dropTetro );
                 setInterval( dropTetro, dropSpeed );
@@ -363,5 +363,11 @@ https://www.youtube.com/watch?v=LJlKaTwtSdI -->
         }
         
     </script>
+
+
+    <br><br>
+    MAYBE
+    <li>Store the high score, name</li>
+
 </body>
 </html>
