@@ -67,6 +67,8 @@ class SudokuView(TemplateView):
 class ReversiView(TemplateView):
     template_name = "sudoku/reversi.html"
 
+class TetrisView(TemplateView):
+    template_name = "tetris/tetris.html"
 
 # FormViewを継承したViewを定義するa
 class PythonView(FormView):

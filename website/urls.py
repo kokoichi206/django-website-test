@@ -5,7 +5,7 @@ from .views import QuizEasyView, QuizHardView, QuizProfileView
 from .views import AccessFirstView, LoginFirstView
 from .views import TimerView, WeightView, MemoView
 from .views import GreetView, PythonView
-from .views import SudokuView, ReversiView
+from .views import SudokuView, ReversiView, TetrisView
 
 
 urlpatterns = [
@@ -25,5 +25,6 @@ urlpatterns = [
     path('memo/', MemoView.as_view()),
     path('table/sudoku', SudokuView.as_view()),
     path('table/reversi', ReversiView.as_view()),
+    path('tetris/tetris', TetrisView.as_view()),
 ]
 
