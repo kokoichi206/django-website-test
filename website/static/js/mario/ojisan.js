@@ -157,6 +157,8 @@ class Ojisan{
     updateJump(){
         // ジャンプ
         if ( keyb.ABUTTON ){
+            // 落下している時はジャンプできない。
+            if ( this.vy > 16 ) return;
             if ( this.jump == 0 ){
                 this.anim = ANIME_JUMP;
                 this.jump = 1;
