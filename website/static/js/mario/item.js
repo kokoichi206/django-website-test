@@ -114,7 +114,10 @@ class Item extends Sprite{
         if ( ++this.count <= 32 ){
             this.sz = (1+this.count)>>1;
             this.y -= 1<<3;
-            if ( this.count == 32 ) this.kill=true;
+            if ( this.count == 32 ) {
+                gotCoins += 1;
+                this.kill=true;
+            }
             return true;
         }
         return false;

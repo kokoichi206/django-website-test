@@ -1,12 +1,16 @@
 //
 // おじさんクラス
-//
+// water 中では何回もジャンプボタン使える
+// 
 
 const ANIME_STAND       = 1;
 const ANIME_WALK        = 2;
 const ANIME_BRAKE       = 4;
 const ANIME_JUMP        = 8;
+
 const GRAVITY           = 4;
+const WATER_RESISTENCE  = 2;
+
 const MAX_SPEED_NORMAL  = 32;
 
 const TYPE_MINI = 1;
@@ -17,8 +21,10 @@ let MAX_SPEED = MAX_SPEED_NORMAL;
 
 class Ojisan{
     constructor(x, y){
-        this.x      = x<<4;
-        this.y      = y<<4;
+        // this.x      = x<<4;
+        // this.y      = y<<4;
+        this.x = x<<4;
+        this.y = y<<4;
         this.ay     = 16;   // 上の空白のます、小さい時16
         this.w      = 16;
         this.h      = 16;
@@ -30,6 +36,8 @@ class Ojisan{
         this.dirc   = 0;
         this.jump   = 0;
 
+        this.isInWater = 0;
+
         this.kinoko = 0;
         this.LoseKinoko = 0;    // ちっちゃくなる時の処理用
         this.killEnemy = 0;
@@ -37,6 +45,19 @@ class Ojisan{
         this.type = TYPE_MINI;
 
         this.ItemCount = 3;     // なんとなく作った、これでアイテムを出し分ける
+    }
+
+    // 水の中にいるかチェック
+    // 水のfieldは 392 or 408
+    checkWater(){
+        let lx = ((this.x + this.vx)>>4);
+        let ly = ((this.y + this.vy)>>4);
+
+        if (field.isWater(lx, ly)){
+            this.isInWater = 1;
+        } else {
+            this.isInWater = 0;
+        }
     }
 
     // 左端の判定
@@ -158,14 +179,19 @@ class Ojisan{
     updateJump(){
         // ジャンプ
         if ( keyb.ABUTTON ){
+            // 水中の処理
+            if ( this.isInWater ) {
+                this.vy = -32;
+            } else {    // 空中の処理
             // 落下している時はジャンプできない。
-            if ( this.vy > 16 ) return;
-            if ( this.jump == 0 ){
-                this.anim = ANIME_JUMP;
-                this.jump = 1;
+                if ( this.vy > 16 ) return;
+                if ( this.jump == 0 ){
+                    this.anim = ANIME_JUMP;
+                    this.jump = 1;
+                }
+                // 大ジャンプの設定、あるフレーム以下の間、効果を持続
+                if ( this.jump < 15 ) this.vy = -(64 - this.jump);
             }
-            // 大ジャンプの設定、あるフレーム以下の間、効果を持続
-            if ( this.jump < 15 ) this.vy = -(64 - this.jump);
         }
         if ( this.jump ) this.jump++;
     }
@@ -246,6 +272,7 @@ class Ojisan{
 
     // 毎フレーム毎の更新処理
     update(){
+        // 下に落ちた時、死亡判定
         if ( this.y > 3000) isAlive = false;
         // キノコを取った時のエフェクト
         if ( this.kinoko ){
@@ -285,6 +312,12 @@ class Ojisan{
         this.acou++;
         if ( Math.abs(this.vx) == MAX_SPEED ) this.acou++;
 
+        // 水の中かどうかでGRAVITYを変更
+        this.checkWater();
+        if (frameCount%50 == 0){
+            console.log(GRAVITY);
+        }
+
         this.checkLeft();
         this.updateJump();
         this.updateWalk();
@@ -292,6 +325,10 @@ class Ojisan{
 
         // 重力
         if ( this.vy < 64 ) this.vy += GRAVITY;
+
+        let water_effect = WATER_RESISTENCE ** this.isInWater;
+        this.vx /= water_effect;
+        this.vy /= water_effect;
 
         // 横の壁のチェック
         this.checkWall();
@@ -303,9 +340,14 @@ class Ojisan{
         this.checkCeil();
 
         // 実際に座標を変える
+        // 水中では動きは RESISTENCE だけゆっくりになる
+
+        // console.log(this.vy);
         this.x += this.vx;
         this.y += this.vy;
-
+        this.vx *= water_effect;
+        this.vy *= water_effect;
+        // console.log(this.vy);
 
 
         // // 床にぶつかる

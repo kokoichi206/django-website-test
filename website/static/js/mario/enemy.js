@@ -50,7 +50,7 @@ class Enemy extends Sprite{
 
     // クリボーの処理, checkSideHit
     proc_kuribo(){
-        // 1つ目の if はやられた判定。
+        // 1つ目の if はおじさんがやられた判定。
         if ( this.checkSideHit( ojisan ) ){
             // ojisanとヒットした時にぶつかったら1つ小さくなる
             if ( ojisan.type == 1 ){

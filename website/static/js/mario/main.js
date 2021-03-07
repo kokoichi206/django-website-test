@@ -24,6 +24,8 @@ con.imageSmoothingEnabled       = false;
 let frameCount = 0;
 let startTime;
 
+let gotCoins = 0;
+
 let isAlive = true;
 
 
@@ -40,6 +42,10 @@ let item;
 let enemy;
 
 function init(){
+    isAlive = true;
+    frameCount = 0;
+    gotCoins = 0;
+
     // おじさんを作る
     ojisan = new Ojisan(100, 100);
 
@@ -72,6 +78,7 @@ function updateObj(obj){
     }
 }
 
+
 function fireCheckHit( obj1, obj2 ){
     // 判定を緩くしないと、キノコを押した瞬間に当たり判定になってしまう
     // 物体１
@@ -93,16 +100,19 @@ function fireCheckHit( obj1, obj2 ){
         bottom1 >= top2);
 }
 
-// Fire と敵が触れてないかチェック
+// SPARKS と敵が触れてないかチェック
+// 触れていたら SPARKS は消して、敵はdieフラグを立てて
+// ぴこぴこして死なせる（enemyのupdate関数）
 function checkDeadEnemy(){
     for ( let i=0; i<item.length; i++){
         if ( item[i].tp == SPARKS ){
             for ( let j=enemy.length-1; j>=0; j--){
                 if ( fireCheckHit(item[i], enemy[j]) ){
-                    enemy[j].kill = true;
+                    // enemy[j].kill = true;
+                    enemy[j].die = true;
                     item[i].kill = true;
                 }
-            }        
+            }       
         }
     }
 }
@@ -157,7 +167,10 @@ function draw(){
     vcon.fillStyle = "white";
     vcon.fillText("FRAME: "+frameCount, 10, 20);
 
-
+    // 獲得コインの情報を表示
+    vcon.font = "20px 'Impact'";
+    vcon.fillStyle = "white";
+    vcon.fillText("COINS: "+gotCoins, 170, 20);
     
 
     // 仮想画面から実画面へ拡大転送
@@ -198,7 +211,6 @@ function drawDead(){
     con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
         0,0,SCREEN_SIZE_W*3,SCREEN_SIZE_H*3)
 
-    console.log('aaa');
     return;
 
 }
@@ -237,6 +249,56 @@ function mainLoop() {
 
 }
 
+
+
+ 
+
+function sleep(waitMsec) {
+    var startMsec = new Date();
+   
+    // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+    while (new Date() - startMsec < waitMsec);
+}
+
+// ある条件が揃うと、マップを移動する
+function checkMapMove(){
+    // map0 -> map1
+    if ( (fieldData == fieldDatas[0] ) && 
+        ( 11800 < ojisan.x ) &&
+        ( ojisan.x < 12000 ) &&
+        ( 1450 < ojisan.y ) &&
+        ( ojisan.y < 1600 ))
+        {
+            console.log('ok');
+            sleep(2);
+            ojisan.x    = 1150;
+            ojisan.y    = 200;
+            fieldData   = fieldDatas[1];
+
+            field.scx   = 0;
+            field.scy   = 0;
+            
+            console.log(ojisan.x);
+            console.log(ojisan.y);
+            console.log(fieldData[5]);
+            mainLoop();
+        }
+    // map1 -> map0
+    else if ( (fieldData == fieldDatas[1] ) && 
+    ((13400<ojisan.x<13500)&&(2000<ojisan.y<2100)) )
+    {
+        sleep(2);
+        fieldData   = fieldDatas[0];
+        ojisan.x    = 41616;
+        ojisan.y    = 2048;
+        field.scx   = 2487;
+        field.scy   = 0;
+    }
+}
+
+
+
+
 // 連想配列？
 let keyb = {};
 
@@ -249,8 +311,15 @@ document.onkeydown = function(e){
     if(e.keyCode == 90)keyb.BBUTTON = true;   // Z  
     if(e.keyCode == 88)keyb.ABUTTON = true;   // X
 
-    if(e.keyCode == 65)keyb.Squat = true;
+    if(e.keyCode == 65){                      // a
+        keyb.Squat = true;
+        // console.log(ojisan.x);
+        // console.log(ojisan.y);
+        checkMapMove();
+    }
     // if(e.keyCode == 65){
+    //     console.log(ojisan.x);
+    //     console.log(ojisan.y);
     //     // // block.push( new Block(368, 5,5) );
     //     // let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
     //     // let y = ( field.scy + SCREEN_SIZE_H /2 )>>4
@@ -258,17 +327,23 @@ document.onkeydown = function(e){
     //     //     new Enemy(96, x, y, -16, 0, 1))
     //     // console.log(field.scx);
     // }
-    if(e.keyCode == 83) ojisan.kinoko = 0 ;             // s
+    // if(e.keyCode == 83) ojisan.kinoko = 0 ;             // s
 
     if(e.keyCode == 13) {                             // enter
-        isAlive = true;
-        frameCount = 0;
         init();
         mainLoop();
     } 
-    if(e.keyCode == 32) isAlive = false ;             // space
+    // if(e.keyCode == 32) isAlive = false ;             // space
+    if(e.keyCode == 32){                        // space
+        // console.log(ojisan.x);
+        // console.log(ojisan.y);
+        console.log(field.scx);
+        console.log(field.scy);
+    }            // space
 
     // if(e.keyCode == 65)field.scx--;             // a
+
+    // FIRE のチェック
     // if(e.keyCode == 83){                            // s
     //     let adjust = 8;
     //     let x = ojisan.x>>adjust;

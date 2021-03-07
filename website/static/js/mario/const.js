@@ -136,3 +136,17 @@ class Sprite{
         vcon.drawImage(chImg, sx,sy,16,16, px,py,16,s);
     }
 }
+
+
+
+
+//
+// Utils
+// 
+
+function sleep(waitMsec) {
+    var startMsec = new Date();
+   
+    // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+    while (new Date() - startMsec < waitMsec);
+  }
