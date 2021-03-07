@@ -116,16 +116,19 @@ function fireCheckHit( obj1, obj2 ){
         bottom1 >= top2);
 }
 
-// Fire と敵が触れてないかチェック
+// SPARKS と敵が触れてないかチェック
+// 触れていたら SPARKS は消して、敵はdieフラグを立てて
+// ぴこぴこして死なせる（enemyのupdate関数）
 function checkDeadEnemy(){
     for ( let i=0; i<item.length; i++){
         if ( item[i].tp == SPARKS ){
             for ( let j=enemy.length-1; j>=0; j--){
                 if ( fireCheckHit(item[i], enemy[j]) ){
-                    enemy[j].kill = true;
+                    // enemy[j].kill = true;
+                    enemy[j].die = true;
                     item[i].kill = true;
                 }
-            }        
+            }       
         }
     }
 }
