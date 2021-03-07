@@ -32,7 +32,7 @@ let isAlive = true;
 let chImg = new Image();
 // 注意、読み込む前に次の命令を実行してしまう
 // chImg.src = "sprite.png";
-chImg.src = "{% static '/mario/sprite.png' %}";
+chImg.src = "{% static 'mario/sprite.png' %}";
 // chImg.onload = draw;
 
 let ojisan;
