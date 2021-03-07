@@ -1,4 +1,3 @@
-{% load static %}
 
 // 裏画面、仮想画面
 let vcan = document.createElement("canvas")
@@ -31,8 +30,7 @@ let isAlive = true;
 // character image
 let chImg = new Image();
 // 注意、読み込む前に次の命令を実行してしまう
-// chImg.src = "sprite.png";
-chImg.src = "{% static 'mario/sprite.png' %}";
+chImg.src = "sprite.png";
 // chImg.onload = draw;
 
 let ojisan;
@@ -73,10 +71,48 @@ function updateObj(obj){
         if ( obj[i].kill ) obj.splice(i,1);
     }
 }
+
+function fireCheckHit( obj1, obj2 ){
+    // 判定を緩くしないと、キノコを押した瞬間に当たり判定になってしまう
+    // 物体１
+    let left1   = (obj1.x>>4)       + 2;
+    let right1  = left1 + obj1.w    - 4;
+    let top1    = (obj1.y>>4)       + 5 + obj1.ay;
+    let bottom1 = top1 + obj1.h     - 7;
+
+    // 物体２
+    let left2   = (obj2.x>>4)       + 2;
+    let right2  = left2 + obj2.w    - 4;
+    let top2    = (obj2.y>>4)       + 5 + obj2.ay;
+    let bottom2 = top2 + obj2.h     - 7;
+
+    return (
+        left1 <= right2 &&
+        right1 >= left2 &&
+        top1 <= bottom2 &&
+        bottom1 >= top2);
+}
+
+// Fire と敵が触れてないかチェック
+function checkDeadEnemy(){
+    for ( let i=0; i<item.length; i++){
+        if ( item[i].tp == SPARKS ){
+            for ( let j=enemy.length-1; j>=0; j--){
+                if ( fireCheckHit(item[i], enemy[j]) ){
+                    enemy[j].kill = true;
+                    item[i].kill = true;
+                }
+            }        
+        }
+    }
+}
+
 // 更新処理
 function update(){
     // マップの更新
     field.update();
+
+    checkDeadEnemy();
 
     updateObj(block);
     updateObj(item);
@@ -107,6 +143,7 @@ function draw(){
 
     // マップを表示
     field.draw();
+
 
     drawObj(block);
     drawObj(item);
@@ -207,17 +244,20 @@ let keyb = {};
 document.onkeydown = function(e){
     if(e.keyCode == 37)keyb.Left = true;
     if(e.keyCode == 39)keyb.Right = true;    
+    if(e.keyCode == 40)keyb.Down = true;  
+
     if(e.keyCode == 90)keyb.BBUTTON = true;   // Z  
     if(e.keyCode == 88)keyb.ABUTTON = true;   // X
 
-    if(e.keyCode == 65){
-        // block.push( new Block(368, 5,5) );
-        let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
-        let y = ( field.scy + SCREEN_SIZE_H /2 )>>4
-        enemy.push(
-            new Enemy(96, x, y, -16, 0, 1))
-        // console.log(field.scx);
-    }
+    if(e.keyCode == 65)keyb.Squat = true;
+    // if(e.keyCode == 65){
+    //     // // block.push( new Block(368, 5,5) );
+    //     // let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
+    //     // let y = ( field.scy + SCREEN_SIZE_H /2 )>>4
+    //     // enemy.push(
+    //     //     new Enemy(96, x, y, -16, 0, 1))
+    //     // console.log(field.scx);
+    // }
     if(e.keyCode == 83) ojisan.kinoko = 0 ;             // s
 
     if(e.keyCode == 13) {                             // enter
@@ -229,13 +269,33 @@ document.onkeydown = function(e){
     if(e.keyCode == 32) isAlive = false ;             // space
 
     // if(e.keyCode == 65)field.scx--;             // a
-    // if(e.keyCode == 83)field.scx++;             // s
+    // if(e.keyCode == 83){                            // s
+    //     let adjust = 8;
+    //     let x = ojisan.x>>adjust;
+    //     let y = ojisan.y>>adjust;
+    //     console.log(x)
+    //     item.push(
+    //         new Item(112, x, y, 0, 0, SPARKS)); 
+    // }
+    if(e.keyCode == 83){                            // s
+        if ( ojisan.fire ){
+            let adjust = 8;
+            let x = ojisan.x>>adjust;
+            let y = ojisan.y>>adjust;
+            console.log(x)
+            item.push(
+                new Item(112, x, y, 0, 0, SPARKS)); 
+        }
+    }
 }
 
 // キーボードが離された時に呼ばれる
 document.onkeyup = function(e){
     if(e.keyCode == 37)keyb.Left = false;
     if(e.keyCode == 39)keyb.Right = false;    
+    if(e.keyCode == 40)keyb.Down = true;  
+
     if(e.keyCode == 90)keyb.BBUTTON = false;   // Z  
     if(e.keyCode == 88)keyb.ABUTTON = false;   // X
+    if(e.keyCode == 65)keyb.Squat = false;
 }

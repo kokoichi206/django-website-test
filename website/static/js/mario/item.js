@@ -1,10 +1,17 @@
 //
 // キノコとかアイテムのクラス
+// ファイヤー状態で出せる火もここに入れた 112 が火。
+// ここに入れると紛らわしいよな...
+// 火は kill する必要ある？
 //
 const ITEM_KINOKO   = 1;
 const ITEM_KUSA     = 2;
 const ITEM_FIRE     = 4;
-const ITEM_STAR     = 8;
+const ITEM_COIN     = 8;
+const SPARKS        = 16;
+const ITEM_STAR     = 32;
+
+const FIRE_SPEED = 64;
 
 class Item extends Sprite{
     constructor(sp, x, y, vx, vy, tp){
@@ -35,11 +42,20 @@ class Item extends Sprite{
         let lx = ((this.x + this.vx)>>4);
         let ly = ((this.y + this.vy)>>4);
 
-        if ( field.isBlock(lx+1, ly+15) || field.isBlock(lx+14, ly+15)){
-            this.vy     = 0;
-            this.y      = ((((ly+15)>>4)<<4)-16)<<4;
+        if ( this.tp == SPARKS ){
+            if ( field.isBlock(lx+1, ly+15) || field.isBlock(lx+14, ly+15)){
+                this.vy     *= -1;
+                this.y      = ((((ly+15)>>4)<<4)-16)<<4;
+            }            
+        } else {
+            if ( field.isBlock(lx+1, ly+15) || field.isBlock(lx+14, ly+15)){
+                this.vy     = 0;
+                this.y      = ((((ly+15)>>4)<<4)-16)<<4;
+            }
         }
     }
+
+
 
     // キノコの処理
     proc_kinoko(){
@@ -92,6 +108,40 @@ class Item extends Sprite{
         }
         return false;
     }
+    
+    // コインの処理
+    proc_coin(){
+        if ( ++this.count <= 32 ){
+            this.sz = (1+this.count)>>1;
+            this.y -= 1<<3;
+            if ( this.count == 32 ) this.kill=true;
+            return true;
+        }
+        return false;
+    }
+
+    // 火の粉の処理
+    proc_sparks(){
+        // if ( this.checkHit( ojisan ) ){
+        //     // ojisan.
+        //     ojisan.kinoko = 1;
+        //     this.kill = true;
+        //     return true;
+        // }
+
+        // 16ピクセルなので、16未満なら上に上がっていく
+        // 早かったから、32. 3 にした
+        if ( ++this.count <= 2 ){
+            // this.sz = (1+this.count)>>1;
+            // this.y -= 1<<3;
+            let dir = ojisan.dirc?-1:1;
+            if ( this.count == 2 ) this.vx = dir * FIRE_SPEED;
+            return true;
+        }
+        return false;
+        // this.vx = 24;
+        // this.
+    }
 
     // 更新処理
     update(){
@@ -111,6 +161,13 @@ class Item extends Sprite{
             case ITEM_FIRE:
                 this.proc_fire();
                 return;
+            case ITEM_COIN:
+                this.proc_coin();
+                return;
+            case SPARKS:
+                this.proc_sparks();
+                // this.vx = 24;
+                break;
         }
 
         this.checkWall();

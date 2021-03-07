@@ -36,7 +36,7 @@ class Ojisan{
         this.fire = 0;  // fireかどうかの判定、そうならsnum + ??
         this.type = TYPE_MINI;
 
-        this.ItemCount = 0;     // なんとなく作った、これでアイテムを出し分ける
+        this.ItemCount = 3;     // なんとなく作った、これでアイテムを出し分ける
     }
 
     // 左端の判定
@@ -96,16 +96,17 @@ class Ojisan{
                     itemSpriteIndex = 218;
                 } else if (this.ItemCount == 1){ // 草
                     itemSpriteIndex = 486;
-                } else if (this.ItemCount == 2){ // fire
+                } else if (this.ItemCount == 2){ // ファイヤー
                     itemSpriteIndex = 250;
+                } else if (this.ItemCount == 3){ // コイン
+                    itemSpriteIndex = 384;
                 }
 
                 block.push( new Block(374, x, y) );
                 item.push(
                     new Item(itemSpriteIndex, x, y, 0, 0, itemNum)
                 )
-                console.log(itemSpriteIndex);
-                this.ItemCount = (this.ItemCount + 1)%3;
+                this.ItemCount = (this.ItemCount + 1)%4;
 
                 
                 // block.push( new Block(374, x, y) );
@@ -239,6 +240,8 @@ class Ojisan{
         if ( this.dirc ) this.snum += 48;
         // ファイヤーの時は
         if ( this.fire ) this.snum += 256
+
+        if ( keyb.Squat && (this.type > 1) ) this.snum += 1;
     }
 
     // 毎フレーム毎の更新処理
@@ -269,9 +272,9 @@ class Ojisan{
 
             if ( ++this.LoseKinoko == 40 ) {
                 this.LoseKinoko = 0;
+                this.fire = 0;
                 this.type = TYPE_MINI;
                 this.ay = 16;   // 上の空白を調整
-                console.log(this.LoseKinoko);
             }
             
             // ビヨビヨってなる時は動けないので、動かずリターン
