@@ -70,6 +70,10 @@ class ReversiView(TemplateView):
 class TetrisView(TemplateView):
     template_name = "tetris/tetris.html"
 
+class MarioView(TemplateView):
+    template_name = "mario/mario.html"
+    
+
 # FormViewを継承したViewを定義するa
 class PythonView(FormView):
     template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
