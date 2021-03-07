@@ -27,6 +27,7 @@ let startTime;
 let gotCoins = 0;
 
 let isAlive = true;
+let didGoal = false;
 
 
 // character image
@@ -146,6 +147,32 @@ function drawObj(obj){
     }
 }
 
+function drawInfo(){
+    // デバック情報を表示
+    let font_size = 12;
+    let base_x = 5;
+    let base_y = 12;
+    
+    vcon.font = "12px 'Arial'";
+    vcon.fillStyle = "white";
+    vcon.fillText("FRAME: "+frameCount, base_x, base_y);
+    vcon.fillText("field.scx: "+field.scx, base_x, base_y+font_size);
+    vcon.fillText("field.scy: "+field.scy, base_x, base_y+2*font_size);
+    vcon.fillText("ojisan.x: "+ojisan.x, base_x, base_y+3*font_size);
+    vcon.fillText("ojisan.y: "+ojisan.y, base_x, base_y+4*font_size);
+    vcon.fillText("ojisan.vx: "+ojisan.vx, base_x, base_y+5*font_size);
+    vcon.fillText("ojisan.vy: "+ojisan.vy, base_x, base_y+6*font_size);
+
+    // 獲得コインの情報を表示
+    vcon.font = "20px 'Impact'";
+    vcon.fillStyle = "white";
+    // vcon.fillText("COINS: "+gotCoins, 175, 20);
+    vcon.fillText(gotCoins, 230, 20);
+
+    // 左上にコインを表示
+    vcon.drawImage(chImg, 0,384,16,16, 210,4,16,16);
+}
+
 function draw(){
     // 画面を水色でクリア
     vcon.fillStyle = "#66AAFF";
@@ -162,22 +189,11 @@ function draw(){
     // おじさんを表示,少数があると隣のピクセルとかが出てしまってた
     ojisan.draw();
     
-    // デバック情報を表示
-    vcon.font = "20px 'Impact'";
-    vcon.fillStyle = "white";
-    vcon.fillText("FRAME: "+frameCount, 10, 20);
-
-    // 獲得コインの情報を表示
-    vcon.font = "20px 'Impact'";
-    vcon.fillStyle = "white";
-    vcon.fillText("COINS: "+gotCoins, 170, 20);
-    
+    drawInfo();
 
     // 仮想画面から実画面へ拡大転送
     con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
         0,0,SCREEN_SIZE_W*3,SCREEN_SIZE_H*3)
-
-
 }
 
 function drawDead(){
@@ -196,16 +212,13 @@ function drawDead(){
     // おじさんを表示,少数があると隣のピクセルとかが出てしまってた
     ojisan.draw();
     
-    // デバック情報を表示
-    vcon.font = "20px 'Impact'";
-    vcon.fillStyle = "white";
-    vcon.fillText("FRAME: "+frameCount, 10, 20);
+    drawInfo();
 
     // Dead画面を表示
     vcon.font = "25px 'Impact'";
     vcon.fillStyle = "white";
-    vcon.fillText("YOU ARE DEAD", 60, 100);
-    vcon.fillText("Press Enter to continue", 10, 150);
+    vcon.fillText("YOU ARE DEAD", 60, 110);
+    vcon.fillText("Press Enter to continue", 10, 155);
 
     // 仮想画面から実画面へ拡大転送
     con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
@@ -215,6 +228,52 @@ function drawDead(){
 
 }
 // setInterval(mainLoop, 1000/60);
+
+// Goalした時に情報を表示
+function drawGoal(){
+    // 画面を水色でクリア
+    vcon.fillStyle = "#66AAFF";
+    vcon.fillRect(0, 0, SCREEN_SIZE_W, SCREEN_SIZE_H);
+
+    // マップを表示
+    field.draw();
+
+    drawObj(block);
+    drawObj(item);
+    drawObj(enemy);
+
+    // おじさんを表示,少数があると隣のピクセルとかが出てしまってた
+    ojisan.draw();
+    
+    drawInfo();
+
+    // Goal画面を表示
+    vcon.font = "25px 'Impact'";
+    vcon.fillStyle = "white";
+    vcon.fillText("GOAL REACHED!", 60, 110);
+    vcon.fillText("Thank you", 80, 155);
+
+    // 仮想画面から実画面へ拡大転送
+    con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
+        0,0,SCREEN_SIZE_W*3,SCREEN_SIZE_H*3)
+
+    return;
+
+}
+
+function drawFlag(){
+
+    // let field_scx = 224;
+    // let field_scy = 0;
+    // let oji_x = 361;
+    // let oji_y = 32;
+    // let px = oji_x - field_scx;
+    // let py = oji_y - field_scy;
+
+    vcon.drawImage(chImg, 0,384,16,16, 137,32+didGoal>>2,16,16);
+    
+
+}
 
 // loop start
 window.onload = function(){
@@ -226,6 +285,7 @@ function mainLoop() {
     let nowTime = performance.now();
     let nowFrame = (nowTime - startTime) / GAME_FPS;
 
+    
     if (nowFrame > frameCount ){
         let c = 0;
         while( nowFrame > frameCount ){
@@ -240,11 +300,29 @@ function mainLoop() {
         draw();
     }
 
-    if ( isAlive ){
+    if ( isAlive && ( !didGoal )){
         // ブラウザが表示してくださいって言うタイミングで読んでくれる
         requestAnimationFrame(mainLoop); 
-    } else {
+    } else if ( !isAlive ) {
         drawDead();
+    } else if ( didGoal>0 ){
+        drawGoal();
+        // let snum = (this.die>>2)%3 + 96;   // sprite num,,4フレームで１個増える
+        // this.h = this.snum==32?16:32;
+        // this.sp = snum;
+        // console.log(didGoal);
+        // // py += i>>2;
+        // // vcon.drawImage(chImg, 0,384,16,16, 137,137,16,16);
+        // if ( ++didGoal == 32 ) {
+        //     // this.die = 0;
+        //     didGoal = 50;
+        //     vcon.drawImage(chImg, 0,384,16,16, 137,32+didGoal>>2,16,16);
+        //     console.log(didGoal);
+        // }
+        // if ( didGoal == 50 ) drawGoal();
+        // requestAnimationFrame(drawFlag); 
+        // ビヨビヨってなる時は動けないので、動かずリターン
+        // return;
     }
 
 }
@@ -252,13 +330,6 @@ function mainLoop() {
 
 
  
-
-function sleep(waitMsec) {
-    var startMsec = new Date();
-   
-    // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
-    while (new Date() - startMsec < waitMsec);
-}
 
 // ある条件が揃うと、マップを移動する
 function checkMapMove(){
@@ -278,9 +349,6 @@ function checkMapMove(){
             field.scx   = 0;
             field.scy   = 0;
             
-            console.log(ojisan.x);
-            console.log(ojisan.y);
-            console.log(fieldData[5]);
             mainLoop();
         }
     // map1 -> map0
@@ -313,20 +381,19 @@ document.onkeydown = function(e){
 
     if(e.keyCode == 65){                      // a
         keyb.Squat = true;
-        // console.log(ojisan.x);
-        // console.log(ojisan.y);
         checkMapMove();
     }
-    // if(e.keyCode == 65){
-    //     console.log(ojisan.x);
-    //     console.log(ojisan.y);
-    //     // // block.push( new Block(368, 5,5) );
-    //     // let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
-    //     // let y = ( field.scy + SCREEN_SIZE_H /2 )>>4
-    //     // enemy.push(
-    //     //     new Enemy(96, x, y, -16, 0, 1))
-    //     // console.log(field.scx);
-    // }
+    if(e.keyCode == 69){                        // e
+        didGoal = 1;
+        // // block.push( new Block(368, 5,5) );
+        // let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
+        // let y = ( field.scy + 32 )>>4
+        // enemy.push(
+        //     new Enemy(137, x, y, 0, 0, ENEMY_KUMO))
+
+        // enemy.push(
+        //     new Enemy(105, 12, 2, 0, 0, ENEMY_KURIBO))
+    }
     // if(e.keyCode == 83) ojisan.kinoko = 0 ;             // s
 
     if(e.keyCode == 13) {                             // enter
@@ -335,8 +402,6 @@ document.onkeydown = function(e){
     } 
     // if(e.keyCode == 32) isAlive = false ;             // space
     if(e.keyCode == 32){                        // space
-        // console.log(ojisan.x);
-        // console.log(ojisan.y);
         console.log(field.scx);
         console.log(field.scy);
     }            // space

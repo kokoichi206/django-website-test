@@ -79,7 +79,6 @@ class Item extends Sprite{
 
     // 草の処理
     proc_kusa(){
-
         if ( this.y > 0 ){
             this.count++;
             if ( this.count < 16 ) this.sz = this.count;    // 少しずつ出ていく感じを出している

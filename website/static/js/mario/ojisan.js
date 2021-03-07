@@ -47,6 +47,36 @@ class Ojisan{
         this.ItemCount = 3;     // なんとなく作った、これでアイテムを出し分ける
     }
 
+    // ゴールしたかの判定
+    checkGoal(){
+        if( field.srx < flagPosition ) return;
+
+        let lx = ((this.x + this.vx)>>4);
+        let ly = ((this.y + this.vy)>>4);
+
+        let p = this.type==TYPE_MINI?16+8:9;
+
+        // 右側のチェック、でっかいおじさんの時は3点でチェック
+        if ( field.isFlag(lx+15, ly+p) || 
+            (this.type==TYPE_BIG && (
+            field.isFlag(lx+15, ly+15) ||
+            field.isFlag(lx+15, ly+24))) ){
+            this.vx     = 0;
+            this.vy     = 0;
+            this.x     += 16*8;
+            didGoal = 1;
+        }
+        else if ( field.isFlag(lx, ly+p) || 
+            (this.type==TYPE_BIG && (
+            field.isFlag(lx, ly+15) ||
+            field.isFlag(lx, ly+24) ))){
+            this.vx     = 0;
+            this.vy     = 0;
+            this.x     += 16*8;
+            didGoal = 1;
+        }
+    }
+
     // 水の中にいるかチェック
     // 水のfieldは 392 or 408
     checkWater(){
@@ -314,9 +344,9 @@ class Ojisan{
 
         // 水の中かどうかでGRAVITYを変更
         this.checkWater();
-        if (frameCount%50 == 0){
-            console.log(GRAVITY);
-        }
+        // if (frameCount%50 == 0){
+        //     // console.log(GRAVITY);
+        // }
 
         this.checkLeft();
         this.updateJump();
@@ -329,6 +359,9 @@ class Ojisan{
         let water_effect = WATER_RESISTENCE ** this.isInWater;
         this.vx /= water_effect;
         this.vy /= water_effect;
+
+        // GOALしたかな〜
+        this.checkGoal();
 
         // 横の壁のチェック
         this.checkWall();

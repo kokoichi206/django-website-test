@@ -129,8 +129,9 @@ class Sprite{
         let sy = (an>>4)<<4;
 
         let px = (this.x>>4) - (field.scx);
-        let py = (this.y>>4) - (field.scy);
+        let py = (this.y>>4) - (field.scy) + this.ay;
         let s;
+        // 指示があれば、szに引き伸ばして表示
         if ( this.sz ) s = this.sz;
         else s = 16;
         vcon.drawImage(chImg, sx,sy,16,16, px,py,16,s);
