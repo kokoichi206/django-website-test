@@ -77,17 +77,43 @@ class Ojisan{
         }
     }
 
-    // 水の中にいるかチェック
-    // 水のfieldは 392 or 408
-    checkWater(){
-        let lx = ((this.x + this.vx)>>4);
-        let ly = ((this.y + this.vy)>>4);
-
-        if (field.isWater(lx, ly)){
+    // 現在の状況をちぇっく
+    // 水の中もしくは、コインかとか。
+    changeSituation(lx, ly){
+        let bl = field.spriteNum( lx, ly )  //  isBlockは-1以外ならブロック番号を返す
+        let block_x = (lx >> 4);
+        let block_y = (ly >> 4);
+        let mapNum = block_x + FIELD_SIZE_W * block_y;
+        if ( bl == 392 || bl == 408 ){
             this.isInWater = 1;
-        } else {
-            this.isInWater = 0;
+        } else if ( bl == 384 ) {
+            gotCoins += 1;
+            fieldData[mapNum] = -1;
         }
+    }
+    // チェック
+    // 水のfieldは 392 or 408、コインは 384
+    // やられた、オフセット（this.ay）のせいで見た目おかしいわ
+    checkHere(){
+        // let lx = ((this.x + this.vx)>>4);
+        // let ly = ((this.y + this.vy)>>4);
+        let lx = (this.x>>4);
+        let ly = (this.y>>4) + this.ay;
+
+        // if ( frameCount % 300 == 0) console.log(this.ay);
+
+        let offs = 2;
+        this.isInWater = 0;
+        this.changeSituation(lx-offs, ly+offs)
+        this.changeSituation(lx-this.w+offs, ly+offs)
+        this.changeSituation(lx-offs, ly+this.h-offs)
+        this.changeSituation(lx-this.w+offs, ly+this.h-offs)
+        
+        // if (field.isWater(lx, ly)){
+        //     this.isInWater = 1;
+        // } else {
+        //     this.isInWater = 0;
+        // }
     }
 
     // 左端の判定
@@ -168,7 +194,8 @@ class Ojisan{
                 // )
             } else if (this.type == TYPE_MINI){
                 block.push( new Block(bl, x, y) );
-            } else { // 四方向に飛び散る処理、
+            } else if ( bl == 371 || bl == 372 ) { 
+                // 四方向に飛び散る処理、（でかおじさん）かつ（ブロック371,372）のみ
                 block.push( new Block(bl, x, y, 1, 20, -60 ));
                 block.push( new Block(bl, x, y, 1, -20, -60 ));
                 block.push( new Block(bl, x, y, 1, 20, -20 ));
@@ -296,7 +323,9 @@ class Ojisan{
         if ( this.dirc ) this.snum += 48;
         // ファイヤーの時は
         if ( this.fire ) this.snum += 256
-
+        // 水の中にいるときのムーブ
+        if ( this.isInWater ) this.snum += 8;
+        // しゃがむ処理、
         if ( keyb.Squat && (this.type > 1) ) this.snum += 1;
     }
 
@@ -343,7 +372,7 @@ class Ojisan{
         if ( Math.abs(this.vx) == MAX_SPEED ) this.acou++;
 
         // 水の中かどうかでGRAVITYを変更
-        this.checkWater();
+        this.checkHere();
         // if (frameCount%50 == 0){
         //     // console.log(GRAVITY);
         // }

@@ -104,9 +104,13 @@ class Enemy extends Sprite{
     proc_toge(){
         if ( this.vx > 0 ) {
             this.sp = 106;
+            this.sp += Math.floor(frameCount/11) % 2
         } else if (this.vx < 0 ) {
             this.sp = 122;
+            // なんか、そもそもの画像が１種類しかない....
+            this.sp += Math.floor(frameCount/11) % 2
         } 
+        // 敵にやられた時の処理はまとめて書いた方がいいかも。
         if ( this.checkHit( ojisan ) ){
             // ojisanとヒットした時にぶつかったら1つ小さくなる
             if ( ojisan.type == 1 ){

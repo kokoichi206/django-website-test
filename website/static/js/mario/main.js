@@ -20,7 +20,6 @@ con.webkitimageSmoothingEnabled = false;
 con.imageSmoothingEnabled       = false;
 
 
-
 let frameCount = 0;
 let startTime;
 
@@ -334,17 +333,17 @@ function mainLoop() {
 // ある条件が揃うと、マップを移動する
 function checkMapMove(){
     // map0 -> map1
-    if ( (fieldData == fieldDatas[0] ) && 
+    if ( ( field.type == 0 ) && 
         ( 11800 < ojisan.x ) &&
         ( ojisan.x < 12000 ) &&
         ( 1450 < ojisan.y ) &&
         ( ojisan.y < 1600 ))
         {
             console.log('ok');
-            sleep(2);
             ojisan.x    = 1150;
             ojisan.y    = 200;
-            fieldData   = fieldDatas[1];
+            field.type   = 1;
+            fieldData = fieldDatas[field.type];
 
             field.scx   = 0;
             field.scy   = 0;
@@ -352,14 +351,30 @@ function checkMapMove(){
             mainLoop();
         }
     // map1 -> map0
-    else if ( (fieldData == fieldDatas[1] ) && 
-    ((13400<ojisan.x<13500)&&(2000<ojisan.y<2100)) )
+    else if ( ( field.type == 1 ) && 
+            ( 13400 < ojisan.x ) &&
+            ( ojisan.x < 13500 ) &&
+            ( 2000 < ojisan.y ) &&
+            ( ojisan.y < 2100 ) )
     {
-        sleep(2);
-        fieldData   = fieldDatas[0];
+        field.type   = 0;
+        fieldData = fieldDatas[field.type];
         ojisan.x    = 41616;
         ojisan.y    = 2048;
         field.scx   = 2487;
+        field.scy   = 0;
+    }
+    else if ( (field.type == 1 ) && 
+            ( 3550 < ojisan.x ) &&
+            ( ojisan.x < 3650 ) &&
+            ( 450 < ojisan.y ) &&
+            ( ojisan.y < 550 ) )
+    {
+        field.type = 2;
+        fieldData = fieldDatas[field.type];
+        ojisan.x    = 64;
+        ojisan.y    = 144;
+        field.scx   = 0;
         field.scy   = 0;
     }
 }
@@ -384,29 +399,26 @@ document.onkeydown = function(e){
         checkMapMove();
     }
     if(e.keyCode == 69){                        // e
-        didGoal = 1;
+        // didGoal = 1;
         // // block.push( new Block(368, 5,5) );
-        // let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
-        // let y = ( field.scy + 32 )>>4
-        // enemy.push(
-        //     new Enemy(137, x, y, 0, 0, ENEMY_KUMO))
+        let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
+        let y = ( field.scy + 32 )>>4
+        enemy.push(
+            new Enemy(137, x, y, 0, 0, ENEMY_KUMO))
 
         // enemy.push(
         //     new Enemy(105, 12, 2, 0, 0, ENEMY_KURIBO))
     }
-    // if(e.keyCode == 83) ojisan.kinoko = 0 ;             // s
 
     if(e.keyCode == 13) {                             // enter
         init();
         mainLoop();
     } 
-    // if(e.keyCode == 32) isAlive = false ;             // space
     if(e.keyCode == 32){                        // space
         console.log(field.scx);
         console.log(field.scy);
     }            // space
 
-    // if(e.keyCode == 65)field.scx--;             // a
 
     // FIRE のチェック
     // if(e.keyCode == 83){                            // s
