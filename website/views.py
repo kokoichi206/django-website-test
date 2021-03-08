@@ -73,6 +73,8 @@ class TetrisView(TemplateView):
 class MarioView(TemplateView):
     template_name = "mario/mario.html"
     
+class ShootingView(TemplateView):
+    template_name = "shooting/shooting.html"
 
 # FormViewを継承したViewを定義するa
 class PythonView(FormView):
