@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>タイピングしよーー</title>
+</head>
+<body>
+    <div id="container" style="margin-left:1.5em;">
+        <h3>タイピングチェーーーック</h3>
+        <div style="font-weight: bold" name="" id="0">昨日できなかったこととか</div>
+        <div style="color: gray" name="" id="1">今日できなかったことを</div>
+        <div style="color: gray" name="" id="2">またもう一度君がチャレンジできるように明日があるんだ</div>
+        <div style="color: gray" name="" id="3">部屋の隅のゴミ箱に丸めた紙くずを投げて</div>
+        <div style="color: gray" name="" id="4">一発で入る時と何度やっても入らない時</div>
+        <div style="color: gray" name="" id="5">きっと運という名の風が吹いてるんだ</div>
+        <div style="color: gray" name="" id="6">もちろん神様に手を合わせ祈ることも大事だし</div>
+        <div style="color: gray" name="" id="7">投げ方の研究も大切なことではあるけど</div>
+        <div style="color: gray" name="" id="8">続けて投げればいつかは入る</div>
+        <div style="color: gray" name="" id="9">人生なんて挫折ばかり</div>
+        <div style="color: gray" name="" id="10">失敗する度落ち込んでたら</div>
+        <div hidden='true' style="color: gray" name="" id="10">大人みたいに疲れちゃうよ</div>
+        <div hidden='true';>
+                昨日できなかったこととか今日できなかったことを<br>
+                またもう一度君がチャレンジできるように明日があるんだ<br>
+                部屋の隅のゴミ箱に丸めた紙くずを投げて一発で入る時と何度やっても入らない時
+                きっと運という名の風が吹いてるんだ
+                
+                
+                人生なんて挫折ばかり
+                思い通りいかないもの
+                失敗する度　落ち込んでたら
+                大人みたいに疲れちゃうよ
+                
+                何度だってチャンスはある(明日(あす)は何度も来るんだ)
+                もっと気楽に行けばいい(肩の力を抜いて)
+                この瞬間を一生懸命生きれば
+                いつか楽しい思い出になる
+                君たちには時間がある(諦めなければいいんだ)
+                そのうち夢は叶うよ(深呼吸をしてごらん)
+                悔し涙も　嬉しくてこぼれた微笑みも
+                全て宝物
+                運がいいとか悪いとか言い訳なんかするより
+                一回でも多く　丸めた紙くず投げるしかない
+                勝手にゴミ箱は近づかない
+                青春なんて情けないもの
+                自己嫌悪の繰り返しだ
+                恥ずかしいこと　どんなにしても
+                どうせ誰にも見られてない            
+        </div><br>
+        <textarea name="" id="input" cols="60" rows="2"></textarea><br>
+        <button id="check" onclick="start();">START</button>
+        <div id="result">文字数：</div>
+        <div id="resultALL">TOTAL：</div>
+        <div id="timer">TIME:</div>
+        <div style="color: red;" id="isCorrect"></div>
+    </div>
+
+    <br><br>
+    <lh>TODO?</lh>
+    <li>自動で問題をとってこれるようにする？</li>
+    <li></li>
+
+    <script>
+        const FRESH_TIME    = 60;     // msec
+        const ROW_MAX       =  11;
+        const DISPLAY_ROW   =  5;
+
+
+        function initText()
+        {
+            let first = document.getElementById(0);
+            first.style.color = 'black';
+            first.style.fontWeight = 'bold';
+            for( let i=1; i<ROW_MAX; i++)
+            {
+                let elm = document.getElementById(i);
+                elm.style.color = 'gray';
+                elm.style.fontWeight = 'normal';
+                if( i>= DISPLAY_ROW )
+                {
+                    elm.hidden = true;
+                }
+            }
+        }
+        initText();
+
+        let counter = 0;
+        let row = 0;
+
+        let tArea = document.getElementById("input");
+        let result = document.getElementById("result");
+        let resultAll = document.getElementById("resultALL");
+        let timer = document.getElementById("timer");
+        let isCorrect = document.getElementById("isCorrect");
+
+        let hoge;
+        function start(){
+            hoge = setInterval( checkMoji, FRESH_TIME );
+            tArea.focus();
+            tArea.select();
+        }
+        // start();
+
+        let totalNum = 0;
+
+        
+        function checkMoji()
+        {
+            counter++;
+            result.textContent = '文字数：';
+            resultAll.textContent = 'TOTAL:';
+            timer.textContent = 'TIME:' + counter*FRESH_TIME/1000;
+
+            if( totalNum )
+            {
+                resultAll.textContent += totalNum;
+            }
+
+            let text = tArea.value;
+            let mojiNum = text.length;
+
+            result.textContent += mojiNum;
+            let answerText = document.getElementById(row);
+
+            if ( text == answerText.textContent )
+            {
+                tArea.value = '';
+                totalNum += mojiNum;
+                changeStyle();
+                row += 1;
+                console.log(row);
+            }
+            else
+            {
+            }
+        }
+
+        function changeStyle()
+        {
+            let nowText = document.getElementById(row);
+            nowText.style.color = 'gray';
+            nowText.style.fontWeight = 'normal';
+            if( row < ROW_MAX - 1 )
+            {
+                let nextText = document.getElementById(row+1);
+                nextText.style.color = 'black';
+                nextText.style.fontWeight = 'bold';
+                if ( row + DISPLAY_ROW < ROW_MAX )
+                {
+                    nowText.hidden = true;
+                    let displayText = document.getElementById( row + DISPLAY_ROW );
+                    displayText.hidden = false;
+                }
+            }
+            else
+            {
+                console.log('hogee');
+                let wps = totalNum/(counter*FRESH_TIME/1000);
+                isCorrect.textContent = Math.floor(wps*100)/100 + ' Words Per Sec';
+                clearInterval(hoge);
+            }
+
+        }
+
+    </script>
+</body>
+</html>

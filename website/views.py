@@ -79,6 +79,8 @@ class ShootingView(TemplateView):
 class MemoryView(TemplateView):
     template_name = "table/memory.html"
 
+class TypingView(TemplateView):
+    template_name = "greet/typing.html"
 
 
 # FormViewを継承したViewを定義するa
