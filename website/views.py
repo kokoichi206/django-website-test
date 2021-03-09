@@ -76,6 +76,11 @@ class MarioView(TemplateView):
 class ShootingView(TemplateView):
     template_name = "shooting/shooting.html"
 
+class MemoryView(TemplateView):
+    template_name = "table/memory.html"
+
+
+
 # FormViewを継承したViewを定義するa
 class PythonView(FormView):
     template_name = 'greet/execute.html'  # テンプレート名(htmlファイル名)
