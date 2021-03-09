@@ -11,22 +11,22 @@
 <body>
     <canvas id="can"></canvas>
     
-    <script src="{% static '/js/shooting/misc.js' %}"></script>
-    <script src="{% static '/js/shooting/data.js' %}"></script>
-    <script src="{% static '/js/shooting/item.js' %}"></script>
-    <script src="{% static '/js/shooting/jiki.js' %}"></script>
-    <script src="{% static '/js/shooting/teki.js' %}"></script>
+    <script src="{% static 'js/shooting/misc.js' %}"></script>
+    <script src="{% static 'js/shooting/data.js' %}"></script>
+    <script src="{% static 'js/shooting/item.js' %}"></script>
+    <script src="{% static 'js/shooting/jiki.js' %}"></script>
+    <script src="{% static 'js/shooting/teki.js' %}"></script>
 
     <script>
 
 let spriteImage = new Image();
-spriteImage.src = "{% static '/js/shooting/sprite.png' %}";
+spriteImage.src = "{% static 'fig/shooting/sprite.png' %}";
 
 let spriteMarioImage = new Image();
-spriteMarioImage.src = "{% static '/js/shooting/spriteMario.png' %}";
+spriteMarioImage.src = "{% static 'fig/shooting/spriteMario.png' %}";
 
 let spriteItemImage = new Image();
-spriteItemImage.src = "{% static '/js/shooting/itemSprite.png' %}";
+spriteItemImage.src = "{% static 'fig/shooting/itemSprite.png' %}";
 
 
 // デバッグのフラグ
