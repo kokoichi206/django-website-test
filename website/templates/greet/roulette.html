@@ -143,9 +143,9 @@
 
     function setImage( n )
     {
-        elm1.style.backgroundImage = "url( {% static 'js/fig/minami/a" + n + ".png' %} )";
+        elm1.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
         if( ++n == picNum ) n = 0;
-        elm2.style.backgroundImage = "url( {% static 'js/fig/minami/a" + n + ".png' %} )";
+        elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
     }
 
     function start()
