@@ -146,7 +146,7 @@
         if( ++n == picNum ) n = 0;
         // elm2.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a" + n + ".png' %} )";
 
-        elm2.style.backgroundImage = "url( {% static 'fig/minami/a1.png' %} )";
+        elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
     }
 
     function start()
@@ -227,7 +227,7 @@
     setImage( num );
 
     setInterval(mainLoop, 1000/60);
-    
+
 </script>
 </html>
 
