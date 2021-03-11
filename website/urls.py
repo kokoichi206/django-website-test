@@ -31,6 +31,6 @@ urlpatterns = [
     path('mario/mario', MarioView.as_view()),
     path('shooting/shooting', ShootingView.as_view()),
     path('greet/typing', TypingView.as_view()),
-    path('greet/roulette', TypingView.as_view()),
+    path('greet/roulette', RouletteView.as_view()),
 ]
 
