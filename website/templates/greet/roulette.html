@@ -1,155 +1,233 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>weight</title>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-  google.charts.load('current', {packages: ['corechart', 'controls', 'table']});
-  google.charts.setOnLoadCallback(controlsAndDashboards);
-
-  function controlsAndDashboards() {
-    let rawData = [
-    ['time(days)', 'weight'],
-[0.0, 77.5],
-[1.15, 77.1],
-[2.09, 76.5],
-[3.08, 77.3],
-[3.74, 78.1],
-[4.27, 77.1],
-[4.96, 76.4],
-[5.3, 77.3],
-[6.26, 75.5],
-[8.06, 77.2],
-[9.19, 76.4],
-[10.14, 76.8],
-[11.22, 77],
-[12.06, 76.7],
-[12.72, 75.8],
-[13.95, 76.1],
-[17.37, 75.9],
-[18.1, 75.3],
-[19.03, 76.8],
-[19.93, 75.7],
-[20.96, 75.7],
-[22.07, 75.5],
-[23.1, 74.9],
-[23.8, 75],
-[24.81, 76.5],
-[26.0, 75],
-[26.98, 75.2],
-[27.61, 75.2],
-[29.03, 76.7],
-[30.01, 75.7],
-[31.07, 75.9],
-[32.07, 75.3],
-[33.0, 74.9],
-[34.06, 76.3],
-[34.86, 75.9],
-[36.12, 76],
-[37.06, 76.4],
-[38.96, 77.5],
-[39.91, 76.9],
-[41.98, 77],
-[42.86, 76.2],
-[44.0, 76.1],
-[45.02, 75.2],
-[45.88, 75],
-[47.01, 74.6],
-[48.04, 75.3],
-[49.11, 75],
-[50.03, 75.7],
-[55.88, 76.3],
-[57.0, 76.1],
-[57.9, 76.3],
-[58.97, 75.5],
-[59.91, 76.2],
-[61.12, 75.6],
-[61.99, 75.3],
-[62.98, 75.3],
-[63.92, 75],
-[64.71, 75.5],
-[66.11, 75.6],
-[66.86, 75.2],
-[67.96, 75.8],
-[68.84, 74.6],
-[69.88, 75.5],
-[70.98, 75.2],
-[71.91, 75],
-[73.03, 74.3],
-[74.01, 74.2]
-    ];
-
-    console.log(rawData);
-    var data = google.visualization.arrayToDataTable(rawData);
-    console.log(data);
-
-  var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
-
-
-  var chartRangeFilter = new google.visualization.ControlWrapper({
-    controlType: 'ChartRangeFilter',
-    containerId: 'filter_div',
-    options: {
-      filterColumnIndex: 0,
-      ui: {
-        chartType: 'ComboChart',
-        chartOptions: {
-          colors: ['rgb(255, 159, 64)'],
-          height: 70
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Roulette</title>
+    <style>
+        .conte
+        {
+            width: 600px;
+            margin: auto;
+            text-align: center;
         }
-      }
-    }
-  });
+        .m1{
+            color: hsl(0, 100%, 77%);
+            font-size: 50px;
+            font-weight: bold;
+        }
+        .m2{
+            color: #5aF;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .roulette
+        {
+            width: 400px;
+            height: 230px;
+            border: 4px solid #aaf;
+            margin: auto;
+        }
+        .gazou
+        {
+            width: 400px;
+            height: 230px;
+            background-repeat: no-repeat;
+        }
+        .bt
+        {
+            margin-top: 12px;
+            width: 300px;
+            height: 40px;
+            text-align: center;
+            background-color: #66f;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+        }
 
-
-  var ScatterChart = new google.visualization.ChartWrapper({
-    chartType: 'ScatterChart',
-    containerId: 'chart1_div',
-    options: {
-      title:'Body weight Since 2020/12/25',
-      height: 300,
-      hAxis: {
-        textPosition: 'none'
-      },
-      colors: ['rgb(255, 99, 132)']
-    }
-  });
-
-  var table = new google.visualization.ChartWrapper({
-    chartType: 'Table',
-    containerId: 'chart6_div',
-    options: {
-      height: 150,
-      width: '80%'
-    }
-  });
-
-
-  //   dashboard.bind(chartRangeFilter, [ScatterChart, table]);
-  dashboard.bind(chartRangeFilter, [ScatterChart, table]);
-
-  dashboard.draw(data);
-
-  }
-
-
-  </script>
-
-  <link rel="stylesheet" href="{% static 'main.css' %}">
-  </head>
-
+    </style>
+</head>
 <body>
-  {% include "_navbar.html"%}
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <div id="dashboard_div">
-    <div style="margin-top: 10pt" id="chart1_div"></div>
-    <div style="margin-top: 10pt" id="filter_div"></div>
-    <div style="margin: 40pt 60pt;" id="chart6_div"></div>
-  </div>
+    <div class="conte">
+        <div class="m1">祝！！</div>
+        <div class="m2">ルーレットで写真を選ぶぞ</div>
+        <div class="roulette">  
+            <div class="gazou" id="g1">
+            <div class="gazou" id="g2">
+            </div></div>
+        </div>
+        <button id="bt" class="bt" onclick="start()">スタート</button>
+    </div>
 </body>
+<script>
+    const picNum = 8;
+    const MaxIndex = picNum - 1;
+
+    let num         = 0;
+    let count       = 0;
+    let speed       = 10;
+    let maxSpeed    = 200;
+    let minSpeed    = 20;
+    let flag        = 0;       // 動いてるかどうかのフラグ
+    let height      = 230;
+    let lastMove    = 5;        // 止まった後にも5MOVEする、この辺にランダム要素入れてもいい
+    let wait        = 0;
+
+    let  elm1 = document.getElementById("g1");
+    let  elm2 = document.getElementById("g2");
+    let  bt   = document.getElementById("bt");
+
+    // 紙吹雪用の設定
+    let screen_w    = window.innerWidth;
+    let screen_h    = window.innerHeight;
+    const KAMI_MAX  = 200;
+    const COLORS    = [ "#f55", "#55f", "#5c5", "#fa5", "#5af" ];
+
+    function rand(min, max)
+    {
+        return (Math.floor(Math.random()*(max-min+1)+min ));
+    }
+    
+    class Kami
+    {
+        constructor()
+        {
+            this.elm = document.createElement("div");
+            document.body.appendChild(this.elm);
+            this.sty = this.elm.style;
+            this.x = rand(0, screen_w);
+            this.y = rand(0, screen_h);
+
+            this.vx = rand(-10, 10)/2;
+            this.vy = rand(5, 10)/2;
+
+            this.ang = 0;
+            this.spd = rand(15,40)/2;
+            this.rX = rand(0,10)/10;
+            this.rY = rand(0,10)/10;
+            this.rZ = rand(0,10)/10;
+
+            this.sty.position = "fixed";
+            this.sty.width = "20px";
+            this.sty.height = "10px";
+            this.sty.backgroundColor = COLORS[
+                rand(0, COLORS.length+1) ];
+        }
+
+        update()
+        {
+            this.x += this.vx;
+            this.y += this.vy;
+            if( this.y >= screen_h)
+            {
+                this.x = rand(0, screen_w);
+                this.y = -20;
+            }
+            this.ang += this.spd;
+            this.sty.left = this.x + "px";
+            this.sty.top = this.y + "px";
+            this.sty.transform = "rotate3D("
+                        + this.rX + "," + this.rY + ","
+                        + this.rZ + "," + this.ang + "deg";
+        }
+    }
+    let kami = [];
+
+    setImage( num );
+
+    setInterval(mainLoop, 1000/60);
+
+    function setImage( n )
+    {
+        // 'https://koko-django-website.herokuapp.com/static/
+        elm1.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+        // elm1.style.backgroundImage = "url( {% static 'welcome.jpg' %} )";
+
+        if( ++n == picNum ) n = 0;
+        // elm2.style.backgroundImage = "url( {% static 'welcome.jpg' %} )";
+
+        elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+    }
+
+    function start()
+    {
+        if( flag == 0 )
+        {
+            flag = 1;
+            bt.hidden = true;
+        }
+        if( flag == 1 && speed == maxSpeed )
+        {
+            flag = 2;
+            bt.hidden = true;
+        }
+    }
+    
+    function mainLoop()
+    {
+        for( let i=0; i<kami.length; i++){
+            kami[i].update();
+        }
+        
+        if( flag == 1 )
+        {
+            count += speed;
+            if( speed < maxSpeed ) speed++;      // どんどん加速させていく
+            else if( bt.hidden)
+            {
+                bt.hidden = false;
+                bt.innerText = "ストップ！";
+            }
+        }
+        if( flag == 2 )
+        {
+            count += speed;
+            if( speed > minSpeed ) speed--;
+        }
+        if( flag == 3 )
+        {
+            if(--wait == 0)
+            {
+                if(--lastMove == 0)
+                {
+                    flag = 4;
+                    bt.hidden = false;
+                    bt.innerText = "おめでとう";
+
+                    for( let i=0; i<KAMI_MAX; i++){
+                        kami.push( new Kami() );
+                    }
+                }
+                else
+                {
+                    speed = 30;
+                    flag = 2;
+                }
+            }
+        }
+
+        if( (count/10) >= height )
+        {
+            count = 0;
+            if( ++num == picNum ) num = 0;
+            setImage( num );
+
+            // 止める途中でちょうどページが変わったら止める
+            if( flag == 2 && speed == minSpeed )
+            {
+                flag = 3;
+                wait = 10 + ( 5 - lastMove ) * 20;
+            }
+        }
+
+        let py = Math.floor( count/10 );
+        elm1.style.backgroundPositionY = -py + "px";
+        elm2.style.backgroundPositionY = (height-py) + "px";
+    }
+</script>
 </html>
+
