@@ -61,7 +61,7 @@
             </div></div>
         </div>
         <button id="bt" class="bt" onclick="start()">スタート</button>
-        <img src="{% static 'fig/minami/a0.png' %}" alt="">
+        <img hidden=true id='0' src="{% static 'fig/minami/a0.png' %}" alt="">
     </div>
 </body>
 <script>
@@ -81,6 +81,8 @@
     let  elm1 = document.getElementById("g1");
     let  elm2 = document.getElementById("g2");
     let  bt   = document.getElementById("bt");
+
+    let a0 = document.getElementById("a0");
 
     // 紙吹雪用の設定
     let screen_w    = window.innerWidth;
@@ -140,14 +142,14 @@
 
     function setImage( n )
     {
-        elm1.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+        // elm1.style.backgroundImage = a0.
         // elm1.style.backgroundImage = "url( {% static 'fig/minami/a0.png' %} )";
-        // elm1.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a" + n + ".png' %} )";
+        elm1.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a0.png' %} )";
 
         if( ++n == picNum ) n = 0;
-        // elm2.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a" + n + ".png' %} )";
+        elm2.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a1.png' %} )";
 
-        elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+        // elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
     }
 
     function start()
