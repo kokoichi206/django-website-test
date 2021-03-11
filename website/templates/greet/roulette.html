@@ -143,9 +143,14 @@
 
     function setImage( n )
     {
-        elm1.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+        // 'https://koko-django-website.herokuapp.com/static/
+        // elm1.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+        elm1.style.backgroundImage = "url( {% static 'welcome.jpg' %} )";
+
         if( ++n == picNum ) n = 0;
-        elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+        elm2.style.backgroundImage = "url( {% static 'welcome.jpg' %} )";
+
+        // elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
     }
 
     function start()
