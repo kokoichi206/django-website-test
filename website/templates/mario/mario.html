@@ -6,228 +6,513 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Roulette</title>
-    <style>
-        .conte
-        {
-            width: 600px;
-            margin: auto;
-            text-align: center;
-        }
-        .m1{
-            color: hsl(0, 100%, 77%);
-            font-size: 50px;
-            font-weight: bold;
-        }
-        .m2{
-            color: #5aF;
-            font-size: 40px;
-            font-weight: bold;
-        }
-        .roulette
-        {
-            width: 400px;
-            height: 230px;
-            border: 4px solid #aaf;
-            margin: auto;
-        }
-        .gazou
-        {
-            width: 400px;
-            height: 230px;
-            background-repeat: no-repeat;
-        }
-        .bt
-        {
-            margin-top: 12px;
-            width: 300px;
-            height: 40px;
-            text-align: center;
-            background-color: #66f;
-            color: #fff;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-    </style>
+    <title>Mario</title>
 </head>
 <body>
-    <div class="conte">
-        <div class="m1">祝！！</div>
-        <div class="m2">ルーレットで写真を選ぶぞ</div>
-        <div class="roulette">  
-            <div class="gazou" id="g1">
-            <div class="gazou" id="g2">
-            </div></div>
-        </div>
-        <button id="bt" class="bt" onclick="start()">スタート</button>
-    </div>
-</body>
-<script>
-    const picNum = 8;
-    const MaxIndex = picNum - 1;
 
-    let num         = 0;
-    let count       = 0;
-    let speed       = 10;
-    let maxSpeed    = 200;
-    let minSpeed    = 20;
-    let flag        = 0;       // 動いてるかどうかのフラグ
-    let height      = 230;
-    let lastMove    = 5;        // 止まった後にも5MOVEする、この辺にランダム要素入れてもいい
-    let wait        = 0;
-
-    let  elm1 = document.getElementById("g1");
-    let  elm2 = document.getElementById("g2");
-    let  bt   = document.getElementById("bt");
-
-    // 紙吹雪用の設定
-    let screen_w    = window.innerWidth;
-    let screen_h    = window.innerHeight;
-    const KAMI_MAX  = 200;
-    const COLORS    = [ "#f55", "#55f", "#5c5", "#fa5", "#5af" ];
-
-    function rand(min, max)
-    {
-        return (Math.floor(Math.random()*(max-min+1)+min ));
-    }
+    <canvas id="can"></canvas>
+    <script src="{% static 'js/mario/const.js' %}"></script>
+    <script src="{% static 'js/mario/enemy.js' %}"></script>
+    <script src="{% static 'js/mario/item.js' %}"></script>
+    <script src="{% static 'js/mario/block.js' %}"></script>
+    <script src="{% static 'js/mario/map.js' %}"></script>
+    <script src="{% static 'js/mario/ojisan.js' %}"></script>
+    <!-- <script src="{% static 'js/mario/main.js' %}"></script> -->
     
-    class Kami
-    {
-        constructor()
-        {
-            this.elm = document.createElement("div");
-            document.body.appendChild(this.elm);
-            this.sty = this.elm.style;
-            this.x = rand(0, screen_w);
-            this.y = rand(0, screen_h);
 
-            this.vx = rand(-10, 10)/2;
-            this.vy = rand(5, 10)/2;
+    <!-- chImg.src = "{% static 'mario/sprite.png' %}"; -->
 
-            this.ang = 0;
-            this.spd = rand(15,40)/2;
-            this.rX = rand(0,10)/10;
-            this.rY = rand(0,10)/10;
-            this.rZ = rand(0,10)/10;
+    <script>
 
-            this.sty.position = "fixed";
-            this.sty.width = "20px";
-            this.sty.height = "10px";
-            this.sty.backgroundColor = COLORS[
-                rand(0, COLORS.length+1) ];
-        }
 
-        update()
-        {
-            this.x += this.vx;
-            this.y += this.vy;
-            if( this.y >= screen_h)
-            {
-                this.x = rand(0, screen_w);
-                this.y = -20;
-            }
-            this.ang += this.spd;
-            this.sty.left = this.x + "px";
-            this.sty.top = this.y + "px";
-            this.sty.transform = "rotate3D("
-                        + this.rX + "," + this.rY + ","
-                        + this.rZ + "," + this.ang + "deg";
+
+// 裏画面、仮想画面
+let vcan = document.createElement("canvas")
+let vcon = vcan.getContext("2d");
+
+// 実画面
+let can = document.getElementById("can");
+let con = can.getContext("2d");
+
+vcan.width = SCREEN_SIZE_W;
+vcan.height = SCREEN_SIZE_H;
+
+can.width = SCREEN_SIZE_W*3;
+can.height = SCREEN_SIZE_H*3;
+
+// 拡大してもきれいにくっきり表示させる。
+con.mozimageSmoothingEnabled    = false;
+con.msimageSmoothingEnabled     = false;
+con.webkitimageSmoothingEnabled = false;
+con.imageSmoothingEnabled       = false;
+
+
+let frameCount = 0;
+let startTime;
+
+let gotCoins = 0;
+
+let isAlive = true;
+let didGoal = false;
+
+
+// character image
+let chImg = new Image();
+// 注意、読み込む前に次の命令を実行してしまう
+chImg.src = "{% static 'mario/sprite.png' %}";
+// chImg.onload = draw;
+
+let ojisan;
+let field;
+let block;
+let item;
+let enemy;
+
+function init(){
+    isAlive = true;
+    frameCount = 0;
+    gotCoins = 0;
+
+    // おじさんを作る
+    ojisan = new Ojisan(100, 100);
+
+    // フィールドを作る
+    field = new Field();
+
+    // ブロックのオブジェクト
+    block = [];
+    item = [];
+    enemy = [];
+}
+
+init();
+// // おじさんを作る
+// let ojisan = new Ojisan(100, 100);
+
+// // フィールドを作る
+// let field = new Field();
+
+// // ブロックのオブジェクト
+// let block = [];
+// let item = [];
+// let enemy = [];
+
+function updateObj(obj){
+    // スプライトのブロックを更新、逆回しにしとくと途中で消えても問題なさそう？
+    for ( let i=obj.length-1; i>=0; i--){
+        obj[i].update();
+        if ( obj[i].kill ) obj.splice(i,1);
+    }
+}
+
+
+function fireCheckHit( obj1, obj2 ){
+    // 判定を緩くしないと、キノコを押した瞬間に当たり判定になってしまう
+    // 物体１
+    let left1   = (obj1.x>>4)       + 2;
+    let right1  = left1 + obj1.w    - 4;
+    let top1    = (obj1.y>>4)       + 5 + obj1.ay;
+    let bottom1 = top1 + obj1.h     - 7;
+
+    // 物体２
+    let left2   = (obj2.x>>4)       + 2;
+    let right2  = left2 + obj2.w    - 4;
+    let top2    = (obj2.y>>4)       + 5 + obj2.ay;
+    let bottom2 = top2 + obj2.h     - 7;
+
+    return (
+        left1 <= right2 &&
+        right1 >= left2 &&
+        top1 <= bottom2 &&
+        bottom1 >= top2);
+}
+
+// SPARKS と敵が触れてないかチェック
+// 触れていたら SPARKS は消して、敵はdieフラグを立てて
+// ぴこぴこして死なせる（enemyのupdate関数）
+function checkDeadEnemy(){
+    for ( let i=0; i<item.length; i++){
+        if ( item[i].tp == SPARKS ){
+            for ( let j=enemy.length-1; j>=0; j--){
+                if ( fireCheckHit(item[i], enemy[j]) ){
+                    // enemy[j].kill = true;
+                    enemy[j].die = true;
+                    item[i].kill = true;
+                }
+            }       
         }
     }
-    let kami = [];
+}
 
-    function setImage( n )
-    {
-        elm1.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
-        // elm1.style.backgroundImage = "url( {% static 'fig/minami/a0.png' %} )";
-        // elm1.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a" + n + ".png' %} )";
+// 更新処理
+function update(){
+    // マップの更新
+    field.update();
 
-        if( ++n == picNum ) n = 0;
-        // elm2.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a" + n + ".png' %} )";
+    checkDeadEnemy();
 
-        elm2.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+    updateObj(block);
+    updateObj(item);
+    updateObj(enemy);
+
+    // おじさんの更新
+    ojisan.update();
+}
+
+// スプライトの描画
+function drawSprite(snum, x, y){
+    let sx = (snum&15) * 16;
+    let sy = (snum>>4) * 16;
+    vcon.drawImage(chImg, sx,sy,16,32, x,y,16,32);
+}
+
+function drawObj(obj){
+    // スプライトのブロックを表示
+    for ( let i=0; i<obj.length; i++){
+        obj[i].draw();
     }
+}
 
-    function start()
-    {
-        if( flag == 0 )
-        {
-            flag = 1;
-            bt.hidden = true;
-        }
-        if( flag == 1 && speed == maxSpeed )
-        {
-            flag = 2;
-            bt.hidden = true;
-        }
-    }
+function drawInfo(){
+    // デバック情報を表示
+    let font_size = 12;
+    let base_x = 5;
+    let base_y = 12;
+
+    let water_effect = WATER_RESISTENCE ** ojisan.isInWater;
     
-    function mainLoop()
-    {
-        for( let i=0; i<kami.length; i++){
-            kami[i].update();
-        }
-        
-        if( flag == 1 )
-        {
-            count += speed;
-            if( speed < maxSpeed ) speed++;      // どんどん加速させていく
-            else if( bt.hidden)
-            {
-                bt.hidden = false;
-                bt.innerText = "ストップ！";
-            }
-        }
-        if( flag == 2 )
-        {
-            count += speed;
-            if( speed > minSpeed ) speed--;
-        }
-        if( flag == 3 )
-        {
-            if(--wait == 0)
-            {
-                if(--lastMove == 0)
-                {
-                    flag = 4;
-                    bt.hidden = false;
-                    bt.innerText = "おめでとう";
+    vcon.font = "12px 'Arial'";
+    vcon.fillStyle = "white";
+    vcon.fillText("FRAME: "+frameCount, base_x, base_y);
+    vcon.fillText("field.scx: "+field.scx, base_x, base_y+font_size);
+    vcon.fillText("field.scy: "+field.scy, base_x, base_y+2*font_size);
+    vcon.fillText("ojisan.x: "+ojisan.x, base_x, base_y+3*font_size);
+    vcon.fillText("ojisan.y: "+ojisan.y, base_x, base_y+4*font_size);
+    vcon.fillText("ojisan.vx: "+ojisan.vx/water_effect, base_x, base_y+5*font_size);
+    vcon.fillText("ojisan.vy: "+ojisan.vy/water_effect, base_x, base_y+6*font_size);
 
-                    for( let i=0; i<KAMI_MAX; i++){
-                        kami.push( new Kami() );
-                    }
-                }
-                else
-                {
-                    speed = 30;
-                    flag = 2;
-                }
-            }
+    // 獲得コインの情報を表示
+    vcon.font = "20px 'Impact'";
+    vcon.fillStyle = "white";
+    // vcon.fillText("COINS: "+gotCoins, 175, 20);
+    vcon.fillText(gotCoins, 230, 20);
+
+    // 左上にコインを表示
+    vcon.drawImage(chImg, 0,384,16,16, 210,4,16,16);
+}
+
+function draw(){
+    // 画面を水色でクリア
+    vcon.fillStyle = "#66AAFF";
+    vcon.fillRect(0, 0, SCREEN_SIZE_W, SCREEN_SIZE_H);
+
+    // マップを表示
+    field.draw();
+
+
+    drawObj(block);
+    drawObj(item);
+    drawObj(enemy);
+
+    // おじさんを表示,少数があると隣のピクセルとかが出てしまってた
+    ojisan.draw();
+    
+    drawInfo();
+
+    // 仮想画面から実画面へ拡大転送
+    con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
+        0,0,SCREEN_SIZE_W*3,SCREEN_SIZE_H*3)
+}
+
+function drawDead(){
+
+    // 画面を水色でクリア
+    vcon.fillStyle = "#66AAFF";
+    vcon.fillRect(0, 0, SCREEN_SIZE_W, SCREEN_SIZE_H);
+
+    // マップを表示
+    field.draw();
+
+    drawObj(block);
+    drawObj(item);
+    drawObj(enemy);
+
+    // おじさんを表示,少数があると隣のピクセルとかが出てしまってた
+    ojisan.draw();
+    
+    drawInfo();
+
+    // Dead画面を表示
+    vcon.font = "25px 'Impact'";
+    vcon.fillStyle = "white";
+    vcon.fillText("YOU ARE DEAD", 60, 110);
+    vcon.fillText("Press Enter to continue", 10, 155);
+
+    // 仮想画面から実画面へ拡大転送
+    con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
+        0,0,SCREEN_SIZE_W*3,SCREEN_SIZE_H*3)
+
+    return;
+
+}
+// setInterval(mainLoop, 1000/60);
+
+// Goalした時に情報を表示
+function drawGoal(){
+    // 画面を水色でクリア
+    vcon.fillStyle = "#66AAFF";
+    vcon.fillRect(0, 0, SCREEN_SIZE_W, SCREEN_SIZE_H);
+
+    // マップを表示
+    field.draw();
+
+    drawObj(block);
+    drawObj(item);
+    drawObj(enemy);
+
+    // おじさんを表示,少数があると隣のピクセルとかが出てしまってた
+    ojisan.draw();
+    
+    drawInfo();
+
+    // Goal画面を表示
+    vcon.font = "25px 'Impact'";
+    vcon.fillStyle = "white";
+    vcon.fillText("GOAL REACHED!", 60, 110);
+    vcon.fillText("Thank you", 80, 155);
+
+    // 仮想画面から実画面へ拡大転送
+    con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
+        0,0,SCREEN_SIZE_W*3,SCREEN_SIZE_H*3)
+
+    return;
+
+}
+
+function drawFlag(){
+
+    // let field_scx = 224;
+    // let field_scy = 0;
+    // let oji_x = 361;
+    // let oji_y = 32;
+    // let px = oji_x - field_scx;
+    // let py = oji_y - field_scy;
+
+    vcon.drawImage(chImg, 0,384,16,16, 137,32+didGoal>>2,16,16);
+    
+
+}
+
+// loop start
+window.onload = function(){
+    startTime = performance.now();
+    mainLoop();
+}
+
+function mainLoop() {
+    let nowTime = performance.now();
+    let nowFrame = (nowTime - startTime) / GAME_FPS;
+
+    
+    if (nowFrame > frameCount ){
+        let c = 0;
+        while( nowFrame > frameCount ){
+            frameCount++;
+            // update
+            update();
+            // maxで4倍速
+            if ( ++c >= 4) break;
         }
 
-        if( (count/10) >= height )
-        {
-            count = 0;
-            if( ++num == picNum ) num = 0;
-            setImage( num );
-
-            // 止める途中でちょうどページが変わったら止める
-            if( flag == 2 && speed == minSpeed )
-            {
-                flag = 3;
-                wait = 10 + ( 5 - lastMove ) * 20;
-            }
-        }
-
-        let py = Math.floor( count/10 );
-        elm1.style.backgroundPositionY = -py + "px";
-        elm2.style.backgroundPositionY = (height-py) + "px";
+        // render, drawing
+        draw();
     }
-    setImage( num );
 
-    setInterval(mainLoop, 1000/60);
+    if ( isAlive && ( !didGoal )){
+        // ブラウザが表示してくださいって言うタイミングで読んでくれる
+        requestAnimationFrame(mainLoop); 
+    } else if ( !isAlive ) {
+        drawDead();
+    } else if ( didGoal>0 ){
+        drawGoal();
+        // let snum = (this.die>>2)%3 + 96;   // sprite num,,4フレームで１個増える
+        // this.h = this.snum==32?16:32;
+        // this.sp = snum;
+        // console.log(didGoal);
+        // // py += i>>2;
+        // // vcon.drawImage(chImg, 0,384,16,16, 137,137,16,16);
+        // if ( ++didGoal == 32 ) {
+        //     // this.die = 0;
+        //     didGoal = 50;
+        //     vcon.drawImage(chImg, 0,384,16,16, 137,32+didGoal>>2,16,16);
+        //     console.log(didGoal);
+        // }
+        // if ( didGoal == 50 ) drawGoal();
+        // requestAnimationFrame(drawFlag); 
+        // ビヨビヨってなる時は動けないので、動かずリターン
+        // return;
+    }
+
+}
+
+
+
+ 
+
+// ある条件が揃うと、マップを移動する
+function checkMapMove(){
+    // map0 -> map1
+    if ( ( field.type == 0 ) && 
+        ( 11800 < ojisan.x ) &&
+        ( ojisan.x < 12000 ) &&
+        ( 1450 < ojisan.y ) &&
+        ( ojisan.y < 1600 ))
+        {
+            console.log('ok');
+            ojisan.x    = 1150;
+            ojisan.y    = 200;
+            field.type   = 1;
+            fieldData = fieldDatas[field.type];
+
+            field.scx   = 0;
+            field.scy   = 0;
+            
+            mainLoop();
+        }
+    // map1 -> map0
+    else if ( ( field.type == 1 ) && 
+            ( 13400 < ojisan.x ) &&
+            ( ojisan.x < 13500 ) &&
+            ( 2000 < ojisan.y ) &&
+            ( ojisan.y < 2100 ) )
+    {
+        field.type   = 0;
+        fieldData = fieldDatas[field.type];
+        ojisan.x    = 41616;
+        ojisan.y    = 2048;
+        field.scx   = 2487;
+        field.scy   = 0;
+    }
+    else if ( (field.type == 1 ) && 
+            ( 3550 < ojisan.x ) &&
+            ( ojisan.x < 3650 ) &&
+            ( 450 < ojisan.y ) &&
+            ( ojisan.y < 550 ) )
+    {
+        field.type = 2;
+        fieldData = fieldDatas[field.type];
+        ojisan.x    = 64;
+        ojisan.y    = 144;
+        field.scx   = 0;
+        field.scy   = 0;
+    }
+}
+
+
+
+
+// 連想配列？
+let keyb = {};
+
+// キーボードが押された時に呼ばれる、イベントドリブンの関数
+document.onkeydown = function(e){
+    if(e.keyCode == 37)keyb.Left = true;
+    if(e.keyCode == 39)keyb.Right = true;    
+    if(e.keyCode == 40)keyb.Down = true;  
+
+    if(e.keyCode == 90)keyb.BBUTTON = true;   // Z  
+    if(e.keyCode == 88)keyb.ABUTTON = true;   // X
+
+    if(e.keyCode == 65){                      // a
+        keyb.Squat = true;
+        checkMapMove();
+    }
+    if(e.keyCode == 69){                        // e
+        // didGoal = 1;
+        // // block.push( new Block(368, 5,5) );
+        let x = ( field.scx + SCREEN_SIZE_W*0.8 )>>4
+        let y = ( field.scy + 32 )>>4
+        enemy.push(
+            new Enemy(137, x, y, 0, 0, ENEMY_KUMO))
+
+        // enemy.push(
+        //     new Enemy(105, 12, 2, 0, 0, ENEMY_KURIBO))
+    }
+
+    if(e.keyCode == 13) {                             // enter
+        init();
+        mainLoop();
+    } 
+    if(e.keyCode == 32){                        // space
+        console.log(field.scx);
+        console.log(field.scy);
+    }            // space
+
+
+    // FIRE のチェック
+    // if(e.keyCode == 83){                            // s
+    //     let adjust = 8;
+    //     let x = ojisan.x>>adjust;
+    //     let y = ojisan.y>>adjust;
+    //     console.log(x)
+    //     item.push(
+    //         new Item(112, x, y, 0, 0, SPARKS)); 
+    // }
+    if(e.keyCode == 83){                            // s
+        if ( ojisan.fire ){
+            let adjust = 8;
+            let x = ojisan.x>>adjust;
+            let y = ojisan.y>>adjust;
+            console.log(x)
+            item.push(
+                new Item(112, x, y, 0, 0, SPARKS)); 
+        }
+    }
+}
+
+// キーボードが離された時に呼ばれる
+document.onkeyup = function(e){
+    if(e.keyCode == 37)keyb.Left = false;
+    if(e.keyCode == 39)keyb.Right = false;    
+    if(e.keyCode == 40)keyb.Down = true;  
+
+    if(e.keyCode == 90)keyb.BBUTTON = false;   // Z  
+    if(e.keyCode == 88)keyb.ABUTTON = false;   // X
+    if(e.keyCode == 65)keyb.Squat = false;
+}
+
+
+
 
 </script>
-</html>
+    
+    <h3>HOW TO PLAY</h3>
+    <span style="margin-left:1em">x: jump </span>
+    <span style="margin-left:1em">a: squat </span>
+    <span style="margin-left:10em">→: right </span><br>
+    <span style="margin-left:1em">z: dash </span>
+    <span style="margin-left:1em">s: fire  </span>
+    <span style="margin-left:10em">←: left </span><br>
 
+    <h3>FIXME</h3>
+    <ul>
+        <li>
+            Enter doesn't work
+        </li>
+        <li>
+            ...
+        </li>
+    </ul>
+
+        
+    <h3>TODO</h3>
+    <ul>
+        <li>
+            Goal judge
+        </li>
+        <li>
+            Other enemies?
+        </li>
+    </ul>
+</body>
+</html>
