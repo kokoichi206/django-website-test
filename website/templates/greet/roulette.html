@@ -137,13 +137,10 @@
     }
     let kami = [];
 
-    setImage( num );
-
-    setInterval(mainLoop, 1000/60);
-
     function setImage( n )
     {
-        elm1.style.backgroundImage = "url( {% static 'fig/minami/a0.png' %} )";
+        elm1.style.backgroundImage = "url( {% static 'fig/minami/a" + n + ".png' %} )";
+        // elm1.style.backgroundImage = "url( {% static 'fig/minami/a0.png' %} )";
         // elm1.style.backgroundImage = "url( {% static 'https://koko-django-website.herokuapp.com/static/fig/minami/a" + n + ".png' %} )";
 
         if( ++n == picNum ) n = 0;
@@ -227,6 +224,10 @@
         elm1.style.backgroundPositionY = -py + "px";
         elm2.style.backgroundPositionY = (height-py) + "px";
     }
+    setImage( num );
+
+    setInterval(mainLoop, 1000/60);
+    
 </script>
 </html>
 
