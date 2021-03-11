@@ -82,6 +82,10 @@ class MemoryView(TemplateView):
 class TypingView(TemplateView):
     template_name = "greet/typing.html"
 
+class RouletteView(TemplateView):
+    template_name = "greet/roulette.html"
+
+
 
 # FormViewを継承したViewを定義するa
 class PythonView(FormView):
