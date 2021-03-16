@@ -49,6 +49,7 @@ let gHeight;
 let gMoveX = 0; // 移動量X
 let gMoveY = 0; // 移動量Y
 
+
 // 敵エンカウント確率
 const gEncounter = [ 0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -376,14 +377,12 @@ function WmSize()
 }
 
 // タイマーイベント発生時の処理
-TUG.onTimer = function( d )
+function WmTimer()
 {
     if( !gMessage1 )
     {
-        while( d-- ){
-            gFrame++;
-            TickField();
-        }
+        gFrame++;
+        TickField();
     }
     WmPaint();
 }
@@ -533,5 +532,5 @@ window.onload = function()
     // サイズ変更は一回でいいかもしれないが、途中でブラウザのサイズが変わったら？
     WmSize();   // 画面サイズ初期化
     window.addEventListener("resize", function(){ WmSize() } )
-    TUG.init();
+    setInterval( function(){ WmTimer() }, INTERVAL);
 }
