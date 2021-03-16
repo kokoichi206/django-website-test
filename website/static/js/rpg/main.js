@@ -450,7 +450,7 @@ function CommandFight()
 {
     gCursor = 0;
     gPhase = 2;         // 戦闘コマンド選択フェーズ
-    SetMessage("　　　　　 闘う：", "　　　　　 逃げる：");
+    SetMessage("　　闘う：", "　　逃げる：");
 }
 
 // キー入力（DOWN)イベント
