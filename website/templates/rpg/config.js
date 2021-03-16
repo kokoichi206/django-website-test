@@ -49,6 +49,11 @@ let gHeight;
 let gMoveX = 0; // 移動量X
 let gMoveY = 0; // 移動量Y
 
+const gFileBoss = "boss.png";
+const gFileMap = "map.png";
+const gFilePlayer = "player.png";   // 透過pngなので自分で何か処理をする必要がない
+const gFileMonster = "monster.png";
+
 // 敵エンカウント確率
 const gEncounter = [ 0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0];
 

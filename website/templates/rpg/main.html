@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <script>
+        const gFileBoss = "{% static '/fig/rpg/boss.png' %}";
+        const gFileMap = "{% static '/fig/rpg/map.png' %}";
+        const gFilePlayer = "{% static '/fig/rpg/player.png' %}";   // 透過pngなので自分で何か処理をする必要がない
+        const gFileMonster = "{% static '/fig/rpg/monster.png' %}";
+    </script>
     <script type="text/javascript" src="TUGames1.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </head>
 <body style="margin:0px; overflow:hidden">
     <canvas id="main"></canvas>
+
+
+
+
 </body>
 </html>
