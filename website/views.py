@@ -85,6 +85,9 @@ class TypingView(TemplateView):
 class RouletteView(TemplateView):
     template_name = "greet/roulette.html"
 
+class RPG_View(TemplateView):
+    template_name = "rpg/main.html"
+
 
 
 # FormViewを継承したViewを定義するa

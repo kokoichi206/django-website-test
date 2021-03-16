@@ -7,7 +7,7 @@ from .views import TimerView, WeightView, MemoView
 from .views import GreetView, PythonView, TypingView
 from .views import SudokuView, ReversiView, MemoryView
 from .views import TetrisView, MarioView, ShootingView
-from .views import RouletteView
+from .views import RouletteView, RPG_View
 
 urlpatterns = [
     path('', IndexView.as_view()),
@@ -32,5 +32,6 @@ urlpatterns = [
     path('shooting/shooting', ShootingView.as_view()),
     path('greet/typing', TypingView.as_view()),
     path('greet/roulette', RouletteView.as_view()),
+    path('rpg/main', RPG_View.as_view()),
 ]
 
