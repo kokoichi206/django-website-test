@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'js/doctor.css' %}">
+    <link rel="stylesheet" href="{% static 'js/main.css' %}">
+</head>
+<body>
+    <header>
+        <h1 class="logo"><a href="#"><img src="{% static 'fig/main/logo.png' %}" alt="kokoichi logo"></a></h1>
+
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="key_visual">
+        <img src="{% static 'fig/main/change.png' %}" alt="CHANGE">
+    </div>
+
+
+    <div class="container">
+
+        <div id="main">
+            <section>
+                <h2>よく頂く質問</h2>
+                
+                <h3>個人に関すること</h3>
+                <p>管理者についてよく聞かれることをまとめます</p>
+                
+                <h4>■ Kokoichiは本名ですか？由来は？</h4>
+                <p>ゲームのid,usernameなどに使用しています。大学一回生の時から使い続けています。
+                    理由はありません。CoCo壱番屋とは関係ありません。
+                </p>
+                
+                <h4>■ 何をしてる人ですか？</h4>
+                <p>Pythonの勉強していたら、いろんなことに興味が出てあっちいったりこっちいったりしてる人です。
+                    「Learn Something About Everything」の気持ちでとりあえず色々学んでいます。
+                </p>
+
+
+                <h3>サイトに関すること</h3>
+                この質問を頂いたことがありません。
+
+                <h4>■ なんのためにこのサイトはあるの？</h4>
+                <p>完全に個人の練習用です。理由はありません。
+                </p>
+
+
+                <h3>当サイトに関して</h3>
+                <p>GitHubにこのサイトの<a href="https://github.com/kokoichi206/django-website-test">Source</a>は公開しています。気になることや要望はどんどん連絡お願いいたします。</p>
+            </section>
+
+
+        </div><!-- /#main -->
+        
+
+        <div id="sidebar">
+
+            <div class="box bg-gray">
+                <h2>SUB MENU</h2>
+                <ul>
+                    <li><a href="/">サイト紹介</a></li>
+                    <li><a href="sub/FAQ.html">よく頂く質問</a></li>
+                    <li><a href="sub/link.html">リンク集</a></li>
+                    <li><a href="#">勉強まとめ</a></li>
+                    <li><a href="sub/game.html">ゲーム一覧</a></li>
+                    <li><a href="login">裏サイト</a></li>
+                </ul>
+            </div>
+
+            <div class="box bg-gray">
+                <h2>旧サイト<br>2021/04/17以前</h2>
+                <ul>
+                    <li><a href="old/old">HOME</a></li>
+                </ul>
+            </div>
+
+        </div><!-- /#sidebar -->
+    </div><!-- /#container -->
+
+    <footer>
+        <p class="logo"><a href=""><img src="{% static 'fig/main/logo.png' %}" alt="colorful clover"></a></p>
+        <p><small>Copyright © Colorful Clover, inc. All Rights Reserved.</small></p>
+    </footer>
+</body>
+</html>
