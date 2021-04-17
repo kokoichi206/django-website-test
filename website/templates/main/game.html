@@ -1,0 +1,149 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'js/doctor.css' %}">
+    <link rel="stylesheet" href="{% static 'js/main/game.css' %}">
+</head>
+<body>
+    <header>
+        <h1 class="logo"><a href="#"><img src="{% static 'fig/main/logo.png' %}" alt="kokoichi logo"></a></h1>
+
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="key_visual">
+        <img src="{% static 'welcome.jpg' %}" alt="CHANGE">
+    </div>
+
+    <main>
+        <section id="information">
+            <h2>Information</h2>
+            <ul>
+                <li>
+                    <time datetime="2021-04-18">2021.04.18</time>
+                    <p>サイト大幅リニューアル！</p>
+                </li>
+                <li>
+                    <time datetime="2021-03-13">2021.03.13</time>
+                    <p>ゲーム追加</p>
+                </li>
+                <li>
+                    <time datetime="2021-02-25">2021.02.25</time>
+                    <p>ゲーム公開開始</p>
+                </li>
+            </ul>
+        </section><!-- /# information -->
+    
+        <section id="gourmet">
+            <h2>Games</h2>
+            <div class="container">
+                <article>
+                    <figure><img src="{% static 'fig/main/mario.png' %}" alt="マリオ"></figure>
+                    <div class="box_ttl">
+                        <a href="/mario/mario">
+                            <h3>マリオ</h3>
+                            <ul class="area">
+                                <li>スーファミ</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <p>当たり判定ガバガバ</p>
+                </article>
+
+                <article>
+                    <figure><img src="{% static 'fig/main/rpg.png' %}" alt="RPG"></figure>
+                    <div class="box_ttl">
+                        <a href="/rpg/main">
+                            <h3>RPG</h3>
+                            <ul class="area">
+                                <li>面白くない</li>
+                                <li>解像度悪め</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <p>ゴールまで作ったっけ？</p>
+                </article>
+                
+                <article>
+                    <figure><img src="{% static 'fig/main/shooting.png' %}" alt="シューティングゲーム"></figure>
+                    <div class="box_ttl">
+                        <a href="/shooting/shooting">
+                            <h3>シューティングゲーム</h3>
+                            <ul class="area">
+                                <li>2010</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <p>得点の計算むずい</p>
+                </article>
+                
+                <article>
+                    <figure><img src="{% static 'fig/main/sudoku.png' %}" alt="数独"></figure>
+                    <div class="box_ttl">
+                        <a href="/table/sudoku">
+                            <h3>数独</h3>
+                            <ul class="area">
+                                <li>ボケ防止</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                            </ul>
+                        </a>>
+                    </div>
+                    <p>問題は更新されません</p>
+                </article>
+                
+                <article>
+                    <figure><img src="{% static 'fig/main/tetris.png' %}" alt="テトリス"></figure>
+                    <div class="box_ttl">
+                        <a href="/tetris/tetris">
+                            <h3>テトリス</h3>
+                            <ul class="area">
+                                <li>JavaScript</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <p>ミノキープできません</p>
+                </article>
+                
+                <article>
+                    <figure><img src="{% static 'fig/main/typing.png' %}" alt="タイピング"></figure>
+                    <div class="box_ttl">
+                        <a href="/greet/typing">
+                            <h3>タイピングゲーム</h3>
+                            <ul class="area">
+                                <li>Ongoing...</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <p>頓挫してます...</p>
+                </article>
+                
+
+            </div><!-- /.container -->
+         </section><!-- /#gourmet -->
+    </main>
+
+
+    <footer>
+        <p class="logo"><a href=""><img src="{% static 'fig/main/logo.png' %}" alt="colorful clover"></a></p>
+        <p><small>Copyright © Colorful Clover, inc. All Rights Reserved.</small></p>
+    </footer>
+</body>
+</html>
