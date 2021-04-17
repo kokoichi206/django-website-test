@@ -8,6 +8,7 @@ from .views import GreetView, PythonView, TypingView
 from .views import SudokuView, ReversiView, MemoryView
 from .views import TetrisView, MarioView, ShootingView
 from .views import RouletteView, RPG_View
+from .views import IndexOldView
 
 urlpatterns = [
     path('', IndexView.as_view()),
