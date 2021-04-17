@@ -1,43 +1,134 @@
-{% extends "base.html" %}
 {% load static %}
 
-{% block main %}
-<h1>HOME</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'js/doctor.css' %}">
+    <link rel="stylesheet" href="{% static 'js/main.css' %}">
+</head>
+<body>
+    <header>
+        <h1 class="logo"><a href="#"><img src="logo.png" alt="kokoichi logo"></a></h1>
 
-<!-- {% if username == "Me" %}
-<h2>自分です</h2>
-{% elif username %}
-<h2>{{ username }}さん、ようこそ</h2>
-{% else %}
-<h2>匿名さん、ようこそ</h2>
-{% endif %} -->
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<h2>Welcome!</h2>
+    <div id="key_visual">
+        <img src="change.png" alt="CHANGE">
+    </div>
 
-<button id="login_transition" class="imgage">
-     <img src="{% static 'welcome.jpg' %}"/>
-</button>
 
-<div style="margin-top: 20px;">
-     <li class="mt-2"><a href="/timer/timerMusic">Timer</a></li>
-     <li class="mt-2"><a href="/greet/index">Search</a></li>
-     <li class="mt-2"><a href="/greet/execute">Online</a></li>
-     <li class="mt-2"><a href="/greet/typing">Typing?</a></li>
-     <li class="mt-2"><a href="/greet/roulette">Roulette?</a></li>
-     <br>
-     <li class="mt-2"><a href="/table/sudoku">Sudoku</a></li>
-     <li class="mt-2"><a href="/tetris/tetris">Tetris</a></li>
-     <li class="mt-2"><a href="/mario/mario">Mario</a></li>
-     <li class="mt-2"><a href="/rpg/main">rpg</a></li>
-     <li class="mt-2"><a href="/shooting/shooting">Shooting game</a></li>
-     <li class="mt-2"><a href="/table/memory">Memory game</a></li>
-     <br>
-     <li class="mt-2"><a href="/table/reversi">Reversi (on going...)</a></li>
-</div>
-<div>
-     <a href="memo">Memo</a></li>
-</div>
+    <div class="container">
 
-<script type="text/javascript" src="{% static 'js/index.js' %}">
-</script>
-{% endblock %}
+        <div id="main">
+            <section>
+                <h2>HOME</h2>
+                
+                <h3>Kokoichiのサイト</h3>
+                <p>このサイトはPythonのWebフレームワーク<a href="https://docs.djangoproject.com/ja/3.2/">django</a>を用いて作成され、
+                <a href="https://jp.heroku.com/free">Heroku</a>を利用して公開されています。django作成から
+                Heroku公開までの流れは<a href="https://www.youtube.com/watch?v=nS41IkL13QE&t=40s">こちらのyoutube</a>から学びました。</p>
+                
+                <h4>■ 基本的このサイトは個人の練習用として作られています。</h4>
+                <p>特にできること、得られるものはないかもしれません。</p>
+                
+                <h4>■ djangoの機能をあまり使えていません。</h4>
+                <p>djangoを公開したあたりからJavaScriptに興味が出てきたため、内容としてはJavaScriptを使っただけのものが多いです。
+                    そのためdjangoの機能を生かせていないと思われます。これからの改善に期待です。
+                </p>
+
+                <h4>■ django + herokuすごい便利だと思います。</h4>
+                <p>自分でサーバーを立てたくなって、ubuntuを載せたラズパイでapache使って試したことがあるのですが
+                    非常に手こずりました。
+                </p>
+
+                <h3>Future plans</h3>
+                このサイトを使って次にやりたいことであったり、
+                また、このサイト関係なくKokoichiが今やりたいと思っていることなど。
+                <h4>■ ブログを書く</h4>
+                <p>djangoを使って書くか、またこのサイトに公開するかなどはわかりませんが、
+                    何かしらのアウトプットのためにブログを書きたいです
+                </p>
+                <h4>■ djangoの機能をもっと調べ、利用する</h4>
+                <p>サイト紹介のところでも書きましたが、このサイトはdjangoの機能を全く使えていません。
+                    気が向けがその辺りを調べてみたいと思います。<br>
+                適当にファイル詰め込んだせいで、内部の構造ぐちゃぐちゃなのでいつか整理したい...
+                </p>
+
+                <h3>当サイトに関して</h3>
+                <p>GitHubにこのサイトの<a href="https://github.com/kokoichi206/django-website-test">Source</a>は公開しています。気になることや要望はどんどん連絡お願いいたします。</p>
+            </section>
+
+            <section>
+                <h2>企業向けCMSプログラム販売中</h2>
+                <p>トップページや会社概要ページや業務案内ページなどの各ページレイアウト設定済みのプログラムを販売中です。<a href="">詳しくはこちらをご覧下さい。</a></p>
+            </section>    
+            
+            <section>
+                <h2>What's NEW</h2>
+                <div class="news">
+                    <dl>
+                        <dt>2021/04/18</dt><!--
+                     --><dd>html,cssを中心に更新。旧ファイルが必要な場合はお問い合わせ下さい。<span class="new">NEW</span></dd>
+                        <dt><time>2021/03/18</time></dt><!--
+                     --><dd>シューティングゲーム追加</dd>
+                        <dt><time>2021/03/17</time></dt><!--
+                     --><dd>マリオ追加</dd>
+                        <dt><time>2021/03/10</time></dt><!--
+                     --><dd>RPG追加</dd>
+                        <dt><time>2021/02/28</time></dt><!--
+                     --><dd>簿記３級受験</dd>
+                        <dt><time>2021/02/25</time></dt><!--
+                     --><dd>体重追加</dd>
+                        <dt><time>2021/02/20</time></dt><!--
+                     --><dd>Pythonのリポジトリ公開</dd>
+                        <dt><time>2021/02/15</time></dt><!--
+                     --><dd>JSを用いて作成したクイズ公開。</dd>
+                        <dt><time>2021/02/04</time></dt><!--
+                     --><dd>ホームページ公開</dd>
+                    </dl>
+                </div>
+            </section>
+        </div><!-- /#main -->
+        
+
+        <div id="sidebar">
+
+            <div class="box bg-gray">
+                <h2>SUB MENU</h2>
+                <ul>
+                    <li><a href="/">サイト紹介</a></li>
+                    <li><a href="sub/FAQ.html">よく頂く質問</a></li>
+                    <li><a href="sub/link.html">リンク集</a></li>
+                    <li><a href="#">勉強まとめ</a></li>
+                    <li><a href="sub/game.html">ゲーム一覧</a></li>
+                    <li><a href="sub/">裏サイト</a></li>
+                </ul>
+            </div>
+
+            <div class="box bg-gray">
+                <h2>旧サイト<br>2021/04/17以前</h2>
+                <ul>
+                    <li><a href="old.html">HOME</a></li>
+                </ul>
+            </div>
+
+        </div><!-- /#sidebar -->
+    </div><!-- /#container -->
+
+    <footer>
+        <p class="logo"><a href=""><img src="logo.png" alt="colorful clover"></a></p>
+        <p><small>Copyright © Colorful Clover, inc. All Rights Reserved.</small></p>
+    </footer>
+</body>
+</html>

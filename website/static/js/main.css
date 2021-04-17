@@ -1,0 +1,208 @@
+body {
+    color: #53514C;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+header {
+    position: relative;
+    height: 80px;
+}
+header .logo {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 200px;
+}
+.logo {
+    display: inline-block;
+}
+.logo img {
+    width: 100%;
+}
+
+header nav {
+    display: block;
+    position: absolute;
+    top: 21px;
+    right: 0;
+}
+header nav ul {
+    padding-right: 20px;
+}
+header nav ul li {
+    display: inline-block;
+    height: 35px;
+    border-radius: 2px;
+    font-size: 17px;
+    line-height: 35px;
+}
+header nav ul li:hover {
+    background: #B99565;
+}
+header nav ul li:hover a {
+    color: #fff;
+}
+header nav ul li a {
+    display: block;
+    padding: 0 20px;
+    color: #9c9b98;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+
+#key_visual {
+    width: 100%;
+}
+#key_visual img {
+    width: 100%;
+    vertical-align: bottom;
+}
+
+
+
+
+
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: hidden;   /* float でフッターが回り込むのを防ぐ（要素の高さを出す） */
+    font-size: 14px;
+    line-height: 2em;
+}
+
+#main {
+    width: 73%;
+    float: right;
+    padding-bottom: 95px;
+    background: #fff;
+}
+#main p {
+    padding: 0 15px;
+}
+#main h2 {
+    height: 38px;
+    margin: 15px 0;
+    padding-left: 35px;
+    /* background-image: url(image/mark1.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-color: #000; */
+    background: #000 url(image/mark1.png) no-repeat left 10px center;
+    font-size: 16px;
+    color: #fff;
+    line-height: 38px;
+}
+#main h3 {
+    height: 38px;
+    padding: 0 15px;
+    border: 1px solid #ccc;
+    margin: 15px 0;
+    background: linear-gradient(#fff, #ebebeb);
+    font-size: 15px;
+    color: #333;
+    line-height: 38px;
+}
+#main h4 {
+    padding: 0 15px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+#main a {
+    color: #333;
+}
+.news {
+    height: 150px;
+    padding-left: 15px;
+    overflow-y: scroll;
+}
+.news dt {
+    display: inline-block;
+    width: 14%;
+    min-width: 100px;
+    border-bottom: 1px solid #ccc;
+}
+.news dd {
+    display: inline-block;
+    width: 86%;
+    border-bottom: 1px solid #ccc;
+}
+.new {
+    background: #ED462F;
+    color: #fff;
+    padding: 0 4px;
+    border-radius: 2px;
+    font-size: 10px;
+}
+
+#sidebar {
+    width: 23%;
+    background: #fff;
+    float: left;
+}
+#sidebar ul {
+    list-style: none;
+}
+#sidebar ul li {
+    height: 32px;
+    background: #fff;
+    line-height: 32px;
+    border-bottom: 1px solid #ccc;
+}
+#sidebar ul li:last-child {
+    border: none;
+}
+#sidebar ul li a {
+    display: block;
+    padding-left: 12px;
+    color: #333;
+    text-decoration: none;
+    transition: 0.7s;
+}
+#sidebar ul li a:hover {
+    background-color: #000;
+    color: #fff;
+}
+#sidebar h2 {
+    padding-left: 10px;
+    border-left: 3px solid #000;
+    margin-bottom: 18px;
+    line-height: 1em;
+}
+
+
+footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    line-height: 2em;
+}
+
+.box {
+    margin: 15px 0;
+}
+.bg-gray {
+    padding: 20px 15px;
+    border: 1px solid #ccc;
+    background: #e4e4e4;
+}
+
+
+
+
+footer .logo {
+    width: 160px;
+    margin: 15px 0 10px;
+}
+footer p small {
+    height: 30px;
+    font-size: 10px;
+    line-height: 30px;
+}

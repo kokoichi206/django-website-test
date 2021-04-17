@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<h1>HOME</h1>
+
+<!-- {% if username == "Me" %}
+<h2>自分です</h2>
+{% elif username %}
+<h2>{{ username }}さん、ようこそ</h2>
+{% else %}
+<h2>匿名さん、ようこそ</h2>
+{% endif %} -->
+
+<h2>Welcome!</h2>
+
+<button id="login_transition" class="imgage">
+     <img src="{% static 'welcome.jpg' %}"/>
+</button>
+
+<div style="margin-top: 20px;">
+     <li class="mt-2"><a href="/timer/timerMusic">Timer</a></li>
+     <li class="mt-2"><a href="/greet/index">Search</a></li>
+     <li class="mt-2"><a href="/greet/execute">Online</a></li>
+     <li class="mt-2"><a href="/greet/typing">Typing?</a></li>
+     <li class="mt-2"><a href="/greet/roulette">Roulette?</a></li>
+     <br>
+     <li class="mt-2"><a href="/table/sudoku">Sudoku</a></li>
+     <li class="mt-2"><a href="/tetris/tetris">Tetris</a></li>
+     <li class="mt-2"><a href="/mario/mario">Mario</a></li>
+     <li class="mt-2"><a href="/rpg/main">rpg</a></li>
+     <li class="mt-2"><a href="/shooting/shooting">Shooting game</a></li>
+     <li class="mt-2"><a href="/table/memory">Memory game</a></li>
+     <br>
+     <li class="mt-2"><a href="/table/reversi">Reversi (on going...)</a></li>
+</div>
+<div>
+     <a href="memo">Memo</a></li>
+</div>
+
+<script type="text/javascript" src="{% static 'js/index.js' %}">
+</script>
+{% endblock %}
