@@ -12,7 +12,11 @@ class IndexView(TemplateView):
         ctxt = super().get_context_data()
         # ctxt["username"] = "太郎"
         return ctxt
-        
+
+class IndexOldView(TemplateView):
+    template_name = "old/old.html"
+    
+ 
 
 class AboutView(TemplateView):
     template_name = "about.html"

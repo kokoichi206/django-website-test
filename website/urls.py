@@ -33,5 +33,6 @@ urlpatterns = [
     path('greet/typing', TypingView.as_view()),
     path('greet/roulette', RouletteView.as_view()),
     path('rpg/main', RPG_View.as_view()),
+    path('old/old', IndexOldView.as_view()),
 ]
 
