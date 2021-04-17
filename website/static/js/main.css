@@ -80,7 +80,7 @@ header nav ul li a {
 #main {
     width: 73%;
     float: right;
-    padding-bottom: 95px;
+    padding-bottom: 55px;
     background: #fff;
 }
 #main p {
@@ -175,8 +175,7 @@ header nav ul li a {
 
 
 footer {
-    background: #000;
-    color: #fff;
+    color: #000;
     text-align: center;
     font-size: 12px;
     line-height: 2em;
@@ -200,6 +199,6 @@ footer .logo {
 }
 footer p small {
     height: 30px;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 30px;
 }
