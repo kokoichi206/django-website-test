@@ -90,6 +90,8 @@ header nav ul li a {
     height: 38px;
     margin: 15px 0;
     padding-left: 35px;
+    background-color: #000;
+    background-position: left;
     font-size: 16px;
     color: #fff;
     line-height: 38px;
