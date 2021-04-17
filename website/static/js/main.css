@@ -94,7 +94,7 @@ header nav ul li a {
     background-position: left;
     background-repeat: no-repeat;
     background-color: #000; */
-    background: #000 url(image/mark1.png) no-repeat left 10px center;
+    /* background: #000 url(image/mark1.png) no-repeat left 10px center; */
     font-size: 16px;
     color: #fff;
     line-height: 38px;
