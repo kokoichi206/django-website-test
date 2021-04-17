@@ -13,9 +13,20 @@ class IndexView(TemplateView):
         # ctxt["username"] = "太郎"
         return ctxt
 
-class IndexOldView(TemplateView):
-    template_name = "old/old.html"
+class IndexFAQView(TemplateView):
+    template_name = "main/FAQ.html"
+
+class IndexLinkView(TemplateView):
+    template_name = "main/link.html"
+
+class IndexStudyView(TemplateView):
+    template_name = "main/study.html"
     
+class IndexGameView(TemplateView):
+    template_name = "main/game.html"
+
+class IndexOldView(TemplateView):
+    template_name = "old/old.html" 
  
 
 class AboutView(TemplateView):

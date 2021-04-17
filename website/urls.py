@@ -9,6 +9,7 @@ from .views import SudokuView, ReversiView, MemoryView
 from .views import TetrisView, MarioView, ShootingView
 from .views import RouletteView, RPG_View
 from .views import IndexOldView
+from .views import IndexFAQView, IndexLinkView, IndexStudyView, IndexGameView
 
 urlpatterns = [
     path('', IndexView.as_view()),
@@ -35,5 +36,9 @@ urlpatterns = [
     path('greet/roulette', RouletteView.as_view()),
     path('rpg/main', RPG_View.as_view()),
     path('old/old', IndexOldView.as_view()),
+    path('main/FAQ', IndexFAQView.as_view()),
+    path('main/link', IndexLinkView.as_view()),
+    path('main/study', IndexStudyView.as_view()),
+    path('main/game', IndexGameView.as_view()),
 ]
 
