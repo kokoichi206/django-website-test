@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="../doctor.css">
-    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="{% static 'css/doctor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
     <header>
-        <h1 class="logo"><a href="#"><img src="../logo.png" alt="kokoichi logo"></a></h1>
+        <h1 class="logo"><a href="#"><img src="{% static 'fig/main/logo.png' %}" alt="kokoichi logo"></a></h1>
 
         <nav>
             <ul>
@@ -22,15 +22,18 @@
     </header>
 
     <div id="key_visual">
-        <img src="../change.png" alt="CHANGE">
+        <img src="{% static 'fig/main/change.png' %}" alt="CHANGE">
     </div>
 
 
     <div class="container">
 
         <div id="main">
+
+
             <section>
-                <h2>勉強してきたことまとめ</h2>
+
+                <h2>まとめ</h2>
                 <p>勉強してきたことをまとめたもの、もしくは今興味があることについて</p>
                 
                 <h3>Python</h3>
@@ -56,10 +59,7 @@
                 <h3>その他</h3>
 
 
-                <h3>当サイトに関して</h3>
-                <p>GitHubにこのサイトの<a href="https://github.com/kokoichi206/django-website-test">Source</a>は公開しています。気になることや要望はどんどん連絡お願いいたします。</p>
             </section>
-
 
             <section>
                 <h2>当サイトに関する（細かい）改善</h2>
@@ -107,8 +107,11 @@
     </div><!-- /#container -->
 
     <footer>
-        <p class="logo"><a href=""><img src="../logo.png" alt="colorful clover"></a></p>
+        <p class="logo"><a href=""><img src="{% static 'fig/main/logo.png' %}" alt="colorful clover"></a></p>
         <p><small>Copyright © Colorful Clover, inc. All Rights Reserved.</small></p>
     </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/main/main.js' %}"></script>
 </body>
 </html>
