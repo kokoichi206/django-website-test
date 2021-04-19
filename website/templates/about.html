@@ -1,39 +1,152 @@
-{% extends "base.html" %}
-{% load humanize %}
 {% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/doctor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-{% block main %}
-<h1>About me</h1>
-<!-- <img src="{% static 'change.jpeg' %}" alt=""><br> -->
-<img width="500" height="210" src="{% static 'change2.png' %}" alt="">
-<li>
-    <a href="/weight/main">My Body Weight</a>
-</li>
-<h2>Projects</h2>
-<!-- <img width="500" height="310" src="{% static 'pc.jpeg' %}" alt=""> -->
+
+</head>
+<body>
+    <header>
+        <h1 class="logo"><a href="#"><img src="logo.png" alt="kokoichi logo"></a></h1>
+
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="key_visual">
+        <img src="{% static 'fig/main/change.png' %}" alt="CHANGE">
+    </div>
 
 
-<ul>
-    <li>
-        <a href="https://github.com/kokoichi206/reversi">Reversi game</a>
-    </li>
-    <li>
-        <a href="https://github.com/kokoichi206/su-doku">Solve Su-doku</a>
-    </li>
-    <li>
-        <a href="https://github.com/kokoichi206/quiz-practice">Quiz</a>
-    </li>
-</ul>
-<img width="200" height="300" src="{% static 'movie/reversi.png' %}" alt="" />
-<img width="222" height="300" src="{% static 'movie/su_doku.png' %}" alt="" /><br>
-<p> By {% now "m/d/Y" %}</p>
-<h2>Skills</h2>
-<ul>
-    {% for skill in skills %}
-    <li>{{ skill }}</li>
-    {% empty %}
-    <li>スキルがありません</li>
-    {% endfor %}
-</ul>
-{% endblock %}
+    <div class="container">
+
+        <div id="main">
+            <section>
+                <h2 id="projects">Projects</h2>
+                <ul>
+                    <li>
+                        <a href="https://github.com/kokoichi206/quiz-practice">Quiz</a>
+                    </li>
+                </ul>
+                <h3>オセロゲーム</h3>
+                <p>やったこと<br>
+                    <ul>
+                        <li>ターミナルでのオセロの実装</li>
+                        <li>Kivyを使ってGUIでのオセロ表示</li>
+                        <li>DQN(Deep Q-Network)を使って強化学習させ、（少し）強くした</li>
+                    </ul> ソースコードは<a href="https://github.com/kokoichi206/reversi">こちら</a></p>
+
+
+                <h3>数独</h3>
+                <p>やったこと<br>
+                    <ul>
+                        <li>ターミナルでの数独の実装</li>
+                        <li>スクレイピングしてサイトから問題をとってきて解かせる</li>
+                        <li>解いた問題をサイトに入力できるようにする</li>
+                        <li>ランダムで問題を作る</li>
+                    </ul> 問題例は<a href="/table/sudoku">このページ</a>から。ソースコードは<a href="https://github.com/kokoichi206/su-doku">こちら</a></p>
+
+
+
+                <h3>hoge</h3>
+                このサイトを使って次にやりたいことであったり、
+                また、このサイト関係なくKokoichiが今やりたいと思っていることなど。
+                <h4>■ ブログを書く</h4>
+                <p>djangoを使って書くか、またこのサイトに公開するかなどはわかりませんが、
+                    何かしらのアウトプットのためにブログを書きたいです
+                </p>
+                <h4>■ djangoの機能をもっと調べ、利用する</h4>
+                <p>サイト紹介のところでも書きましたが、このサイトはdjangoの機能を全く使えていません。
+                    気が向けがその辺りを調べてみたいと思います。<br>
+                適当にファイル詰め込んだせいで、内部の構造ぐちゃぐちゃなのでいつか整理したい...
+                </p>
+
+                <h3>当サイトに関して</h3>
+                <p>GitHubにこのサイトの<a href="https://github.com/kokoichi206/django-website-test">Source</a>は公開しています。気になることや要望はどんどん連絡お願いいたします。</p>
+            </section>
+
+            <section>
+                <h2 id="fp">Future Plans</h2>
+                <p>これから何しよう</p>
+            </section>  
+
+            <section>
+                <h2 id="skills">SKILLS</h2>
+                <p><ul>
+                    <li>Python</li>
+                    <li>c++</li>
+                    <li>HTML+CSS+JavaScript</li>
+                </ul></p>
+            </section>    
+            
+            <section>
+                <h2>What's NEW</h2>
+                <div class="news">
+                    <dl>
+                        <dt>2021/04/18</dt><!--
+                     --><dd>html,cssを中心に更新。旧ファイルが必要な場合はお問い合わせ下さい。<span class="new">NEW</span></dd>
+                        <dt><time>2021/03/18</time></dt><!--
+                     --><dd>シューティングゲーム追加</dd>
+                        <dt><time>2021/03/17</time></dt><!--
+                     --><dd>マリオ追加</dd>
+                        <dt><time>2021/03/10</time></dt><!--
+                     --><dd>RPG追加</dd>
+                        <dt><time>2021/02/28</time></dt><!--
+                     --><dd>簿記３級受験</dd>
+                        <dt><time>2021/02/25</time></dt><!--
+                     --><dd>体重追加</dd>
+                        <dt><time>2021/02/20</time></dt><!--
+                     --><dd>Pythonのリポジトリ公開</dd>
+                        <dt><time>2021/02/15</time></dt><!--
+                     --><dd>JSを用いて作成したクイズ公開。</dd>
+                        <dt><time>2021/02/04</time></dt><!--
+                     --><dd>ホームページ公開</dd>
+                    </dl>
+                </div>
+            </section>
+        </div><!-- /#main -->
+        
+
+        <div id="sidebar">
+
+            <div class="box bg-gray">
+                <h2>SUB MENU</h2>
+                <ul>
+                    <li><a href="#projects">プロジェクト</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#">勉強まとめ</a></li>
+                </ul>
+            </div>
+
+            <div class="box bg-gray">
+                <h2>旧サイト<br>2021/04/17以前</h2>
+                <ul>
+                    <li><a href="old/old">HOME</a></li>
+                </ul>
+            </div>
+
+        </div><!-- /#sidebar -->
+    </div><!-- /#container -->
+
+    <footer>
+        <p class="logo"><a href=""><img src="{% static 'fig/main/logo.png' %}" alt="colorful clover"></a></p>
+        <p><small>Copyright © Colorful Clover, inc. All Rights Reserved.</small></p>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/main/main.js' %}"></script>
+</body>
+</html>
