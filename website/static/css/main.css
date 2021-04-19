@@ -7,8 +7,13 @@ body {
 
 
 header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 80px;
+    background-color: #fff;
+    border: 1px solid #333;
 }
 header .logo {
     position: absolute;
@@ -56,14 +61,13 @@ header nav ul li a {
 
 
 #key_visual {
+    margin: 80px auto 0;
     width: 100%;
 }
 #key_visual img {
     width: 100%;
     vertical-align: bottom;
 }
-
-
 
 
 
@@ -90,8 +94,6 @@ header nav ul li a {
     height: 38px;
     margin: 15px 0;
     padding-left: 35px;
-    background-color: #000;
-    background-position: left;
     font-size: 16px;
     color: #fff;
     line-height: 38px;
@@ -142,6 +144,7 @@ header nav ul li a {
     width: 23%;
     background: #fff;
     float: left;
+    /* transition: all 0.3s ease 0s; */
 }
 #sidebar ul {
     list-style: none;
@@ -173,11 +176,19 @@ header nav ul li a {
     line-height: 1em;
 }
 
+/* ある地点以下でスクロールしてもTOP固定にする（ための準備） */
+#sidebar.sticky{
+    position: fixed;
+    top: 80px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0);
+}
 
 footer {
+    /* background: #000; */
     color: #000;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 2em;
 }
 
@@ -199,6 +210,6 @@ footer .logo {
 }
 footer p small {
     height: 30px;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 30px;
 }
