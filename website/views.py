@@ -28,6 +28,9 @@ class IndexGameView(TemplateView):
 class IndexOldView(TemplateView):
     template_name = "old/old.html" 
  
+class IndexOldAboutView(TemplateView):
+    template_name = "old/about_old.html" 
+
 
 class AboutView(TemplateView):
     template_name = "about.html"
