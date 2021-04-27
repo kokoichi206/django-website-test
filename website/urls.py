@@ -36,7 +36,7 @@ urlpatterns = [
     path('greet/roulette', RouletteView.as_view()),
     path('rpg/main', RPG_View.as_view()),
     path('old/old', IndexOldView.as_view()),
-    path('old/about_old', IndexOldAboutView.as_view()),
+    path('old/aboutOld', IndexOldAboutView.as_view()),
     path('main/FAQ', IndexFAQView.as_view()),
     path('main/link', IndexLinkView.as_view()),
     path('main/study', IndexStudyView.as_view()),

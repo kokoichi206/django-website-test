@@ -29,7 +29,7 @@ class IndexOldView(TemplateView):
     template_name = "old/old.html" 
  
 class IndexOldAboutView(TemplateView):
-    template_name = "old/about_old.html" 
+    template_name = "old/aboutOld.html" 
 
 
 class AboutView(TemplateView):
