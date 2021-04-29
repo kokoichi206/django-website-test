@@ -11,7 +11,7 @@ from .views import RouletteView, RPG_View
 from .views import IndexOldView, IndexOldAboutView
 from .views import IndexFAQView, IndexLinkView, IndexStudyView, IndexGameView
 # web_practice 用
-from .views import HotSpotView, ClockView
+from .views import HotSpotView, ClockView, JokeView
 
 urlpatterns = [
     path('', IndexView.as_view()),
@@ -45,5 +45,6 @@ urlpatterns = [
     path('main/game', IndexGameView.as_view()),
     path('web_practice/hotspot/index', HotSpotView.as_view()),
     path('web_practice/clock/index', ClockView.as_view()),
+    path('web_practice/joke/index', JokeView.as_view()),
 ]
 

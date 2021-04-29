@@ -112,7 +112,8 @@ class HotSpotView(TemplateView):
     template_name = "web_practice/hotspot/index.html"
 class ClockView(TemplateView):
     template_name = "web_practice/clock/index.html"
-
+class JokeView(TemplateView):
+    template_name = "web_practice/joke/index.html"
 
 
 # FormViewを継承したViewを定義するa
