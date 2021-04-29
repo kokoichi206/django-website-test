@@ -11,7 +11,7 @@ from .views import RouletteView, RPG_View
 from .views import IndexOldView, IndexOldAboutView
 from .views import IndexFAQView, IndexLinkView, IndexStudyView, IndexGameView
 # web_practice 用
-from .views import HotSpot,
+from .views import HotSpot
 
 urlpatterns = [
     path('', IndexView.as_view()),
