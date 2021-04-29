@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'web_practice/hotspot/style.css' %}">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <img src="fig/all.jpeg" alt="">
+            <div class="all-tooltips">
+                <div class="tooltip tooltip-1">
+                    <div class="pin"></div>
+                    <div class="tooltip-content">
+                        <div class="arrow"></div>
+                        <div class="img">
+                            <img src="fig/light.jpeg" alt="">
+                        </div>
+                        <div class="content">
+                            <h1>Bright Light</h1>
+                            <p>This light is extremely bright and it automatically turns on when someone gets closer.</p>
+                            <button>Buy Now $199</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tooltip tooltip-2">
+                    <div class="pin"></div>
+                    <div class="tooltip-content">
+                        <div class="arrow"></div>
+                        <div class="content">
+                            <h1>Hello Tooptip-2</h1>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus officia totam in assumenda eligendi reiciendis inventore nulla quia soluta consectetur!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tooltip tooltip-3">
+                    <div class="pin"></div>
+                    <div class="tooltip-content">
+                        <div class="arrow"></div>
+                        <div class="img">
+                            <img src="fig/sofa.jpeg" alt="">
+                        </div>
+                        <div class="content">
+                            <h1>Rich Sofa</h1>
+                            <p>This price is too expensive. That's a rip-off! But please buy for me. lol</p>
+                            <button>Buy Now $2399</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{% static 'web_practice/hotspot/app.css' %}"></script>
+</body>
+</html>

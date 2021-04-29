@@ -107,6 +107,10 @@ class RPG_View(TemplateView):
     template_name = "rpg/main.html"
 
 
+# FOR web_practice
+class HotSpot(TemplateView):
+    template_name = "web_practice/hotspot/index.html"
+
 
 # FormViewを継承したViewを定義するa
 class PythonView(FormView):

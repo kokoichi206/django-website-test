@@ -1,0 +1,228 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 16px;
+    font-family: 'Monsterrat';
+}
+body {
+    background-color: azure;
+    width: 100%;
+}
+section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.container img {
+    width: 100%;
+    height: 100%;
+}
+
+.all-tooltips {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+.tooltip-content {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 0px 20px #00000020;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90vw;
+    max-width: 300px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+.tooltip-content .arrow {
+    position: absolute;
+    /* background-color: aqua; */
+    border: 10px solid transparent;
+    /* border-bottom-color: red; */
+    border-bottom-color: white;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+.pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.pin::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-radius: 50%;
+    animation: puls-effect 1s ease-in-out infinite;
+}
+
+.tooltip.active .tooltip-content {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Custom style for Tooltip-1 */
+.tooltip-1 .pin {
+    left: 82%;
+    top: 40%;
+    height: 15px;
+    width: 15px;
+}
+.tooltip-1 .tooltip-content {
+    display: flex;
+    max-width: 500px;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0;
+    background-color: aliceblue;
+}
+.tooltip-1.active .tooltip-content{
+    display: flex;
+}
+.tooltip-1 .tooltip-content .img{
+    width: 50%;
+    object-fit: cover;
+}
+.tooltip-1 .tooltip-content .content{
+    width: 50%;
+    padding: 20px;
+}
+.tooltip-1 .tooltip-content .content h1{
+    font-size: 24px;
+}
+.tooltip-1 .tooltip-content .content p{
+    font-size: 14px;
+}
+
+.tooltip-1 .tooltip-content .content button{
+    font-family: 'Monsterrat';
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 20px #00000020;
+}
+/* End Custom style for Tooltip-1 */
+
+
+/* Custom style for Tooltip-2 */
+.tooltip-2 .pin {
+    top: 40%;
+    left: 10%;
+}
+/* End Custom style for Tooltip-2 */
+
+
+/* Custom style for Tooltip-3 */
+.tooltip-3 .pin {
+    top: 70%;
+    left: 40%;
+    height: 15px;
+    width: 15px;
+}
+.tooltip-3 .tooltip-content {
+    display: flex;
+    max-width: 500px;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0;
+    background-color: aliceblue;
+}
+.tooltip-3.active .tooltip-content{
+    display: flex;
+}
+.tooltip-3 .tooltip-content .img{
+    width: 50%;
+    object-fit: cover;
+}
+.tooltip-3 .tooltip-content .content{
+    width: 50%;
+    padding: 20px;
+}
+.tooltip-3 .tooltip-content .content h1{
+    font-size: 24px;
+}
+.tooltip-3 .tooltip-content .content p{
+    font-size: 14px;
+}
+
+.tooltip-3 .tooltip-content .content button{
+    font-family: 'Monsterrat';
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 20px #00000020;
+}
+/* End Custom style for Tooltip-3 */
+
+
+
+@keyframes puls-effect{
+    0% {
+        transform: scale(.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px){
+    .tooltip-1 .tooltip-content{
+        flex-direction: column;
+        max-width: 300px;
+    }
+    .tooltip-1 .tooltip-content .content,
+    .tooltip-1 .tooltip-content .img {
+        width: 100%;
+    }
+    
+    .tooltip-3 .tooltip-content{
+        flex-direction: column;
+        max-width: 300px;
+    }
+    .tooltip-3 .tooltip-content .content,
+    .tooltip-3 .tooltip-content .img {
+        width: 100%;
+    }
+}
+

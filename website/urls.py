@@ -10,6 +10,8 @@ from .views import TetrisView, MarioView, ShootingView
 from .views import RouletteView, RPG_View
 from .views import IndexOldView, IndexOldAboutView
 from .views import IndexFAQView, IndexLinkView, IndexStudyView, IndexGameView
+# web_practice 用
+from .views import HotSpot,
 
 urlpatterns = [
     path('', IndexView.as_view()),
@@ -41,5 +43,6 @@ urlpatterns = [
     path('main/link', IndexLinkView.as_view()),
     path('main/study', IndexStudyView.as_view()),
     path('main/game', IndexGameView.as_view()),
+    path('web_practice/hotspot/index', HotSpot.as_view()),
 ]
 
