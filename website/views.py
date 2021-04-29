@@ -110,6 +110,9 @@ class RPG_View(TemplateView):
 # FOR web_practice
 class HotSpotView(TemplateView):
     template_name = "web_practice/hotspot/index.html"
+class ClockView(TemplateView):
+    template_name = "web_practice/clock/index.html"
+
 
 
 # FormViewを継承したViewを定義するa

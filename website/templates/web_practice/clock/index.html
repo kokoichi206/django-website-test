@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clock{
+            /* background-color: gray; */
+            height: 400px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 50%;
+            /* border: 5px solid gray; */
+            position: relative;
+            background-image: url("{% static 'web_practice/clock/clock-bg.png' %}");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .hour,
+        .min,
+        .sec {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: #000;
+            border-radius: 50%;
+            transform: rotate(-90deg);
+            transform-origin: left;
+        }
+        .hour {
+            height: 8px;
+            width: 30%;
+        }
+        .min {
+            height: 4px;
+            width: 40%;
+        }
+        .sec {
+            height: 2px;
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="clock">
+            <div class="hour"></div>
+            <div class="min"></div>
+            <div class="sec"></div>
+        </div>
+    </section>
+
+    <script>
+        const minEl = document.querySelector('.min');
+        const hourEl = document.querySelector('.hour');
+        const secEl = document.querySelector('.sec');
+
+        setInterval(()=> {
+            const date = new Date;
+
+            let secDeg = date.getSeconds()/60 * 360 -90;
+            let minDeg = date.getMinutes()/60 * 360 -90;
+            let hourDeg = date.getHours()/12 * 360 -90;
+            
+            secEl.style.transform = `rotate(${secDeg}deg)`;
+            minEl.style.transform = `rotate(${minDeg}deg)`;
+            hourDeg.style.transform = `rotate(${hourDeg}deg)`;
+            
+        }, 1000)
+    </script>
+</body>
+</html>
