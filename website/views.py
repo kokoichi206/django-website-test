@@ -108,7 +108,7 @@ class RPG_View(TemplateView):
 
 
 # FOR web_practice
-class HotSpot(TemplateView):
+class HotSpotView(TemplateView):
     template_name = "web_practice/hotspot/index.html"
 
 
