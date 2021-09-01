@@ -248,7 +248,10 @@ footer p small {
 }
 
 
-
+.quiz-container {
+    position: absolute;
+    top: 15vh;
+}
 
 
 

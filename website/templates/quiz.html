@@ -1,55 +1,38 @@
 {% load static %}
 
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/doctor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
     
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-        <link rel="stylesheet" href="{% static 'css/doctor.css' %}">
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-      <!-- <link rel="manifest" href="site.webmanifest">
-      <link rel="apple-touch-icon" href="icon.png"> -->
-      <!-- Place favicon.ico in the root directory -->
+    {% include '_navbar.html' %}
 
-      <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
-    </head>
+    <div class="container">
+
+        <div id="main">
+
+            <div class="quiz-container">
     
-    <body>
-        <!-- {% include "_navbar.html" %} -->
-        <!-- <header>
-            <h1 class="logo"><a href="/"><img src="{% static 'fig/main/logo.png' %}" alt="kokoichi logo"></a></h1>
-    
-            <nav>
-                <ul>
-                    <li><a href="/">HOME</a></li>
-                    <li><a href="/about">About Me</a></li>
-                    <li><a href="/quiz">Quiz</a></li>
-                </ul>
-            </nav>
-        </header> -->
+                <h1>Nogizaka Quiz</h1>
+                <div class="pull-left">
+                    <ol>
+                        <li><a href="/quiz/easy" style="font-size: 15pt;">Easy</a></li>
+                        <li><a href="/quiz/hard" style="font-size: 15pt;">Hard</a></li>
+                        <li><a href="/quiz/profile" style="font-size: 15pt;">Profile</a></li>
+                    </ol>
+                </div>
+            </div><!-- END .quiz-container -->
 
-        <div class="container">
-    
-            <h1>Nogizaka Quiz</h1>
-            <div class="pull-left">
-                <ol>
-                    <li><a href="/quiz/easy" style="font-size: 15pt;">Easy</a></li>
-                    <li><a href="/quiz/hard" style="font-size: 15pt;">Hard</a></li>
-                    <li><a href="/quiz/profile" style="font-size: 15pt;">Profile</a></li>
-                </ol>
-            </div>
-        </div><!-- END .container -->
+    </div><!-- /#container -->
 
-        <footer>
-            <p class="logo"><a href=""><img src="{% static 'fig/main/logo.png' %}" alt="colorful clover"></a></p>
-            <p><small>Copyright © Colorful Clover, inc. All Rights Reserved.</small></p>
-        </footer>
-
-        <script type="text/javascript" src="{% static 'js/app.js' %}">
-        </script>
-    </body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/main/main.js' %}"></script>
+</body>
 </html>
